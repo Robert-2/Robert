@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wishes>
+  <wishList>
+    <wish id="6" by="Polo" fixer="" prio="5">
+      <descr>Le calendrier s'exporte automatiquement, à chaque ajout de plan...</descr>
+    </wish>
+    <wish id="2" by="Andy" fixer="" prio="9">
+      <descr>Au niveau de l'arborescence des sous catégories, ce serait bien d'avoir plus de possibilités.
+
+Déja, pouvoir créer de nouvelles catégories générales (Distrib et Divers)
+
+Ensuite, pouvoir créer des sous-sous catégories (et même des sous-sous-sous catégories).
+
+Enfin, pouvoir "inclure" les sous catégories aux catégories. Par exemple, lors d'un ajout de matériel, si on a choisi "son" on n'a pas "projecteur" qui s'affiche dans les sous-catégories, mais que "amplis" "micros" "etc...
+
+Je pense que ça peut être pas mal que l'on ait la main sur la création de catégories et sous catégories, ce sera plus facile pour rentrer dans le robert du nouveau matos.
+
+Merci bien :)</descr>
+    </wish>
+    <wish id="9" by="Andy" fixer="" prio="4">
+      <descr>Lorqu'on modifie un élément du parc, on clique sur "sauvegarder", puis on doit fermer la fenêtre. Ce serait bien d'avoir un bouton type "OK" qui sauvegarde et ferme la fenêtre en même temps</descr>
+    </wish>
+    <wish id="10" by="Andy" fixer="" prio="3">
+      <descr>Première étape d'ajout évènement. "Le bénéficiaire n'existe pas dans la base de donnée, voules vous le créer maintenant", il y a comme choix "OK" ou "Annuler", ce serait bien que ce soit "oui" ou "non" pour avoir plus de clarté.</descr>
+    </wish>
+    <wish id="3" by="Emile" fixer="" prio="9">
+      <descr>suite au want more d'andy
+dejà les catégories c'est super!!
+et si les packs peuvent aller dans les sous categories aussi , c'est super cool</descr>
+    </wish>
+    <wish id="11" by="Emile" fixer="" prio="1">
+      <descr>avoir une photo de toi qui s affiche de temps en temps</descr>
+    </wish>
+    <wish id="12" by="Adrien" fixer="" prio="1">
+      <descr>Calcul automatique du nombre de kilomètre (en interrogeant via michelin ou mappy).
+C'est peut être pas trop plus compliqué que la météo??</descr>
+    </wish>
+    <wish id="7" by="Adrien" fixer="" prio="5">
+      <descr>Pouvoir ajouter du matos à 0€ (pour l'instant on rentre un prix à 0,001€ et ça affiche 0).
+A terme, l'idée serait d'avoir du matos qu'on réserve mais qui ne s'affiche pas dans le devis ou la facture comme par exemple, des baches, l'échelle,...</descr>
+    </wish>
+    <wish id="8" by="Adrien" fixer="" prio="5">
+      <descr>Dans le recap par plan, il faudrait pouvoir faire un pdf avec la dernière page "Infos Déclaration des techniciens" car c'est la seule qu'on peut envoyer à toutes les strucures.
+Pour l'instant, on va "imprimer en pdf" avec des outils comme pdfcreator et réimprimer pour n'avoir que cette page mais dans l'idée, cette page doit pouvoir être envoyée directement (et simplement).
+	</descr>
+    </wish>
+    <wish id="4" by="Victor" fixer="" prio="9">
+      <descr>Copier un plan ou bien avoir un modele type à modifier.</descr>
+    </wish>
+  </wishList>
+</wishes>

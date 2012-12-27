@@ -1,0 +1,52 @@
+/* 
+    Document	: colors
+	Thème		: blue
+    Description : Couleurs du thème.
+*/
+
+
+/*-------------------------- FONDS -------------------------*/
+
+body		{ background-color: #cce2e1; color: #000; }
+.fondPage	{ background-color: #afd4d2; color: #000; }
+.fondSect1	{ background-color: #e5f5f4; color: #000; }
+.fondSect2	{ background-color: #ebfbfa; color: #000; }
+
+
+
+/*-------------------------- BORDS -------------------------*/
+
+.bordPage	 { border: 2px solid #ececec; }
+.bordSection { border-color: #546cda; }
+
+
+
+/*-------------------------- TEXTE -------------------------*/
+
+.colorErreur { color: #f00; }
+.colorPage	 { color: #000; }
+
+
+
+/*-------------------------- LIENS -------------------------*/
+
+a:link, a:visited, a:active { color: #d7392b ; }
+a:hover						{ color: #ff1400 ; }
+.ui-state-error a			{ color: #000; }
+
+
+
+/*------------------------- BOUTONS  -----------------------*/
+
+.boutonMenu {
+	background: url("images/ui-bg_glass_80_d7ebf9_1x400.png") repeat-x scroll 50% 50% #d7ebf9;
+    border: 1px solid #aed0ea;
+    color: #2779aa;
+}
+.boutonMenu:hover {
+	background: url("images/ui-bg_glass_100_e4f1fb_1x400.png") repeat-x scroll 50% 50% #e4f1fb;
+    border: 1px solid #73b2e2;
+    color: #0070a3;
+}
+
+select { background-color: #e4f1fb; color: #111; border-color: #aed0ea; }

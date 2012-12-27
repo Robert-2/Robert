@@ -1,0 +1,52 @@
+/* 
+    Document	: colors
+	Thème		: dark
+    Description : Couleurs du thème.
+*/
+
+
+/*-------------------------- FONDS -------------------------*/
+
+body		{ background-color: #111; color: #fff; }
+.fondPage	{ background-color: #222; color: #fff; }
+.fondSect1	{ background-color: #333; color: #fff; }
+.fondSect2	{ background-color: #444; color: #fff; }
+
+
+
+/*-------------------------- BORDS -------------------------*/
+
+.bordPage	 { border: 2px solid #333; }
+.bordSection { border-color: #afafaf; }
+
+
+
+/*-------------------------- TEXTE -------------------------*/
+
+.colorErreur { color: #f00; }
+.colorPage	 { color: #000; }
+
+
+
+/*-------------------------- LIENS -------------------------*/
+
+a:link, a:visited, a:active { color: #d7392b ; }
+a:hover						{ color: #ff1400 ; }
+.ui-state-error a			{ color: #000; }
+
+
+
+/*---------------------- BOUTONS SPECIAUX -------------------*/
+
+.boutonMenu {
+	background: url("images/ui-bg_highlight-soft_35_222222_1x100.png") repeat-x scroll 50% 50% #222222;
+    border: 1px solid #444;
+    color: #eee;
+}
+.boutonMenu:hover {
+	background: url("images/ui-bg_highlight-soft_33_003147_1x100.png") repeat-x scroll 50% 50% #003147;
+    border: 1px solid #444444;
+    color: #fff;
+}
+
+select { background-color: #222222; color: #ddd; border-color: #003147; }
