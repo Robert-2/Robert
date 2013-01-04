@@ -25,7 +25,9 @@ CREATE TABLE `benef_interlocuteurs` (
   `nomStruct` varchar(64) NOT NULL,
   `typeRetour` varchar(64) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `label` (`label`)
+  KEY `label` (`label`),
+  KEY `nomPrenom` (`nomPrenom`),
+  KEY `email` (`email`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 

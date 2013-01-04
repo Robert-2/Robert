@@ -34,32 +34,32 @@ if ( $action == 'addStruct') {
 if ( $action == 'addInterloc') {
 	unset($_POST['action']);
 	$result = array ();
-	
+
 	if ($nomPrenom == '' || $adresse == '' || $codePostal == '' || $ville == '') { echo 'Pas assez de données... '; return; }
 	$tmpInterloc = new Interlocuteur ();
 	$tmpInterloc->setVals ($_POST);
-	try { if ( $tmpInterloc->save() )
-		$result["success"] = 'SUCCESS';
+	try {
+		if ($tmpInterloc->save()) {
+			$result["success"] = 'SUCCESS';
+			$idNewInterloc = $tmpInterloc->getNewInterlocID();
+		}
 	}
-	catch (Exception $e) { $result["success"] =  $e->getMessage(); }
-	
-	$idNewInterloc = $tmpInterloc->getNewInterlocID();
-	if ($idStructure != 0) {										// mets à jour la structure corresondante avec l'id de l'interlocuteur
+	catch (Exception $e) { $result["success"] = $e->getMessage(); die(json_encode($result)); }
+
+	if ($idStructure) {											// met à jour la structure correspondante avec l'id de l'interlocuteur
 		$tmpStruct = new Structure($idStructure);
 		$tmpStruct->updateInterloc($idNewInterloc);
 		try { $tmpStruct->save(); }
-		catch (Exception $e) { echo $e->getMessage(); }
+		catch (Exception $e) { $result["success"] = $e->getMessage(); die(json_encode($result)); }
 	}
 
 	foreach ( $tmpInterloc as $k => $v ){
 		$result['info'][$k] = $v ;
 	}
-
 	echo json_encode( $result );
 
 	unset ($tmpInterloc) ;
 	unset ($tmpStruct) ;
-
 }
 
 
@@ -111,7 +111,7 @@ if ( $action == 'supprStruct') {
 		else $result['success'] = "impossible de supprimer la structure !";
 	}
 	catch (Exception $e) { $result['success'] = $e->getMessage(); }
-	
+
 	echo json_encode( $result );
 }
 
