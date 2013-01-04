@@ -38,7 +38,7 @@ else {
 if ( @$action == 'addToXML') {								// need vars : $id & $user & $descr & $repro | $prio
 	$xml = simplexml_load_file('../bugHunter/'.$fileXML);
 	$xmlBloc = $xml->$bigBloc;
-	
+
 	$newNode = $xmlBloc->addChild($bloc);
 	$newNode->addAttribute('id', $id);
 	$newNode->addAttribute('by', $user);
@@ -48,10 +48,10 @@ if ( @$action == 'addToXML') {								// need vars : $id & $user & $descr & $rep
 		$newNode->addChild('repro', $repro);
 	if ($bloc == 'wish')
 		$newNode->addAttribute('prio', $prio);
-	
+
 	if ($xml->asXML('../bugHunter/'.$fileXML)) {
 		$retour = array('id'=>$id, 'by'=>$user, 'descr'=>$descr, 'repro'=>@$repro, 'prio'=>@$prio, 'fixer'=>'');
-		$retourMail = sendMailToDevs (" a ajouté un $type dans le BUG HUNTER du ROBERT !", $descr, $user);
+		$retourMail = sendMailToDevs (" a ajouté un $type dans le BUG HUNTER du ROBERT !", $descr, $idUser);
 		if ($retourMail['error'] == "Le message a bien été envoyé !")
 			 $retour['mailSent'] = 'Un email a été envoyé aux devs pour les prévenir !';
 		else $retour['mailSent'] = "Impossible de prévenir les devs par email.";
@@ -59,7 +59,7 @@ if ( @$action == 'addToXML') {								// need vars : $id & $user & $descr & $rep
 	else {
 		$retour['error'] = "Impossible de sauvegarder le XML...";
 	}
-	
+
 	echo json_encode($retour);
 }
 
@@ -71,17 +71,17 @@ if ( @$action == 'modXML' ) {								// need vars : $id & $fixer
 	$dom->preserveWhiteSpace = false;
 	$dom->formatOutput = true;
 	$dom->load('../bugHunter/'.$fileXML) ;
-	
+
 	$xpath = new DOMXPath($dom);
 	$thebloc = $xpath->query('//*[@id="'.$id.'"]')->item(0);
 	$thebloc->removeAttribute('fixer') ;
 	$thebloc->setAttribute('fixer', $fixer);
-	
+
 	if ($dom->save('../bugHunter/'.$fileXML)) {
 		$retour = array('id'=>$id, 'fixer'=>$fixer);
 	}
 	else $retour['error'] = "Impossible de sauvegarder le XML...";
-	
+
 	echo json_encode($retour);
 }
 
@@ -93,19 +93,19 @@ if ( @$action == 'supprXML') {								// need var : $id
 	$dom->preserveWhiteSpace = false;
 	$dom->formatOutput = true;
 	$dom->load('../bugHunter/'.$fileXML) ;
-	
+
 	$domDoc = $dom->documentElement;
 	$xpath = new DOMXPath($dom);
 	$thebloc = $xpath->query('//*[@id="'.$id.'"]')->item(0);
-	
+
 	$domBlocs = $domDoc->getElementsByTagName($bigBloc)->item(0) ;
 	$domBlocs->removeChild($thebloc) ;
-	
+
 	if ($dom->save('../bugHunter/'.$fileXML)) {
 		$retour = array('id'=>$id);
 	}
 	else $retour['error'] = "Impossible de sauvegarder le XML...";
-	
+
 	echo json_encode($retour);
 }
 
@@ -114,7 +114,7 @@ if ( @$action == 'supprXML') {								// need var : $id
 // ENVOI DU MAIL DE PANIC
 if ( @$action == 'sendPanic') {
 	$messagePanic = urldecode($message);
-	$retourMail = sendMailToDevs (" est en PANIQUE SUR LE ROBERT !'", $messagePanic, $prenomUser);
+	$retourMail = sendMailToDevs (" est en PANIQUE SUR LE ROBERT !'", $messagePanic, $idUser);
 	$retourMail['type'] = "reloadPage";
 	echo json_encode($retourMail);
 }
@@ -123,7 +123,7 @@ if ( @$action == 'sendPanic') {
 function sendMailToDevs ($sujet, $messageInt, $from) {
 	try {
 		$user = new Users();
-		$user->loadFromBD('prenom', $from);
+		$user->loadFromBD(Users::USERS_ID, $from);
 		$infosUser = $user->getUserInfos();
 		$mailUser  = $infosUser['email'];
 		$nomUser   = $infosUser['prenom']." ".$infosUser['nom'];
@@ -133,7 +133,7 @@ function sendMailToDevs ($sujet, $messageInt, $from) {
 	catch (Exception $e) {
 		$retour['error'] = "Envoi du mail : erreur de récup d'info !\n\nMessage :\n".$e->getMessage();
 	}
-	
+
 	$headerMail = "MIME-Version: 1.0\r\nFrom: $mailUser\r\nContent-type: text/html; charset=utf-8";
 	$messageMail = '<html>
 						<body bgcolor="#F1EDE9">
@@ -145,7 +145,7 @@ function sendMailToDevs ($sujet, $messageInt, $from) {
 							<p>Signé : <a href="http://www.robert.acousmie.fr">LE ROBERT</a></p>
 						</body>
 					</html>';
-	
+
 	// Envoi du mail
 	if (mail(DEVS_MAILS, $sujet, $messageMail, $headerMail))
 		 $retour['error'] = "Le message a bien été envoyé !" ;

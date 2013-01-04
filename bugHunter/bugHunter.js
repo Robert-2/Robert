@@ -18,8 +18,8 @@ $(function () {
 		$('.BHsection').hide();
 		$('#panicDiv').show();
 	});
-	
-	
+
+
 /// TRAITEMENT DES BUGS
 	$('#addBugBtn').click(function() {
 		$('#dialogBug').dialog({
@@ -29,22 +29,22 @@ $(function () {
 						 }
 		});
 	});
-	
+
 	$('.bugFixeur').click(function() {
 		var idBug  = $(this).attr('bug');
 		var fixeur = $(this).attr('fixer');
 		var strAjax = 'action=modXML&type=bug&id='+idBug+'&fixer='+fixeur;
 		AjaxJson(strAjax, 'bugHunter_actions', showBugFixer);
 	});
-	
+
 	$('#bugsList').on('click', '.bugKiller', function() {
 		var idBug = $(this).attr('bug');
 		var strAjax = 'action=supprXML&type=bug&id='+idBug;
 		AjaxJson(strAjax, 'bugHunter_actions', removeBug);
 	});
-	
-	
-	
+
+
+
 /// TRAITEMENT DES WISHES
 	$('#addWishBtn').click(function() {
 		$('#dialogWish').dialog({
@@ -54,22 +54,22 @@ $(function () {
 						 }
 		});
 	});
-	
+
 	$('.wishFixeur').click(function() {
 		var idWish = $(this).attr('wish');
 		var fixeur = $(this).attr('fixer');
 		var strAjax = 'action=modXML&type=wish&id='+idWish+'&fixer='+fixeur;
 		AjaxJson(strAjax, 'bugHunter_actions', showWishFixer);
 	});
-	
+
 	$('#wishesList').on('click', '.wishKiller', function() {
 		var idWish = $(this).attr('wish');
 		var strAjax = 'action=supprXML&type=wish&id='+idWish;
 		AjaxJson(strAjax, 'bugHunter_actions', removeWish);
 	});
-	
-	
-	
+
+
+
 /// BOUTON PANIC !!
 	$('#sendPanic').click(function() {
 		var messageTxt = $('#panicMessage').val();
@@ -81,7 +81,7 @@ $(function () {
 		var strAjax = 'action=sendPanic&type=panic&prenomUser='+prenomUser+'&message='+messageTxt;
 		AjaxJson(strAjax, 'bugHunter_actions', alerteErr);
 	});
-	
+
 });
 // FIN DU DOCUMENT READY
 
@@ -93,7 +93,7 @@ function addBug () {
 	var descr = $('#newBugDescr').val();
 	var repro = $('#newBugRepro').val();
 	if (descr == '' || repro == '') {alert("Merci d'être plus précis !");return;}
-	var strAjax = 'action=addToXML&type=bug&id='+nextIDbug+'&descr='+descr+'&repro='+repro+'&user='+prenomUser;
+	var strAjax = 'action=addToXML&type=bug&id='+nextIDbug+'&descr='+descr+'&repro='+repro+'&user='+prenomUser+'&idUser='+idUser;
 	AjaxJson(strAjax, 'bugHunter_actions', refreshBugList);
 }
 
@@ -141,7 +141,7 @@ function addWish () {
 	var descr = $('#newWishDescr').val();
 	var prior = $('#newWishPrio').val();
 	if (descr == '') {alert("Merci d'être plus précis !");return;}
-	var strAjax = 'action=addToXML&type=wish&id='+nextIDwish+'&descr='+descr+'&prio='+prior+'&user='+prenomUser;
+	var strAjax = 'action=addToXML&type=wish&id='+nextIDwish+'&descr='+descr+'&prio='+prior+'&user='+prenomUser+'&idUser='+idUser;
 	AjaxJson(strAjax, 'bugHunter_actions', refreshWishList);
 }
 
