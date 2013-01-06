@@ -1,7 +1,25 @@
 <?php
+/*
+ *
+    Le Robert est un logiciel libre; vous pouvez le redistribuer et/ou
+    le modifier sous les termes de la Licence Publique Générale GNU Affero
+    comme publiée par la Free Software Foundation;
+    version 3.0.
+
+    Cette WebApp est distribuée dans l'espoir qu'elle soit utile,
+    mais SANS AUCUNE GARANTIE; sans même la garantie implicite de
+	COMMERCIALISATION ou D'ADAPTATION A UN USAGE PARTICULIER.
+	Voir la Licence Publique Générale GNU Affero pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la Licence Publique Générale
+	GNU Affero avec les sources du logiciel; si ce n'est pas le cas,
+	rendez-vous à http://www.gnu.org/licenses/agpl.txt (en Anglais)
+ *
+ */
+
 
 class Structure implements Iterator {
-	
+
 	const ID_STRUCT		= 'id';
 	const IDS_INTERLOC	= 'interlocteurs';
 	const ERR_INFO		= 'Impossible de récupérer l\'info : ';
@@ -10,12 +28,12 @@ class Structure implements Iterator {
 	const MANQUE_ID_INTERLOC = 'Besoin de l\'id de l\'interlocuteur !';
 	const ERR_SAVE		= 'Impossible de sauvegarder en BDD :';
 	const INTERLOC_VIDE = 'degun !';
-	
+
 	private $infos;					// objet 'Infos' de la structure
 	private $idStruct;				// id de la structure
 	private $Interlocs;				// tableau d'id des interlocuteurs
-	
-	
+
+
 	public function __construct ( $id = 'new') {
 		$this->infos		= new Infos (TABLE_STRUCT);
 		$this->Interlocs	= array();
@@ -25,10 +43,10 @@ class Structure implements Iterator {
 		}
 		$this->loadFromBD( Structure::ID_STRUCT, $id ) ;
 	}
-	
+
 	// charge en mémoire les infos de la structure
 	public function loadFromBD ( $keyFilter, $value ) {
-		try { 
+		try {
 			$this->infos->loadInfos( $keyFilter, $value );
 			$this->idStruct  = $this->infos->getInfo(Structure::ID_STRUCT);
 			$interlocsList	 = $this->infos->getInfo(Structure::IDS_INTERLOC);
@@ -37,33 +55,33 @@ class Structure implements Iterator {
 		}
 		catch (Exception $e) { return $e->getMessage(); }
 	}
-	
+
 	// récupère les infos de la structure
 	public function getInfoStruct ($what='*') {
 		try { $infosStruct = $this->infos->getInfo($what); return $infosStruct; }			// Récup l(es) info(s) de la structure
 		catch (Exception $e) { return $e->getMessage(); }									// Si existe pas, récup de l'erreur
 	}
-	
-	
+
+
 	// définit des nouvelles valeurs pour la structure en mémoire
 	public function setVals ($arrKeyVals) {
 		foreach ($arrKeyVals as $key => $val)
 			$this->infos->addInfo ($key, $val);
 	}
-	
+
 	// redéfinit la liste des interlocuteurs pour cette structure
 	public function updateInterloc ($idToAdd = false) {
 		if ($idToAdd) {
 			$listeActuelleInterlocs = $this->infos->getInfo('interlocteurs');
 			if ($listeActuelleInterlocs == '') $listeActuelleInterlocs = $idToAdd;
 			else $listeActuelleInterlocs .= ','.$idToAdd;
-			
+
 			$this->setVals(array('interlocteurs'=>$listeActuelleInterlocs));
 			return true;
 		}
 		else return Structure::MANQUE_ID_INTERLOC;
 	}
-	
+
 	// Retourne le tableau des ID (ou autre) de tous les interlocuteurs pour cette structure
 	public function getInterlocs ($type = Interlocuteur::ID_INTERLOC) {
 		$infoInterloc = array();
@@ -75,20 +93,20 @@ class Structure implements Iterator {
 		else {
 			if (is_array($this->Interlocs)) {
 				foreach ($this->Interlocs as $idInterloc) {
-					try { 
+					try {
 						$interloc = new Interlocuteur($idInterloc);
 						$infoInterloc[] = $interloc->getInfoInterloc($type);
 					}
 					catch (Exception $e) { $infoInterloc[] = Structure::INTERLOC_VIDE; }
 				}
 			}
-			else $infoInterloc[] = Structure::INTERLOC_VIDE; 
-			
+			else $infoInterloc[] = Structure::INTERLOC_VIDE;
+
 		}
 		return $infoInterloc;
 	}
-	
-	
+
+
 	// Sauvegarde des valeurs en mémoire dans la BDD
 	public function save () {
 		$verifInfo = $this->infos->getInfo();							// Check si on a bien tout ce qu'il faut avant de sauvegarder en BDD
@@ -97,22 +115,22 @@ class Structure implements Iterator {
 		try { $this->infos->save(); return Structure::SAVE_OK ; }
 		catch (Exeption $e) { return Structure::ERR_SAVE . $e->getMessage(); }
 	}
-	
-	
+
+
 	// supprimer une structure dans la BDD
 	public function deleteStruct () {
 		$del = $this->infos->delete(Structure::ID_STRUCT, $this->idStruct);
 		return $del;
 	}
-	
-	
+
+
 	// Méthodes de l'iterator
 	public function current() { return $this->infos->current(); }
 	public function next()	  {	$this->infos->next() ;  	}
 	public function rewind()  { $this->infos->rewind() ; }
 	public function valid()   { if ( $this->infos->valid() === false  ) return false ; else return true ; }
 	public function key()     { return $this->infos->key(); }
-	
+
 }
 
 ?>

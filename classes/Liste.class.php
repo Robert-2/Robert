@@ -1,10 +1,28 @@
 <?php
+/*
+ *
+    Le Robert est un logiciel libre; vous pouvez le redistribuer et/ou
+    le modifier sous les termes de la Licence Publique Générale GNU Affero
+    comme publiée par la Free Software Foundation;
+    version 3.0.
+
+    Cette WebApp est distribuée dans l'espoir qu'elle soit utile,
+    mais SANS AUCUNE GARANTIE; sans même la garantie implicite de
+	COMMERCIALISATION ou D'ADAPTATION A UN USAGE PARTICULIER.
+	Voir la Licence Publique Générale GNU Affero pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la Licence Publique Générale
+	GNU Affero avec les sources du logiciel; si ce n'est pas le cas,
+	rendez-vous à http://www.gnu.org/licenses/agpl.txt (en Anglais)
+ *
+ */
+
 
 class Liste {
-	
+
 	const TABLE_INEXIST		= 'La table n\'existe pas !' ;					// erreur si la table n'existe pas
 	const FILTRE_IMPOSSIBLE = 'Impossible de filtrer selon ce champ' ;		// erreur si le champ n'existe pas
-	
+
 	private $bddCx;
 	private $table;
 	private $what;
@@ -13,40 +31,40 @@ class Liste {
 	private $filtre_key;
 	private $filtre;
 	private $isFiltred = false;
-	
+
 	private $filtres ;
 	private $filtreSQL ;
 
 	private $listResult ;
-	
+
 	public function __construct () {
 		$this->bddCx	= new PDO(DSN, USER, PASS, array(PDO::ATTR_PERSISTENT => false));
 		$this->bddCx->query("SET NAMES 'utf8'");
 		$this->bddCx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
-		$this->filtres = array() ; 
+		$this->filtres = array() ;
 	}
-	
+
 	public function __destruct () {
 		$this->bddCx = null;
 	}
-	
+
 	public function getListe ($table, $want = '*', $tri='id', $ordre='ASC', $filtre_key = false, $filtre_comp = '=', $filtre = false) {
 		$this->what = $want;
-		
+
 		if (Liste::check_table_exist ($table))
 			$this->table	= $table;
 		else return false ;
 
 		// pour chaque entrée dans $this->filtres
 		if ( isset ( $this->filtres) && ! empty ( $this->filtres ) ) {
-			$filtrage_multiple = '' ; 
+			$filtrage_multiple = '' ;
 			foreach ( $this->filtres as $f ) {
 				$filtrage_multiple .= "($f)" . ' AND ';
 			}
-			$filtrage_multiple = substr( $filtrage_multiple, 0 , strlen($filtrage_multiple) - strlen(' AND ') ); 
+			$filtrage_multiple = substr( $filtrage_multiple, 0 , strlen($filtrage_multiple) - strlen(' AND ') );
 		}
 
-		
+
 		$this->tri		= $tri;
 		$this->ordre	= $ordre;
 		if ($filtre_key && $filtre) {
@@ -67,7 +85,7 @@ class Liste {
 			$q = "SELECT $this->what FROM `$this->table` ORDER BY `$this->tri` $this->ordre";
 
 //		echo "REQUETE : $q<p></p>" ;
-		$q = $this->bddCx->prepare ($q) ; 
+		$q = $this->bddCx->prepare ($q) ;
 
 		$q->execute();
 
@@ -89,7 +107,7 @@ class Liste {
 		}
 		else return false;
 	}
-	
+
 
 	// ajoute une condition ( AND ) à la requete //
 	public function addFiltre($filtre_key = false, $filtre_comp = '=', $filtre = false , $logique = ' AND '){
@@ -104,7 +122,7 @@ class Liste {
 	public static function getMax ( $table, $champ){
 
 		global $bdd;
-		
+
 		$q = $bdd->prepare("SELECT `$champ` from `$table` WHERE `$champ` = (SELECT MAX($champ) FROM `$table`)");
 		$q->execute();
 		if ($q->rowCount() >= 1) {
@@ -112,13 +130,13 @@ class Liste {
 			return $result[$champ];
 		}
 		else return false;
-		
+
 	}
 
 	// retourne l'index du prochain auto increment //
 	public function getAIval ($table) {
 		global $bdd;
-		
+
 		$q = $bdd->prepare("SHOW TABLE STATUS LIKE '$table'");
 		$q->execute();
 		if ($q->rowCount() >= 1) {
@@ -130,14 +148,14 @@ class Liste {
 	}
 
 	// renvoi un tableau trié de la liste ou l'index est $wantedInd //
-	// au lieu d'un index 0,1,2 .... 
+	// au lieu d'un index 0,1,2 ....
 	public function simplifyList($wantedInd = null ) {
 	if ($this->listResult == null || empty ($this->listResult) ) {
 		return false ;
 	}
-	
+
 	if ( $wantedInd == null ) $wantedInd = 'id' ;
-	
+
 	$newTableau = array();
 	foreach( $this->listResult as $entry){
 		$ind = $entry[$wantedInd];
@@ -154,8 +172,8 @@ class Liste {
 			return true;
 		else return false;
 	}
-	
-	
+
+
 	private function check_col_exist ($champ) {
 		$q = $this->bddCx->prepare("SELECT $champ FROM `$this->table`");
 		$q->execute();

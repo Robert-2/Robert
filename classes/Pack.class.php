@@ -1,7 +1,25 @@
 <?php
+/*
+ *
+    Le Robert est un logiciel libre; vous pouvez le redistribuer et/ou
+    le modifier sous les termes de la Licence Publique Générale GNU Affero
+    comme publiée par la Free Software Foundation;
+    version 3.0.
+
+    Cette WebApp est distribuée dans l'espoir qu'elle soit utile,
+    mais SANS AUCUNE GARANTIE; sans même la garantie implicite de
+	COMMERCIALISATION ou D'ADAPTATION A UN USAGE PARTICULIER.
+	Voir la Licence Publique Générale GNU Affero pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la Licence Publique Générale
+	GNU Affero avec les sources du logiciel; si ce n'est pas le cas,
+	rendez-vous à http://www.gnu.org/licenses/agpl.txt (en Anglais)
+ *
+ */
+
 
 class Pack implements Iterator {
-	
+
 	const UPDATE_ERROR_DATA = 'donnée invalide' ;					// erreur si une donnée ne correspond pas
 	const UPDATE_OK			= 'donnée modifiée, OK !' ;				// message si une modif BDD a réussi
 	const INFO_ERREUR		= 'Impossible de lire les infos en BDD';// erreur de la méthode Infos::loadInfos()
@@ -9,20 +27,20 @@ class Pack implements Iterator {
 	const INFO_FORBIDDEN	= 'donnée interdite' ;					// erreur si info est une donnée sensible
 	const REF_MANQUE		= 'Il manque la référence !';			// erreur si la référence du pack n'est pas renseignée au __construct
 	const MANQUE_INFO		= 'Pas assez d\'info pour sauvegarder';	// erreur si il manque des infos lors de la sauvegarde
-	
+
 	const PACK_OK          = true ;						// retour général, si la fonction a marché
 	const PACK_ERROR       = false ;					// retour général, si la fonction n'a pas marché
-	
+
 	const REF_PACK			= 'ref';					// champ BDD où trouver la référence du pack
 	const ID_PACK			= 'id';						// champ BDD où trouver la référence du pack
-	
+
 	private $infos  ;					// instance de Infos (pour récup et update)
 	private $id;						// ID (ou autre champ BDD) du pack à construire
 	private $baseInfo;					// tableau des infos au construct, pour comparaison lors d'un update
 	private $basedetail;				// chaîne json du contenu du pack au construct, pour ajout / suppression de matos
 	private $qtePackComplet;			// Nombre de packs que l'on peut avoir avec les quantités de son contenu, pour le matos dans le parc
 	private $tarifPackComplet;			// Prix du pack selon les quantités de matos et leur prix au détail
-	
+
 	public function __construct ($champ='new', $id='') {
 		$this->infos = new Infos( TABLE_PACKS ) ;						// Création de l'instance de 'Infos'
 		if ( $champ == 'new' ) return 1 ;
@@ -30,18 +48,18 @@ class Pack implements Iterator {
 		$this->id = $id;
 		$this->loadFromBD( $champ, $this->id ) ;						// Récupération des données en BDD
 	}
-	
-	
+
+
 	public function loadFromBD ( $keyFilter , $value ) {
 		try {
 			$this->infos->loadInfos( $keyFilter, $value );
 			$this->baseInfo		= $this->infos->getInfo();
 			$this->basedetail	= $this->infos->getInfo('detail');
 		}
-		catch (Exception $e) { throw new Exception(Pack::INFO_ERREUR) ; }	
+		catch (Exception $e) { throw new Exception(Pack::INFO_ERREUR) ; }
 	}
-	
-	
+
+
 	public function getPackInfos ($what='') {
 		if ($what == '') {												// Récup toutes les infos
 			try {
@@ -60,14 +78,14 @@ class Pack implements Iterator {
 		}
 		return $info;
 	}
-	
-	
+
+
 	public function setVals ($arrKeysVals) {							// (re)définit des infos du pack
 		foreach ($arrKeysVals as $key => $val)
 			$this->infos->addInfo ($key, $val);
 	}
-	
-	
+
+
 	public function addMatos ($ref, $qte) {								// Ajout d'un détail au pack
 		$contenuBrut = $this->basedetail ;								// Récupère le contenu déjà en place
 		$contenu		= json_decode($contenuBrut, true);
@@ -76,8 +94,8 @@ class Pack implements Iterator {
 		$retour = $this->updatePack('detail', $contenuOK);				// Sauvegarde en BDD du nouveau contenu
 		return $retour;
 	}
-	
-	
+
+
 	public function modMatos ($ref, $qte) {								// Modification d'un détail du pack
 		$contenuBrut = $this->basedetail ;								// Récupère le contenu déjà en place
 		$contenu		= json_decode($contenuBrut, true);
@@ -86,8 +104,8 @@ class Pack implements Iterator {
 		$retour = $this->updatePack('detail', $contenuOK);				// Sauvegarde en BDD du nouveau contenu
 		return $retour;
 	}
-	
-	
+
+
 	public function delMatos ($ref) {									// Suppression d'un détail du pack
 		$contenuBrut = $this->basedetail ;								// Récupère le contenu déjà en place
 		$contenu	= json_decode($contenuBrut, true);
@@ -96,8 +114,8 @@ class Pack implements Iterator {
 		$retour = $this->updatePack('detail', $contenuOK);				// Sauvegarde en BDD du nouveau contenu
 		return $retour;
 	}
-	
-	
+
+
 	public function updatePack ($typeInfo = false, $newInfo = false) {
 		if ($typeInfo !== false && $newInfo !== false) {				// Si on spécifie une clé/valeur, on update que celle-ci
 			try { $this->infos->update($typeInfo, $newInfo); return "Mise à jour de $typeInfo effectuée !"; }
@@ -114,8 +132,8 @@ class Pack implements Iterator {
 			return $retour;
 		}
 	}
-	
-	
+
+
 	public function countPacksInParc () {
 		$l = new Liste();
 		$listeMatos = $l->getListe(TABLE_MATOS, 'id, panne, Qtotale', 'id');
@@ -135,8 +153,8 @@ class Pack implements Iterator {
 		$this->qtePackComplet = $nbPackComplet;
 		return $this->qtePackComplet;
 	}
-	
-	
+
+
 	public function getTarifPack () {
 		$l = new Liste();
 		$listeMatos = $l->getListe(TABLE_MATOS, 'id, tarifLoc', 'id');
@@ -153,24 +171,24 @@ class Pack implements Iterator {
 		$this->tarifPackComplet = $tarifPack;
 		return $this->tarifPackComplet;
 	}
-	
-	
+
+
 	public function save () {											// Sauvegarde d'un NOUVEAU PACK
 		$verifInfo = $this->infos->getInfo();							// Check si on a bien tout ce qu'il faut avant de sauvegarder en BDD
 		if ( !$verifInfo['label'] || !$verifInfo['ref'] || !$verifInfo['categorie'] )
 			throw new Exception (Pack::MANQUE_INFO) ;
-		
+
 		$this->infos->save()  ;
 		return Pack::PACK_OK ;
 	}
-	
-	
+
+
 	public function deletePack () {
 		$nb = $this->infos->delete( Pack::ID_PACK , $this->id ) ;
 		return $nb ;
 	}
 
-	
+
 	public function current() { return $this->infos->current(); }
 	public function next()	  {	$this->infos->next() ;  	}
 	public function rewind()  { $this->infos->rewind() ; }

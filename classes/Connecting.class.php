@@ -1,4 +1,23 @@
 <?php
+/*
+ *
+    Le Robert est un logiciel libre; vous pouvez le redistribuer et/ou
+    le modifier sous les termes de la Licence Publique Générale GNU Affero
+    comme publiée par la Free Software Foundation;
+    version 3.0.
+
+    Cette WebApp est distribuée dans l'espoir qu'elle soit utile,
+    mais SANS AUCUNE GARANTIE; sans même la garantie implicite de
+	COMMERCIALISATION ou D'ADAPTATION A UN USAGE PARTICULIER.
+	Voir la Licence Publique Générale GNU Affero pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la Licence Publique Générale
+	GNU Affero avec les sources du logiciel; si ce n'est pas le cas,
+	rendez-vous à http://www.gnu.org/licenses/agpl.txt (en Anglais)
+ *
+ */
+
+
 define('BF_TIME_LAPS', (60*5)); // 5 minutes		// laps de temps à attendre après avoir fait trop de tentatives (en secondes)
 define('BF_NB_TENTATIVE', 5);	// 5 tentatives		// Nbre de tentatives maxi, tous les TIME_LAPS
 define('BF_DIR', $install_path.'BFlogs/');			// répertoire de stockage des logs
@@ -6,7 +25,7 @@ define('BF_DIR', $install_path.'BFlogs/');			// répertoire de stockage des logs
 
 // CLASSE DE SÉCU ANTI FORCE BRUTE
 class NoBF {
-	
+
     public function  __construct() { }
 
     // Teste si le nbre de tentative n'exède pas BF_NB_TENTATIVE dans le laps de temps défini avec BF_TIME_LAPS
@@ -18,7 +37,7 @@ class NoBF {
             $infos = NoBF::fileToArray($filename);
             $nb_tentatives = count($infos);
             $premiere_tentative = @$infos[0];
-			
+
             if ($nb_tentatives < BF_NB_TENTATIVE)
                 $deny_access = false;
             elseif ($nb_tentatives > BF_NB_TENTATIVE && (BF_TIME_LAPS + $premiere_tentative) > time())
@@ -28,7 +47,7 @@ class NoBF {
         }
         return $deny_access;
     }
-	
+
     public static function addTentative($email) {
         $filename = BF_DIR . $email . '.tmp';
         $date = time();
@@ -40,7 +59,7 @@ class NoBF {
         $infos[] = $date;
         NoBF::arrayToFile($filename, $infos);
     }
-	
+
     // Permet de supprimer les enregistrements trop anciens
     public static function cleanUp($infos) {
         foreach($infos as $n => $date) {
@@ -69,7 +88,7 @@ class NoBF {
 
 // CLASSE DE CONNEXION D'UN UTILISATEUR
 class Connecting {
-	
+
 	private $db;			// Instance de PDO
     private $connected;
     private $user			 = array();
@@ -84,35 +103,35 @@ class Connecting {
             $this->connected = false;
         }
     }
-	
+
 	// Retourne si cette personne est connectée ou pas
     public function is_connected() {
 		if ($this->connected)
 			return $_SESSION[ $this->login_cookie ];
 		else return false;
     }
-	
+
     // Connexion : $email : string (email) / $password : string non crypté (mot de passe)
     public function connect($email, $password) {
         $deny_login = NoBF::bruteCheck($email);
 		$this->disconnect();
 		$email = preg_replace('/\\\'/', '', $email);		// Empêcher les injections SQL en virant les '
-		
+
         if ($deny_login == true)
             exit('Trop de tentatives de connexion. Merci de recommencer dans quelques minutes.');
         else {
-            $q = $this->db->prepare("SELECT `id`, `email`, `password` 
-									FROM `".$this->user_table_name."` 
+            $q = $this->db->prepare("SELECT `id`, `email`, `password`
+									FROM `".$this->user_table_name."`
 									WHERE `email` = '$email'
 									AND `password` = '".md5($this->salt.$password)."' ");
 			try {
 				$q->execute();
 			}
-			catch (Exception $e) { 
+			catch (Exception $e) {
 				echo $e->getMessage();
 //				die();
 			}
-			
+
             if ($q->rowCount() == 1) {
                 $this->connected = true;
                 $this->user = $q->fetch(PDO::FETCH_ASSOC);
@@ -126,14 +145,14 @@ class Connecting {
             }
         }
     }
-	
-	
+
+
     // Déconnexion
     public function disconnect() {
         $this->resetSessionData();
         session_unset();
     }
-	
+
     // Teste la connexion en cours
     private function testConnexion() {
         // def des vars à tester
@@ -160,12 +179,12 @@ class Connecting {
 
         if (!empty($toTestLogin) && !empty($toTestPassword)) {
             // teste si l'utilisateur existe bel et bien
-            $q  =   $this->db->prepare("SELECT id,email,password 
-										FROM `".$this->user_table_name."` 
-										WHERE `email`='$toTestLogin' 
+            $q  =   $this->db->prepare("SELECT id,email,password
+										FROM `".$this->user_table_name."`
+										WHERE `email`='$toTestLogin'
 										AND `password`='$toTestPassword'");
 			$q->execute();
-			
+
             if ($q->rowCount() == 1) {
                 $this->connected = true;
                 $this->user = $q->fetch(PDO::FETCH_ASSOC);
@@ -173,7 +192,7 @@ class Connecting {
                 // Si connexion depuis cookie : on remet en place les sessions + cookies
                 if (empty($_SESSION[ $this->password_cookie ]) || !empty($_SESSION[ $this->login_cookie ]))
                     $this->setSecuredData();
-				
+
                 $this->updateUser($this->user['id']);
                 return true;
             }

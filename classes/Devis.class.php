@@ -1,10 +1,29 @@
 <?php
+/*
+ *
+    Le Robert est un logiciel libre; vous pouvez le redistribuer et/ou
+    le modifier sous les termes de la Licence Publique Générale GNU Affero
+    comme publiée par la Free Software Foundation;
+    version 3.0.
+
+    Cette WebApp est distribuée dans l'espoir qu'elle soit utile,
+    mais SANS AUCUNE GARANTIE; sans même la garantie implicite de
+	COMMERCIALISATION ou D'ADAPTATION A UN USAGE PARTICULIER.
+	Voir la Licence Publique Générale GNU Affero pour plus de détails.
+
+    Vous devriez avoir reçu une copie de la Licence Publique Générale
+	GNU Affero avec les sources du logiciel; si ce n'est pas le cas,
+	rendez-vous à http://www.gnu.org/licenses/agpl.txt (en Anglais)
+ *
+ */
+
+
 include_once('infos_boite.php');
 require_once('date_fr.php');
 require_once('matos_tri_sousCat.php');
 
 class Devis {
-	
+
 	const PATH_CONTENU_PLANS = '../datas/PLANS_DATAS/';		// dossier principal des contenu des plans (relatif au dossier 'fct' !)
 	const DEVIS_cFICHIER	 = 'fichier';					// champs BDD
 	const DEVIS_cID_PLAN	 = 'id_plan';
@@ -12,21 +31,21 @@ class Devis {
 	const DEVIS_cMATOS		 = 'matos';
 	const DEVIS_cTEKOS		 = 'tekos';
 	const DEVIS_cTOTAL		 = 'total';
-	
+
 	private $idPlan;
 	private $devisInfos;
 	private $devisFilename;
 	private $devisFilePath;
-	
-	
+
+
 	public function __construct ( $idPlan ) {
 		if ( !isset($idPlan) ) return 'Merci de spécifier l\'ID du plan...';
 		$this->idPlan = $idPlan;
 		$this->devisInfos = new Infos(TABLE_DEVIS);
 		$this->devisFilePath = Devis::PATH_CONTENU_PLANS.'/'.$idPlan.'/devis/';
 	}
-	
-	
+
+
 	// Retourne un tableau des noms de fichiers de devis pour le dossier d'un plan ( NOTE : PAS BESOIN DE CRÉER UN OBJET DEVIS POUR L'APPELLER (static) !! )
 	public static function getDevisFiles ( $idPlan, $withTotal = false ) {
 		$l = new Liste();
@@ -69,8 +88,8 @@ class Devis {
 			return $listeDevisFiles;
 		}
 	}
-	
-	
+
+
 	// Supprime un devis et son entrée en BDD
 	public function deleteDevis ( $fileName = '' ) {
 		if ($fileName == '') throw new Exception("Il manque le nom du fichier du devis à supprimer !");
@@ -85,14 +104,14 @@ class Devis {
 			catch (Exception $e) { throw new Exception("Impossible de supprimer le devis en BDD : \n\n" . $e->getMessage()); }
 		}
 	}
-	
+
 	// Supprime un devis (selon son fichier) seulement en BDD
 	private function deleteDevisBDD ( $fileName = '' ) {
 		if ($fileName == '') return false;
 		try { $this->devisInfos->delete(Devis::DEVIS_cFICHIER, $fileName); return true;}
 		catch (Exception $e) { return false; }
 	}
-	
+
 	// Suppprime TOUS les devis associés à un plan (dans le cas ou on supprime le plan, pour nettoyer le serveur et la BDD)
 	public static function deleteAllDevisBDD ($idPlan) {
 		global $install_path;
@@ -112,8 +131,8 @@ class Devis {
 		}
 		rrmdir($install_path.Devis::PATH_CONTENU_PLANS.'/'.$idPlan.'/devis/');
 	}
-	
-	
+
+
 	// Compte le nombre de devis enregistrés en BDD pour ce plan
 	public function getNbDevis () {
 		$l = new Liste();
@@ -122,7 +141,7 @@ class Devis {
 		if ( $listeDevis == false ) return 0 ;
 		else return (count($listeDevis)) ;
 	}
-	
+
 	// Retourne le dernier numDevis enregistré en BDD pour ce plan
 	public static function getLastNumDevis ( $idPlan ) {
 		$l = new Liste();
@@ -137,7 +156,7 @@ class Devis {
 
 
 ////////////////// Méthodes pas encore utilisées ! PEUT-ÊTRE UN JOUR, POUR LA VERSION 2.0 !? ////////////////////
-	
+
 	// Charge les infos d'un devis
 	public function loadDevis ( $idDevis = '' ) {
 		if ($idDevis == '') throw new Exception('Il manque l\'ID du devis à récupérer !') ;
@@ -149,17 +168,17 @@ class Devis {
 		}
 		catch (Exception $e) { throw new Exception('Erreur récupération devis : ' . $e->getMessage() ); }
 	}
-	
+
 	// GETTERS d'infos de devis
 	public function getDevisMatos () { return json_decode($this->devisMatos); }
 	public function getDevisTekos () { return explode(' ', $this->devisTekos); }
-	
+
 	// Confirmation d'un devis (rend un devis actif pour la facturation)
 	public function confirmDevis ( $idDevis = '') {
 		if ($idDevis == '') throw new Exception("Il manque l'ID du devis à confirmer !") ;
 		// à finir, un jour...
 	}
-	
+
 }
 
 ?>
