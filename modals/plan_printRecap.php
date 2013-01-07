@@ -19,17 +19,17 @@ function formatTelephone( $tel ){
 
 	$number ='';
 	for ( $i = 0 ; $i <= $length ; $i+=2 ){
-		$number .= substr($tel, $i , 2) . ' ' ; 
+		$number .= substr($tel, $i , 2) . ' ' ;
 	}
 
-	return $number ; 
+	return $number ;
 
 }
 
 
 try {
 	$p = new Plan();
-	$p->load( 'id', $idPlan ); 
+	$p->load( 'id', $idPlan );
 
 	$l = new Liste();
 
@@ -38,10 +38,10 @@ try {
 	array_push($list_sousCat, array ( 'id' => 999, 'label' => 'A louer' ));
 	$list_sousCat = simplifySousCatArray($list_sousCat);
 	//$list_sousCat = $l->simplifyList ( 'id' );
-	
-	$listeTeks  = $l->getListe( TABLE_TEKOS ); 
+
+	$listeTeks  = $l->getListe( TABLE_TEKOS );
 	$listeTeks  = $l->simplifyList('surnom');
-	
+
 	if ( get_class($p) != "Plan" ) return -1 ;
 	$retour['id']			= $p->getPlanID();
 	$retour['titre']		= $p->getPlanTitre();
@@ -91,32 +91,32 @@ try {
 		}
 		$retour['sousPlans'][$spID]['tekos'] = substr($stringTekosList, 0, -2);
 	}
-	
+
 	$tmp = Array();								// Tri du tableau des sous plans par leur timestamp
 	foreach($retour['sousPlans'] as &$spTs)
 		$tmp[] = &$spTs["timestamp"];
-	array_multisort($tmp, $retour['sousPlans']); 
-	
+	array_multisort($tmp, $retour['sousPlans']);
+
 	if ($_SESSION['user']->isLevelMod()) $retour['levelAuth'] = true;
 	else $retour['levelAuth'] = false;
 
 	$benef = $p->getPlanBenef() ;
-	
+
 	$listeInterlock = $l->getListe(TABLE_INTERLOC, '*', 'label', 'ASC', 'nomStruct','=', $benef );
 	$benefInfos = $l->getListe ( TABLE_STRUCT, '*', 'label', 'ASC', 'label', '=', $benef );
 	if ( $benefInfos != false)
 		$benefInfos = $benefInfos[0];
 	else
 		$benefInfos = $retour['benef'] ;
-		
-	
+
+
 	$p = null ;
 
 }
 
 catch( Exception $e) {
 	echo ('Impossible d\'afficher la liste du plan : <BR />' . $e->getMessage() );
-	return -1; 
+	return -1;
 }
 
 	$titrePageBar = "ACOUSMIE - Fiche : " . $retour['titre'];
@@ -130,18 +130,18 @@ catch( Exception $e) {
 	<meta charset="utf-8" />
 	<meta name="keywords" content="" />
 	<meta name="description" content="" />
-	
+
 	<meta name="robots" content="noindex,nofollow" />
-	
+
 	<title><? echo $titrePageBar ; ?></title>
-	
+
 	<link rel="shortcut icon" type="image/x-icon" href="../gfx/favicon.ico" />
-	
+
 	<link type="text/css" href="../<? echo chooseThemeFolder(); ?>/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
 	<link type="text/css" href="../css/ossature.css" rel="stylesheet" />
 	<link type="text/css" href="../css/ossature_print.css" rel="stylesheet" media="print"/>
 	<link type="text/css" href="../<? echo chooseThemeFolder(); ?>/colors.css" rel="stylesheet" />
-	
+
 	<script type="text/javascript" src="../js/jquery-1.7.min.js">// JQUERY CORE</script>
 	<script type="text/javascript" src="../js/jquery-ui-1.8.17.custom.min.js">// JQUERY UI</script>
 	<script type="text/javascript" src="../js/toolTip.js">// petit script pour afficher les tooltips</script>
@@ -150,12 +150,12 @@ catch( Exception $e) {
 	.titreSection { margin : 5% 2% 0% 2%; }
 	.container    { margin : 1% 0% 0% 2%;}
 </style>
-	
+
 </head>
 
 <body>
 	<div style="float:right;"><button class="enorme printHide" onClick="window.print()">IMPRIMER</button></div>
-	
+
 	<div id='planInfos' class='ui-widget titreSection bordFin ui-corner-all'>
 		<div class='ui-widget-header ui-corner-all gros pad5' style='color:white; background-color:orange;'>
 			<?  echo $retour['titre'];  ?>
@@ -167,22 +167,22 @@ catch( Exception $e) {
 		<div class='container'>
 			<?
 				foreach ( $retour['sousPlans'] as $sp ){
-					
+
 					$tekDiv = '<div class="inline marge30l" style="width:115px;">Techniciens : </div>';
 					$tekosExp = explode(',', $sp['tekos']);
 					foreach( $tekosExp as $tek){
 						$tek = ltrim($tek);
 						$tekDiv .= '<div class="tekName inline marge30l"><b>' . $tek . '</b></div>';
 					}
-					
+
 					if ( $sp['rem'] != '')
 						$remarque = '<br /><div class="inline marge30l" style="width:115px;">Remarque :</div><div class="inline marge30l"><i>' . $sp['rem'] . '</i></div>' ; else $remarque = '' ;
-					
+
 					echo "<div class='gros marge15bot pad5 top'>"
 						  . '<div class="pad5 ui-corner-all"><b>' . $sp['jour'] . '</b></div>' .
 							$tekDiv .
 							$remarque
-						."</div>"; 
+						."</div>";
 				}
 			?>
 		</div>
@@ -212,7 +212,7 @@ catch( Exception $e) {
 
 						$listeTeks[$tek]['tel_print'] = true ;
 					}
-						
+
 				}
 
 					echo "<div class='gros inline marge15bot pad5 ui-corner-all top'>"
@@ -233,7 +233,7 @@ catch( Exception $e) {
 					echo $benefInfos['type'] . ' ' . $benefInfos['NomRS'] . ' ( ' .  formatTelephone( $benefInfos['tel'])  . ' ) ' .$benefInfos['adresse'] ; ?></span>
 		</div>
 
-		
+
 		<div class='container marge30l'>
 		<?
 			if (  ! empty ($listeInterlock) ) {
@@ -260,18 +260,18 @@ catch( Exception $e) {
 
 			Matos_getManque ( $retour['id'], &$retour['matos']);
 			$matosBySousCat = creerSousCatArray_showExterieur ( $retour['matos'] );
-					
+
 			foreach( $matosBySousCat as $id => $matos ){
-				
+
 				if ( empty($matos) ) continue ;
-				
+
 				if ( $list_sousCat[$id]['label'] != 'A louer') {
 					echo "<div class='margeTop10'><div class='gros'><b>" . $list_sousCat[$id]['label']  . "</b></div>";
 					foreach( $matos as $mat ){
 						if ( isset ($mat['manque']) && $mat['manque'] != 0 )
 							$pasdispo = ' + <b>' . -$mat['manque'] . ' à louer</b> !';
 						else $pasdispo = '';
-							
+
 						echo "<div class='marge30l'>
 								<div class='inline' style='width:20pt'>" . $mat['qte'] . "</div> x <div class='inline' style='width:150px;'>" . $mat['ref'] ."</div>
 								<div class='inline red'>$pasdispo</div>
@@ -280,23 +280,27 @@ catch( Exception $e) {
 					echo "</div>" ;
 				}
 				else {
-					$alouer = "<div class='margeTop10'><div class='enorme'><b>" . $list_sousCat[$id]['label']  . " à l'extérieur</b></div><p></p>";
-					$matos_a_louer_trie_structure = MatosExt_by_Location ( $matos ) ; 
+					$alouer = "<div class='margeTop10'>
+									<div class='enorme'><b>" . $list_sousCat[$id]['label']  . " à l'extérieur</b></div>
+									<p></p>";
+					$matos_a_louer_trie_structure = MatosExt_by_Location ( $matos ) ;
 					foreach( $matos_a_louer_trie_structure as $struct => $matList ){
 						$alouer .= "<div class='gros padH5'><b> " . $struct  . "</b></div>";
 						foreach ( $matList as $mat  )
-						    $alouer .= "<div class='marge30l'><div class='inline'>" . $mat['qte'] . "</div> x <div class='inline'>" . $mat['ref'] . "</div></div></div>";
+						    $alouer .= "<div class='marge30l'>
+											<div class='inline'>" . $mat['qte'] . "</div> x <div class='inline'>" . $mat['ref'] . "</div>
+										</div>";
 					}
 					$alouer .= "</div>" ;
 				}
 			}
-			
+
 		?></div>
 
 		<div class='inline demi top'>
 			<? echo @$alouer ; ?>
 		</div>
-		
+
 			<br /><br />
 		</div>
 
@@ -313,7 +317,7 @@ catch( Exception $e) {
 
 			?>
 			</div>
-			
+
 			<div class='demi inline rightText'><img src="../gfx/logoAcousmie.jpg" /></div>
 		</div>
 
@@ -326,12 +330,12 @@ catch( Exception $e) {
 					$tekosExp = explode(',', $sp['tekos']);
 					foreach( $tekosExp as $tek){
 						$tek = ltrim($tek);
-						
+
 						if ( ! @$listeTeks[$tek]['print_decla'] ){
 							if ( $listeTeks[$tek]['intermittent'] == '0' ) $entrepriseNote = ' <span class="red">*</span>'; else $entrepriseNote = '';
 							$declaDiv .= '<div class="tekName padH5 marge30l">
 											<div class = "inline" style="width:200px;"><b>'.$listeTeks[$tek]['prenom'] . ' ' . $listeTeks[$tek]['nom'] .$entrepriseNote. '</b></div>
-											
+
 											<div class="inline">
 													  Jours travaillés : <input size="2" class="decla nbJourTaf"   type="text" value="'.$listeTeks[$tek]['nbJoursTaf'].'"/>
 													   hrs/jour : <input size="2" class="decla nbHeureTaf"  type="text" value="8" /></div>
@@ -372,11 +376,11 @@ catch( Exception $e) {
 						}
 						else $infosEmploi = '<div class="marge30l"><b>AUTO-ENTREPRENEUR</b> : Fournira directement une facture.</b></div>
 											 <div class="marge30l"><i>N° SIRET :</i> '. @$siret.'</div>';
-						
+
 						if (@$listeTeks[$tek]['categorie'] == 'regisseur')
 							 $posteTek = 'REGISSEUR';
 						else $posteTek = 'Technicien '.strtoupper(@$listeTeks[$tek]['categorie']);
-						
+
 						if ( ! @$listeTeks[$tek]['print_list'] )
 							$tekDiv .= '<div><b>'.$listeTeks[$tek]['prenom'] . ' ' . $listeTeks[$tek]['nom'] .'</b> ( '. formatTelephone($tel) .') <u>' . @$listeTeks[$tek]['email'] . '</u></div>
 										<div class="tekName" style="margin-bottom:25px;">
@@ -388,7 +392,7 @@ catch( Exception $e) {
 											<div class="marge30l"><i>No SÉCU :</i> ' . @$listeTeks[$tek]['SECU'] . '</div>
 											'. $infosEmploi .'
 										</div>';
-						
+
 						$listeTeks[$tek]['print_list'] = true ;
 					}
 				}
@@ -413,7 +417,7 @@ catch( Exception $e) {
 				var total = 0 ;
 				$('.nbBrouzGlobal').each( function (){
 					var subTotal = parseInt( $(this).html());
-					if ( ! isNaN ( subTotal ) ) total = total + subTotal ; 
+					if ( ! isNaN ( subTotal ) ) total = total + subTotal ;
 				})
 				$('.totalDecla').html( total.toFixed(2) );
 			});
