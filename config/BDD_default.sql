@@ -272,6 +272,6 @@ CREATE TABLE `users` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 INSERT INTO `users` VALUES
-('1','root@robertmanager.org','55a88a4ab846c1e2ea0f5589c631a901','DEBUGGER','Root','9','1325615980','1356632988','1356620371','human','blancs','rouges','31','1.73','0');
+('1','root@robertmanager.org','8351aaf8480d8135bc77af590c93c1e2','DEBUGGER','Root','9','1325615980','1356632988','1356620371','human','blancs','rouges','31','1.73','0');
 
 
