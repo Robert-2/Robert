@@ -64,22 +64,28 @@
 
 ## 3) Documentation du Robert : INSTALLATION
 
-1. **Avant de commencer**					_ (TODO) _
-2. **Installation du Robert pas à pas**		_ (TODO) _
-3. **Problèmes connus**						_ (TODO) _
+Sommaire ([voir wiki](https://github.com/RobertManager/robert/wiki/)) :
+
+1. **Avant de commencer**
+2. **Installation du Robert pas à pas**
+3. **Problèmes connus**
 
 
 
 ## 4) Documentation du Robert : UTILISATION
 
-1. **Pour commencer**				_ (TODO) _
-2. **Pour aller + loin**			_ (TODO) _
-3. **Pour contribuer**				_ (TODO) _
-4. **Pour développer**				_ (TODO) _
+Sommaire ([voir wiki](https://github.com/RobertManager/robert/wiki/)) :
+
+1. **Pour commencer**
+2. **Pour aller + loin**
+3. **Pour contribuer**
+4. **Pour développer**
 
 
 
 ## 5) Documentation du Robert : DÉVELOPPEMENT
+
+Sommaire ([voir wiki](https://github.com/RobertManager/robert/wiki/)) :
 
 1. **Règles de base de présentation du code**
 2. **La structure du Robert expliquée**
