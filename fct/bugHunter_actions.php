@@ -51,7 +51,7 @@ if ( @$action == 'addToXML') {								// need vars : $id & $user & $descr & $rep
 
 	if ($xml->asXML('../bugHunter/'.$fileXML)) {
 		$retour = array('id'=>$id, 'by'=>$user, 'descr'=>$descr, 'repro'=>@$repro, 'prio'=>@$prio, 'fixer'=>'');
-		$retourMail = sendMailToDevs (" a ajouté un $type dans le BUG HUNTER du ROBERT !", $descr, $idUser);
+		$retourMail = sendMailToDevs ("$user a ajouté un $type dans le BUG HUNTER du ROBERT !", $descr, $idUser);
 		if ($retourMail['error'] == "Le message a bien été envoyé !")
 			 $retour['mailSent'] = 'Un email a été envoyé aux devs pour les prévenir !';
 		else $retour['mailSent'] = "Impossible de prévenir les devs par email.";
@@ -138,7 +138,7 @@ function sendMailToDevs ($sujet, $messageInt, $from) {
 	$messageMail = '<html>
 						<body bgcolor="#F1EDE9">
 							Hellow mes ptits devs !! <br />
-							<p><b>'.$nomUser.' '.$sujet.'</b> ! '.$datePanic.'</p>
+							<p><b>'.$infosUser['nom'].' '.$sujet.'</b> ! '.$datePanic.'</p>
 							--------------------------------------------------------------------------------------
 							<p><b>'.nl2br($messageInt).'</b></p>
 							--------------------------------------------------------------------------------------

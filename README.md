@@ -26,17 +26,57 @@
 
 
 
-## Documentation du Robert
-
-* Pour commencer		_ (TODO) _
-* Pour aller + loin		_ (TODO) _
-* Pour contribuer		_ (TODO) _
-* Pour développer		_ (TODO) _
-
-
-
 ## Liste des fonctionnalités du Robert
-_ (TODO) _
+
+## Gestionnaire d’événements (module calendrier)
+* Ajout d’événement
+* Gestion de la disponibilité des techniciens
+* Gestion des quantités de matériel disponible à la (aux) date(s) donnée(s)
+* Création de devis et factures au format PDF
+* Système de calcul de remises, en % ou en €
+* Création de listes récapitulatives du matériel à préparer/louer, des infos sur l'événement et du fichier de déclaration des techniciens.
+* Météo du lieu de l’événement (si pas trop éloigné dans le temps)
+* Petit système de post-it pour communiquer avec toute l'équipe
+
+## Gestionnaire de parc matériel
+* Gestion du matériel (ajout, suppression, modification)
+* Création de "Pack" de matériels (liste prédéfinie)
+* Création de sous catégories pour le tri du matériel
+
+## Gestion des techniciens
+* Ajout de techniciens et de leur infos (n°SÉCU, n°GUSO, coordonnées, etc.)
+* Création de comptes (compte utilisateur associé aux infos technicien)
+
+## Gestion des "bénéficiaires" (clients)
+* Gestion de structures (associations, collectivités, entreprises, particuliers...)
+* Gestion des interlocuteurs associés à ces structures
+
+## Gestion des informations
+* Coordonnées de la structure du parc de matériel
+
+## Module de sauvegarde
+* Sauvegarde de la base de données dans un fichier téléchargeable
+* Restauration d'un fichier de sauvegarde dans la base en cas d'erreur
+
+## Plusieurs thèmes disponibles pour l'interface
+
+
+
+## Documentation du Robert : INSTALLATION
+
+1. **Avant de commencer**					_ (TODO) _
+2. **Installation du Robert pas à pas**		_ (TODO) _
+3. **Problèmes connus**						_ (TODO) _
+
+
+
+## Documentation du Robert : UTILISATION
+
+1. **Pour commencer**				_ (TODO) _
+2. **Pour aller + loin**			_ (TODO) _
+3. **Pour contribuer**				_ (TODO) _
+4. **Pour développer**				_ (TODO) _
+
 
 
 ## Licence du Robert
