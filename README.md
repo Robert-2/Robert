@@ -2,7 +2,7 @@
 # ROBERT, version 0.5
 
 
-## Description rapide du Robert
+## 1) Description rapide du Robert
 
 ### Robert, c'est :
 * Une WEB-APP (logiciel en ligne) open source, écrite en php, js, html et xml, utilisant jQuery, ajax et mysql.
@@ -26,7 +26,7 @@
 
 
 
-## Liste des fonctionnalités du Robert
+## 2) Liste des fonctionnalités du Robert
 
 ### Gestionnaire d’événements (module calendrier)
 * Ajout d’événement
@@ -62,7 +62,7 @@
 
 
 
-## Documentation du Robert : INSTALLATION
+## 3) Documentation du Robert : INSTALLATION
 
 1. **Avant de commencer**					_ (TODO) _
 2. **Installation du Robert pas à pas**		_ (TODO) _
@@ -70,12 +70,21 @@
 
 
 
-## Documentation du Robert : UTILISATION
+## 4) Documentation du Robert : UTILISATION
 
 1. **Pour commencer**				_ (TODO) _
 2. **Pour aller + loin**			_ (TODO) _
 3. **Pour contribuer**				_ (TODO) _
 4. **Pour développer**				_ (TODO) _
+
+
+
+## 5) Documentation du Robert : DÉVELOPPEMENT
+
+1. **Règles de base de présentation du code**
+2. **La structure du Robert expliquée**
+3. **Liste des classes et leur utilisation**
+4. **dépôt GIT et GitHub**
 
 
 
