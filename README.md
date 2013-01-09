@@ -28,7 +28,7 @@
 
 ## Liste des fonctionnalités du Robert
 
-## Gestionnaire d’événements (module calendrier)
+### Gestionnaire d’événements (module calendrier)
 * Ajout d’événement
 * Gestion de la disponibilité des techniciens
 * Gestion des quantités de matériel disponible à la (aux) date(s) donnée(s)
@@ -38,27 +38,27 @@
 * Météo du lieu de l’événement (si pas trop éloigné dans le temps)
 * Petit système de post-it pour communiquer avec toute l'équipe
 
-## Gestionnaire de parc matériel
+### Gestionnaire de parc matériel
 * Gestion du matériel (ajout, suppression, modification)
 * Création de "Pack" de matériels (liste prédéfinie)
 * Création de sous catégories pour le tri du matériel
 
-## Gestion des techniciens
+### Gestion des techniciens
 * Ajout de techniciens et de leur infos (n°SÉCU, n°GUSO, coordonnées, etc.)
 * Création de comptes (compte utilisateur associé aux infos technicien)
 
-## Gestion des "bénéficiaires" (clients)
+### Gestion des "bénéficiaires" (clients)
 * Gestion de structures (associations, collectivités, entreprises, particuliers...)
 * Gestion des interlocuteurs associés à ces structures
 
-## Gestion des informations
+### Gestion des informations
 * Coordonnées de la structure du parc de matériel
 
-## Module de sauvegarde
+### Module de sauvegarde
 * Sauvegarde de la base de données dans un fichier téléchargeable
 * Restauration d'un fichier de sauvegarde dans la base en cas d'erreur
 
-## Plusieurs thèmes disponibles pour l'interface
+### Plusieurs thèmes disponibles pour l'interface
 
 
 
