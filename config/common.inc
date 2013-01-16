@@ -17,32 +17,35 @@
  *
  */
 
-
 $host = $_SERVER['HTTP_HOST'];
-//$serverName = gethostname();
 $serverName = php_uname('n');
 //echo $serverName ;
 
-																// POLO LOCAL
-if ($host=='localhost' && $serverName=='etoileNoire') {
-	define ("HOST", "localhost");												// nom de l'hôte ou se trouve la bdd
-	define ("USER", "root");													// nom de l'utilisateur autorisé à se connecter
-	define ("PASS", "poiaze");													// son mot de passe
-	define ("BASE", "acousmierobert");											// nom de la base de données
-}
-elseif ($host=='localhost' && $serverName=='moutew-F50Z') {		// MOUTEW LOCAL
-	define ("HOST", "localhost");												// nom de l'hôte ou se trouve la bdd
-	define ("USER", "root");													// nom de l'utilisateur autorisé à se connecter
-	define ("PASS", "poiaze");													// son mot de passe
-	define ("BASE", "acousmierobert");											// nom de la base de données
-}
 
-elseif ($host=='www.exemple.com') {								// SERVEUR DISTANT
+/* ***************************************************************************** */
+/* ***************************************************************************** */
+/*
+
+ *	Modifiez les lignes 40 à 44 ci-dessous, en vous inspirant de l'exemple, pour renseigner :
+ *	votre nom de domaine
+ *	le nom de l'hôte ou se trouve la base de données
+ *	le nom de l'utilisateur SQL
+ *	le mot de passe de l'utilisateur SQL
+ *  le nom de la base de données
+ *
+ *  N'oubliez pas de sauvegarder.
+
+*/
+
+if ($host=='www.exemple.com') {													// Nom de domaine cible
 	define ("HOST", "host.db");													// nom de l'hôte ou se trouve la bdd
 	define ("USER", "userDB");													// nom de l'utilisateur autorisé à se connecter
 	define ("PASS", "passDB");													// son mot de passe
 	define ("BASE", "robertBase");												// nom de la base de données
 }
+
+/* ***************************************************************************** */
+/* ***************************************************************************** */
 
 define ("DEVS_MAILS", "polo@polosson.com, mathieu@d2mphotos.fr");
 
