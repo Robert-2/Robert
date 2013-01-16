@@ -37,11 +37,11 @@ $serverName = php_uname('n');
 
 */
 
-if ($host=='www.robertdemo.polosson.com') {										// Nom de domaine cible
-	define ("HOST", "db451091979.db.1and1.com");								// nom de l'hôte ou se trouve la bdd
-	define ("USER", "dbo451091979");											// nom de l'utilisateur autorisé à se connecter
-	define ("PASS", "poiazemlkqsd");											// son mot de passe
-	define ("BASE", "db451091979");												// nom de la base de données
+if ($host=='www.exemple.com') {													// Nom de domaine cible
+	define ("HOST", "host.db");													// nom de l'hôte ou se trouve la bdd
+	define ("USER", "userDB");													// nom de l'utilisateur autorisé à se connecter
+	define ("PASS", "passDB");													// son mot de passe
+	define ("BASE", "robertBase");												// nom de la base de données
 }
 
 /* ***************************************************************************** */
