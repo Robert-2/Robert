@@ -7,6 +7,8 @@ require_once ('checkConnect.php' );
 if ( $_SESSION["user"]->isAdmin() !== true ) { die("Vous n'avez pas accès à cette partie du Robert."); }
 
 $dumpPath = $install_path . FOLDER_CONFIG . 'dumpSQL/';
+if (!is_dir($dumpPath))
+	mkdir($dumpPath);
 $codeAuthentik = md5('systemFlaskSQLbackup');
 global $dumpPath;		// Chemin vers les backup SQL
 global $codeAuthentik;	// Code "d'authenticité" pour la création / récupération
@@ -19,7 +21,7 @@ function backup_SQL ($toBakup='all') {											// args : 'all', ou array() des
 	global $dumpPath; global $bdd; global $codeAuthentik;
 	$now = date('Y-m-d');
 	$fileSQL = array();
-	
+
 	if ($toBakup == 'all') {													// Si on dump TOUTES les tables
 		$q = $bdd->prepare('SHOW TABLES');
 		$q->execute();
@@ -37,7 +39,7 @@ function backup_SQL ($toBakup='all') {											// args : 'all', ou array() des
 		}
 		else $fileSQL = $tables[0].'_'.$now.'.sql';								// Si on dump QU'UNE SEULE table
 	}
-	
+
 	$output  = "\n-- BACKUP BASE DE DONNÉES -- \n";								// Création du texte du fichier SQL ( -> $output )
 	$output .= "-- DATE (AA-MM-JJ): $now \n";
 	$output .= "-- FAITE PAR : ".$_SESSION['user']->getUserInfos('prenom')."\n";
@@ -49,16 +51,16 @@ function backup_SQL ($toBakup='all') {											// args : 'all', ou array() des
 		try { $c->execute(); }
 		catch (Exception $e) { echo "erreur SQL : $e"; return false; }	// Si la table n'existe pas, erreur et on arrête tout !
 		$resultCreate = $c->fetchAll(PDO::FETCH_ASSOC);
-		
+
 		$r = $bdd->prepare("SELECT * FROM $table");						// Récup les valeurs des champs de la table
 		$r->execute();
 		$resultTable = $r->fetchAll(PDO::FETCH_ASSOC);
 		$nbRec = count($resultTable);									// Compte le nombre d'enregistrements de la table
-		
+
 		$output .= "-- ----------------- TABLE $table ------------------------\n\n";
 		$output .= "DROP TABLE IF EXISTS `$table`;\n\n";				// $output : commande de suppression de la table si déjà existante
 		$output .= $resultCreate[0]['Create Table'].";\n\n";			// $output : commande de re-création de la table
-		
+
 		if ($nbRec != 0) {
 			$output .= "INSERT INTO `$table` VALUES ";						// $output : commande d'insertion des valeurs dans la table
 			$countRec = 0;
@@ -71,7 +73,7 @@ function backup_SQL ($toBakup='all') {											// args : 'all', ou array() des
 					$countVal++ ;
 					$value = addslashes($value);							// valeur : ajoute des slashes devant les caractères réservés
 					$value = preg_replace("/\\r\\n/", "/\\\r\\\n/", $value);// valeur : évite que les retours à la ligne soient traduits
-					if (isset($value)) $output .= "'$value'" ;				// $output : valeur à ajouter ('' si pas de valeur) 
+					if (isset($value)) $output .= "'$value'" ;				// $output : valeur à ajouter ('' si pas de valeur)
 					else $output .= "''";
 					if ($countVal == $nbVal) {
 						$output .= ")";										// $output : ajout de la parenthèse fermée si à la fin des colonnes
