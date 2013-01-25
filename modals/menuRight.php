@@ -13,9 +13,9 @@ $list_Users_connected = $l->getListe(TABLE_USERS, 'prenom, level, date_last_acti
 
 <?
 echo 'Hello <b>'.$_SESSION['user']->getUserInfos('prenom').'</b> !
-	
+
 	<span class="boutonMenu"><a href="index.php?action=deconx">déconnexion</a></span>
-	
+
 	<p><select id="themeSel">
 		<option disabled selected value="">Thème...</option>';
 		$themesDispo = list_themes();
@@ -68,22 +68,22 @@ echo 'Hello <b>'.$_SESSION['user']->getUserInfos('prenom').'</b> !
 		}
 		?>
 	</div>
-	
+
 	<div id="matos_sousCateg_MR" class="petit margeTop10 hide">
 		<button class="bouton" id="gestionSousCatMatos"><b>GÉRER</b><br />les sous catégories</button>
 	</div>
-	
-	
+
+
 	<div id="legendeConfirmCal" class="ui-state-default ui-corner-all leftText petit margeTop10 pad10 hide">
 		<div style="float:left;" class="bordFin bordSection ui-icon ui-icon-help"></div><div class="marge30l">En attente</div>
 		<br />
 		<div style="float:left;" class="bordFin bordSection ui-icon ui-icon-check"></div><div class="marge30l">Confirmé !</div>
 	</div>
-	
+
 </div>
 
 <div id="versionRobert">
-	<b>Robert v<? echo R_VERSION; ?></b> &copy; 2012
+	<b>Robert v<? echo R_VERSION; ?></b><br />GNU Affero (AGLP)
 </div>
 
 
@@ -97,7 +97,7 @@ echo 'Hello <b>'.$_SESSION['user']->getUserInfos('prenom').'</b> !
 		if ($k != 'id' && $k != 'level'  && $k != 'theme' && $k != 'idTekos' && $k != 'date_inscription' && $k != 'date_last_action' && $k != 'date_last_connexion') {
 			if ($_SESSION['user']->isAdmin() === true && $k != 'email' && $k != 'nom' && $k != 'prenom')
 				$boutonDelInfo = '<div class="inline nano"><button class="bouton delInfoUsers" id="del-'.$k.'"><span class="ui-icon ui-icon-minus"></span></button></div>';
-			
+
 			echo '<div class="inline top center marge30l blockModInfo" style="width: 175px;">
 					<div class="ui-widget-header ui-corner-all pad3">'.$k.'</div>
 					<input type="text" id="modUserActif-'.$k.'" size="15" value="'.$v.'" />
