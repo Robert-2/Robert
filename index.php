@@ -60,17 +60,11 @@
 								<br />".strtoupper($nomPage)."</a>
 							  </div>";
 					}
-					if ( $_SESSION['user']->isLevelMod() ) {
-						echo '<span class="boutonMenu petit noMarge" title="Indiquez ici les bugs que vous trouvez, mais aussi les choses que vous aimeriez voir sur la prochaine version...">
-								<a href="bugHunter.php"><b>BUGs</b> Hunter</a>
-							</span>';
-					}
 				}
 				?>
-				<span class="boutonMenu petit noMarge" title="Trucs qu'il nous reste à faire">
-					<a href="todos.php"><b>TODOs</b></a><br />
+				<span class="boutonMenu petit noMarge" title="Indiquez ici les bugs que vous trouvez, mais aussi les choses que vous aimeriez voir sur la prochaine version...">
+					<a href="http://www.robert.polosson.com/index.php?go=7bugHunter" target="_new"><b>BugHunter</b></a>
 				</span>
-
 
 			</div>
 
