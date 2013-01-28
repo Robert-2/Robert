@@ -1,6 +1,5 @@
 <?php
 @session_start();
-error_reporting(8);
 require_once ('initInclude.php');
 require_once ('common.inc');		// OBLIGATOIRE pour les sessions, à placer TOUJOURS EN HAUT du code !!
 require_once ('checkConnect.php' );
