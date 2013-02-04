@@ -18,16 +18,16 @@
  */
 
 
-define('NOM_BOITE', 'Acousmie');
-define('TYPE_BOITE', 'Association');
-define('ADRESSE_BOITE', 'ZA Le Boutariq');
-define('CP_BOITE', '05400');
-define('VILLE_BOITE', 'MONTMAUR');
-define('TEL_BOITE', '04.92.43.31.64');
-define('EMAIL_BOITE', 'acousmie@gmail.com');
-define('SIRET_BOITE', '491 420 360 00019');
+define('NOM_BOITE', 'Robert');
+define('TYPE_BOITE', 'OSS');
+define('ADRESSE_BOITE', '99, Somewhere');
+define('CP_BOITE', '04250');
+define('VILLE_BOITE', 'CLEMSA CITY');
+define('TEL_BOITE', '');
+define('EMAIL_BOITE', 'contact@robertmanager.org');
+define('SIRET_BOITE', '');
 define('APE_BOITE', '9001Z');
-define('N_TVA_BOITE', 'FR93491420360');
+define('N_TVA_BOITE', '');
 define('TVA_VAL', '0.196');
 define('modUserActif-email', 'root@robertmanager.org');
 define('modUserActif-nom', 'DEBUGGER');

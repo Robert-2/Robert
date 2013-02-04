@@ -37,7 +37,13 @@ $serverName = php_uname('n');
 
 */
 
-if ($host=='www.exemple.com') {													// Nom de domaine cible
+if ($host=='localhost' && $serverName=='etoileNoire') {
+	define ("HOST", "localhost");
+	define ("USER", "root");
+	define ("PASS", "poiaze");
+	define ("BASE", "acousmierobert");
+}
+elseif ($host=='www.exemple.com') {													// Nom de domaine cible
 	define ("HOST", "host.db");													// nom de l'hôte ou se trouve la bdd
 	define ("USER", "userDB");													// nom de l'utilisateur autorisé à se connecter
 	define ("PASS", "passDB");													// son mot de passe
@@ -53,18 +59,18 @@ define ("DSN", 'mysql:dbname='.BASE.';host='.HOST);								// données de connex
 
 define ("R_VERSION", '0.5');
 
-define ("TABLE_USERS", "users");												// table des utilisateurs dans la BDD
-define ("TABLE_CAL"  , "calendar");												// table du calendrier
-define ("TABLE_MATOS", "matos_detail");											// table du matoss au détail
-define ("TABLE_MATOS_CATEG", "matos_sous_cat");								    // table des notes de calendrier
-define ("TABLE_PACKS", "matos_packs");											// table des packs de matoss
-define ("TABLE_TEKOS", "tekos");												// table des techniciens
-define ("TABLE_PLANS", "plans");												// table des plans
-define ("TABLE_PLANS_DETAILS", "plans_details");							    // table des details pour chaque jour de plan
-define ("TABLE_STRUCT", "benef_structure");										// table des structures bénéficiaires
-define ("TABLE_INTERLOC", "benef_interlocuteurs");								// table des interlocuteurs de structures bénéficiaires
-define ("TABLE_DEVIS", "devis");												// table des devis
-define ("TABLE_NOTES", "notes");												// table des notes de calendrier
+define ("TABLE_USERS",			"robert_users");								// table des utilisateurs dans la BDD
+define ("TABLE_CAL"  ,			"robert_calendar");								// table du calendrier
+define ("TABLE_MATOS",			"robert_matos_detail");							// table du matoss au détail
+define ("TABLE_MATOS_CATEG",	"robert_matos_sous_cat");						// table des notes de calendrier
+define ("TABLE_PACKS",			"robert_matos_packs");							// table des packs de matoss
+define ("TABLE_TEKOS",			"robert_tekos");								// table des techniciens
+define ("TABLE_PLANS",			"robert_plans");								// table des plans
+define ("TABLE_PLANS_DETAILS",	"robert_plans_details");						// table des details pour chaque jour de plan
+define ("TABLE_STRUCT",			"robert_benef_structure");						// table des structures bénéficiaires
+define ("TABLE_INTERLOC",		"robert_benef_interlocuteurs");					// table des interlocuteurs de structures bénéficiaires
+define ("TABLE_DEVIS",			"robert_devis");								// table des devis
+define ("TABLE_NOTES",			"robert_notes");								// table des notes de calendrier
 
 define ("FOLDER_ADMIN",		"admin/");											// Decription des dossiers du site
 define ("FOLDER_CLASSES",	"classes/");

@@ -6,9 +6,9 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 -- ----------------- TABLE benef_interlocuteurs ------------------------
 
-DROP TABLE IF EXISTS `benef_interlocuteurs`;
+DROP TABLE IF EXISTS `robert_benef_interlocuteurs`;
 
-CREATE TABLE `benef_interlocuteurs` (
+CREATE TABLE `robert_benef_interlocuteurs` (
   `id` int(4) NOT NULL AUTO_INCREMENT,
   `label` varchar(128) NOT NULL,
   `idStructure` int(4) NOT NULL,
@@ -32,9 +32,9 @@ CREATE TABLE `benef_interlocuteurs` (
 
 -- ----------------- TABLE benef_structure ------------------------
 
-DROP TABLE IF EXISTS `benef_structure`;
+DROP TABLE IF EXISTS `robert_benef_structure`;
 
-CREATE TABLE `benef_structure` (
+CREATE TABLE `robert_benef_structure` (
   `id` int(4) NOT NULL AUTO_INCREMENT,
   `label` varchar(128) NOT NULL,
   `SIRET` varchar(64) NOT NULL,
@@ -58,9 +58,9 @@ CREATE TABLE `benef_structure` (
 
 -- ----------------- TABLE devis ------------------------
 
-DROP TABLE IF EXISTS `devis`;
+DROP TABLE IF EXISTS `robert_devis`;
 
-CREATE TABLE `devis` (
+CREATE TABLE `robert_devis` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
   `id_plan` int(6) NOT NULL,
   `numDevis` int(3) NOT NULL,
@@ -76,9 +76,9 @@ CREATE TABLE `devis` (
 
 -- ----------------- TABLE matos_detail ------------------------
 
-DROP TABLE IF EXISTS `matos_detail`;
+DROP TABLE IF EXISTS `robert_matos_detail`;
 
-CREATE TABLE `matos_detail` (
+CREATE TABLE `robert_matos_detail` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
   `label` varchar(256) NOT NULL,
   `ref` varchar(128) NOT NULL,
@@ -101,9 +101,9 @@ CREATE TABLE `matos_detail` (
 
 -- ----------------- TABLE matos_packs ------------------------
 
-DROP TABLE IF EXISTS `matos_packs`;
+DROP TABLE IF EXISTS `robert_matos_packs`;
 
-CREATE TABLE `matos_packs` (
+CREATE TABLE `robert_matos_packs` (
   `id` int(4) NOT NULL AUTO_INCREMENT,
   `label` varchar(256) NOT NULL,
   `ref` varchar(128) NOT NULL,
@@ -120,9 +120,9 @@ CREATE TABLE `matos_packs` (
 
 -- ----------------- TABLE matos_sous_cat ------------------------
 
-DROP TABLE IF EXISTS `matos_sous_cat`;
+DROP TABLE IF EXISTS `robert_matos_sous_cat`;
 
-CREATE TABLE `matos_sous_cat` (
+CREATE TABLE `robert_matos_sous_cat` (
   `id` int(4) NOT NULL AUTO_INCREMENT,
   `label` varchar(256) NOT NULL,
   `ordre` int(4) NOT NULL,
@@ -130,7 +130,7 @@ CREATE TABLE `matos_sous_cat` (
   KEY `ordre` (`ordre`)
 ) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
-INSERT INTO `matos_sous_cat` VALUES
+INSERT INTO `robert_matos_sous_cat` VALUES
 ('1','Amplificateurs','1'),
 ('2','Enceintes','2'),
 ('3','Consoles son','3'),
@@ -157,9 +157,9 @@ INSERT INTO `matos_sous_cat` VALUES
 
 -- ----------------- TABLE notes ------------------------
 
-DROP TABLE IF EXISTS `notes`;
+DROP TABLE IF EXISTS `robert_notes`;
 
-CREATE TABLE `notes` (
+CREATE TABLE `robert_notes` (
   `id` int(9) NOT NULL AUTO_INCREMENT,
   `date` int(10) NOT NULL,
   `texte` text NOT NULL,
@@ -174,9 +174,9 @@ CREATE TABLE `notes` (
 
 -- ----------------- TABLE plans ------------------------
 
-DROP TABLE IF EXISTS `plans`;
+DROP TABLE IF EXISTS `robert_plans`;
 
-CREATE TABLE `plans` (
+CREATE TABLE `robert_plans` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idGroup` int(11) NOT NULL,
   `titre` varchar(64) NOT NULL,
@@ -196,9 +196,9 @@ CREATE TABLE `plans` (
 
 -- ----------------- TABLE plans_details ------------------------
 
-DROP TABLE IF EXISTS `plans_details`;
+DROP TABLE IF EXISTS `robert_plans_details`;
 
-CREATE TABLE `plans_details` (
+CREATE TABLE `robert_plans_details` (
   `id_plandetails` int(11) NOT NULL AUTO_INCREMENT,
   `id_plan` int(11) NOT NULL,
   `jour` varchar(64) NOT NULL,
@@ -212,9 +212,9 @@ CREATE TABLE `plans_details` (
 
 -- ----------------- TABLE tekos ------------------------
 
-DROP TABLE IF EXISTS `tekos`;
+DROP TABLE IF EXISTS `robert_tekos`;
 
-CREATE TABLE `tekos` (
+CREATE TABLE `robert_tekos` (
   `id` int(3) NOT NULL AUTO_INCREMENT,
   `idUser` smallint(3) NOT NULL,
   `surnom` varchar(128) NOT NULL,
@@ -247,9 +247,9 @@ CREATE TABLE `tekos` (
 
 -- ----------------- TABLE users ------------------------
 
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `robert_users`;
 
-CREATE TABLE `users` (
+CREATE TABLE `robert_users` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
   `password` varchar(32) NOT NULL,
@@ -269,7 +269,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `email` (`email`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-INSERT INTO `users` VALUES
+INSERT INTO `robert_users` VALUES
 ('1','root@robertmanager.org','8351aaf8480d8135bc77af590c93c1e2','DEBUGGER','Root','9','1325615980','1356632988','1356620371','human','blancs','rouges','31','1.73','0');
 
 
