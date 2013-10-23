@@ -26,8 +26,7 @@ $serverName = php_uname('n');
 /* ***************************************************************************** */
 /*
 
- *	Modifiez les lignes 40 à 44 ci-dessous, en vous inspirant de l'exemple, pour renseigner :
- *	votre nom de domaine
+ *	Modifiez les lignes 40 à 43 ci-dessous, en vous inspirant de l'exemple, pour renseigner :
  *	le nom de l'hôte ou se trouve la base de données
  *	le nom de l'utilisateur SQL
  *	le mot de passe de l'utilisateur SQL
@@ -37,18 +36,16 @@ $serverName = php_uname('n');
 
 */
 
-if ($host=='localhost' && $serverName=='etoileNoire') {
-	define ("HOST", "localhost");
-	define ("USER", "root");
-	define ("PASS", "poiaze");
-	define ("BASE", "acousmierobert");
-}
-elseif ($host=='www.exemple.com') {													// Nom de domaine cible
+
 	define ("HOST", "host.db");													// nom de l'hôte ou se trouve la bdd
 	define ("USER", "userDB");													// nom de l'utilisateur autorisé à se connecter
 	define ("PASS", "passDB");													// son mot de passe
 	define ("BASE", "robertBase");												// nom de la base de données
-}
+
+
+
+ 
+
 
 /* ***************************************************************************** */
 /* ***************************************************************************** */
