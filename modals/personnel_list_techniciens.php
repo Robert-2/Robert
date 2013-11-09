@@ -60,7 +60,7 @@ else $liste_tekos = $l->getListe(TABLE_TEKOS, '*', 'surnom');
 			<th></th>
 		</tr>
 		
-		<?
+		<?php
 		if (is_array($liste_tekos)) {
 			foreach ($liste_tekos as $info) {
 				if ($info['intermittent'] == 1)

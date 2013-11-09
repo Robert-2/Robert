@@ -82,12 +82,12 @@ require_once ('infos_boite.php');
 	<div class="ui-widget-header ui-corner-all pad3">Informations</div>
 	<br />
 	<div class="inline mid marge30r">
-		<div class="inline" style="width:100px;">Titre :</div><div class="inline"><b><? echo $infosPlan['titre']; ?></b></div><br />
-		<div class="inline" style="width:100px;">Lieu :</div><div class="inline"><b><? echo $infosPlan['lieu']; ?></b></div><br />
-		<div class="inline" style="width:100px;">Bénéficiaire :</div><div class="inline"><b><? echo $infosPlan['beneficiaire']; ?></b></div>
+		<div class="inline" style="width:100px;">Titre :</div><div class="inline"><b><?php echo $infosPlan['titre']; ?></b></div><br />
+		<div class="inline" style="width:100px;">Lieu :</div><div class="inline"><b><?php echo $infosPlan['lieu']; ?></b></div><br />
+		<div class="inline" style="width:100px;">Bénéficiaire :</div><div class="inline"><b><?php echo $infosPlan['beneficiaire']; ?></b></div>
 	</div>
 	<div class="inline mid center enorme marge30l">
-		DU : <b><? echo $js.'/'.$ms.'/'.$as; ?></b>, AU : <b><? echo $je.'/'.$me.'/'.$ae; ?></b>
+		DU : <b><?php echo $js.'/'.$ms.'/'.$as; ?></b>, AU : <b><?php echo $je.'/'.$me.'/'.$ae; ?></b>
 	</div>
 </div>
 
@@ -96,7 +96,7 @@ require_once ('infos_boite.php');
 <div class="ui-state-default ui-corner-all pad10 leftText shadowOut margeTop10">
 	<div class="ui-widget-header ui-corner-all pad3">Techniciens et remarques pour chaque jour</div>
 	<br />
-	<?
+	<?php
 	$nbJours = 0;
 	foreach ($sousPlans as $spInfo) {
 		$tmpDate = $spInfo['time'];
@@ -120,7 +120,7 @@ require_once ('infos_boite.php');
 <div class="ui-state-default ui-corner-all pad10 leftText shadowOut margeTop10">
 	<div class="ui-widget-header ui-corner-all pad3">Matériel</div>
 	<br />
-	<?
+	<?php
 	$matosListByCateg = array();
 	$SsTotalMatos = array();
 	$SsTotalCateg = array();
@@ -153,21 +153,21 @@ require_once ('infos_boite.php');
 	<div class="ui-widget-header ui-corner-all pad3">Totaux</div>
 	<br />
 	<div class="inline top tiers">
-		<?
+		<?php
 		foreach ($SsTotalCateg as $cat => $ssTc) {
 			echo 'total '.strtoupper($cat).' = <b>'.$ssTc.' €</b><br />';
 		}
 		?>
 	</div>
 	<div class="inline top tiers gros leftText">
-		Pour <? echo $nbJours; ?> jours : <? echo number_format($totalJour * $nbJours, 2); ?> €, <b>coef <? echo coef($nbJours); ?></b><br />
-		<i class="micro">Tarif 1 jour : <? echo number_format($totalJour, 2); ?> €</i>
+		Pour <?php echo $nbJours; ?> jours : <?php echo number_format($totalJour * $nbJours, 2); ?> €, <b>coef <?php echo coef($nbJours); ?></b><br />
+		<i class="micro">Tarif 1 jour : <?php echo number_format($totalJour, 2); ?> €</i>
 	</div>
 	<div class="inline top tiers rightText">
-		<? echo '<div class="enorme">TOTAL H.T. : '.number_format($totalFinal, 2).' €</div><div class="enorme">TOTAL T.T.C. : '.number_format($totalFinal + ($totalFinal * TVA_VAL), 2).' €</div>'; ?>
+		<?php echo '<div class="enorme">TOTAL H.T. : '.number_format($totalFinal, 2).' €</div><div class="enorme">TOTAL T.T.C. : '.number_format($totalFinal + ($totalFinal * TVA_VAL), 2).' €</div>'; ?>
 	</div>
 </div>
 
 <div id="modalTekos" class="petit hide">
-	<? include 'plan_tekos_list.php' ; ?>
+	<?php include 'plan_tekos_list.php' ; ?>
 </div>

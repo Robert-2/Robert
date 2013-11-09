@@ -33,9 +33,9 @@ $varsBenefs = substr($varsBenefs,0,strlen($varsBenefs)-1 ) ;
 
 <script type="text/javascript" src="./fct/plans_ajax.js"></script>
 <script type="text/javascript">
-	var autoCompleteBENEF = [<? echo $varsBenefs; ?>];
+	var autoCompleteBENEF = [<?php echo $varsBenefs; ?>];
 	$(function() {
-		$("#<? echo Plan::PLAN_cBENEFICIAIRE ; ?>").autocomplete( {source: autoCompleteBENEF});
+		$("#<?php echo Plan::PLAN_cBENEFICIAIRE ; ?>").autocomplete( {source: autoCompleteBENEF});
 		initToolTip('#planTekosMatos');
 	});
 </script>
@@ -54,13 +54,13 @@ $varsBenefs = substr($varsBenefs,0,strlen($varsBenefs)-1 ) ;
 	<br />
 	<div class="inline top gros" style="width: 250px;">
 		<div class="ui-widget-header ui-corner-all petit">Titre : <b class="red">*</b></div>
-		<input class="newPlan_data petit" type="text" id="<? echo Plan::PLAN_cTITRE ; ?>" size="20" value="Plan"/>
+		<input class="newPlan_data petit" type="text" id="<?php echo Plan::PLAN_cTITRE ; ?>" size="20" value="Plan"/>
 		<br />
 		<div class="ui-widget-header ui-corner-all petit margeTop5">Bénéficiaire : <b class="red">*</b></div>
-		<input class="newPlan_data petit" type="text" id="<? echo Plan::PLAN_cBENEFICIAIRE ; ?>" size="20" value="Nous"/>
+		<input class="newPlan_data petit" type="text" id="<?php echo Plan::PLAN_cBENEFICIAIRE ; ?>" size="20" value="Nous"/>
 		<br />
 		<div class="ui-widget-header ui-corner-all petit margeTop5">Lieu : <b class="red">*</b></div>
-		<input class="newPlan_data petit" type="text" id="<? echo Plan::PLAN_cLIEU ; ?>" size="20" value="Ici"/>
+		<input class="newPlan_data petit" type="text" id="<?php echo Plan::PLAN_cLIEU ; ?>" size="20" value="Ici"/>
 		<br />
 	</div>
 	<div class="inline top big" style="width: 250px;">
@@ -87,17 +87,17 @@ $varsBenefs = substr($varsBenefs,0,strlen($varsBenefs)-1 ) ;
 	</div>
 	<table class="petit" style="width:99%;">
 			<TH class="ui-corner-all"> Choix des techniciens - filtre : <select id="selectTekosCateg"><option>Tout</option>
-						<? foreach ( $catTekos as $k) echo "<option>$k</option>"; ?></select></TH>
+						<?php foreach ( $catTekos as $k) echo "<option>$k</option>"; ?></select></TH>
 						
 			<TH class="ui-corner-all">
 				Choix du matos - filtre :
-				<select id="selectMatosCateg"><option>Tout</option><? foreach ( $catMatos as $k) echo "<option>$k</option>"; ?></select>
+				<select id="selectMatosCateg"><option>Tout</option><?php foreach ( $catMatos as $k) echo "<option>$k</option>"; ?></select>
 				<button class="bouton" id="packMatosSwitch">MATÉRIEL au détail</button>
 			</TH>
 			<tr>
 				<td class="tiers bordFin top">
 					<div class="mini pad10" id="TekosHolder">
-						<?
+						<?php
 							foreach ( $listeTekos as $k => $v ){
 								$id =  $v['id'];
 								$sur = $v['surnom'];
@@ -114,7 +114,7 @@ $varsBenefs = substr($varsBenefs,0,strlen($varsBenefs)-1 ) ;
 				</td>
 				<td class="tiers bordFin top">
 					<div class="pad10 hide" id="MatosHolder">
-						<?
+						<?php
 							foreach ( $listeMatos as $k => $v ){
 								$id         = $v['id'] ;
 								$label      = $v['ref'] ;
@@ -151,7 +151,7 @@ $varsBenefs = substr($varsBenefs,0,strlen($varsBenefs)-1 ) ;
 					</div>
 					
 					<div class="mini" id="PacksHolder">
-						<?
+						<?php
 							foreach ( $listePacks as $k => $v ){
 								$id         = $v['id'] ;
 								$label      = $v['ref'] ;

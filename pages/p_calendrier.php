@@ -23,7 +23,7 @@ if ( ! $_SESSION["user"]->isLevelMod() )
 		initToolTip('#friseLegende', -250);
 		$('#legendeConfirmCal').show();
 		$('.C').css( 'overflow-y', 'scroll');
-		tva_val = <? echo TVA_VAL; ?>;
+		tva_val = <?php echo TVA_VAL; ?>;
 	});
 </script>
 
@@ -39,7 +39,7 @@ if ( ! $_SESSION["user"]->isLevelMod() )
 	
 <div id="pageCalendrier" class="ui-widget-content ui-corner-all center pad20">
 	<div class="ui-widget-header ui-corner-all gros">Calendrier</div>
-	<? /////////////////////////////// POUR DÉFINIR LES DATES DE DÉBUT ET FIN DE PÉRIODE PAR DÉFAUT DU CALENDRIER
+	<?php /////////////////////////////// POUR DÉFINIR LES DATES DE DÉBUT ET FIN DE PÉRIODE PAR DÉFAUT DU CALENDRIER
 		$now = new DateTime();
 		$monthNow  = $now->format('m');
 		$yearNow   = $now->format('Y');
@@ -61,8 +61,8 @@ if ( ! $_SESSION["user"]->isLevelMod() )
 	<div class="ui-widget leftText petit">
 		<div class="inline top center">
 			<div class="ui-state-default pad5 ui-corner-all petit margeTop5"> VOIR
-				DU : <input type='text' value='<? echo $calStart; ?>'  id='calStart' size="10" />
-				AU : <input type='text' value='<? echo $calEnd; ?>' id='calEnd' size="10" />
+				DU : <input type='text' value='<?php echo $calStart; ?>'  id='calStart' size="10" />
+				AU : <input type='text' value='<?php echo $calEnd; ?>' id='calEnd' size="10" />
 				<button class="bouton" id='loadFrise' title="charger le calendrier pour ces dates">Charger</button>
 			</div>
 		</div>
@@ -86,7 +86,7 @@ if ( ! $_SESSION["user"]->isLevelMod() )
 				</select>
 			</span>
 			<button class="bouton" id="showNextMois" title="mois suivant"><span class="ui-icon ui-icon-carat-1-e"></span></button>
-			<a style="font-size: 1.2em; border: 1px solid red; <? echo $hideForPoppy; ?>" class="bouton marge30l" href="?go=ajout_plan" title="CRTL+clic sur le calendrier puis bouger la souris pour choisir les dates vite fait.">Ajouter un évènement</a>
+			<a style="font-size: 1.2em; border: 1px solid red; <?php echo $hideForPoppy; ?>" class="bouton marge30l" href="?go=ajout_plan" title="CRTL+clic sur le calendrier puis bouger la souris pour choisir les dates vite fait.">Ajouter un évènement</a>
 		</div>
 	</div>
 	
@@ -116,7 +116,7 @@ if ( ! $_SESSION["user"]->isLevelMod() )
 			<font style="color:#416cc2">lointains)</font>
 		</span>
 		
-		<button class="bouton marge10l" id='exportICS' popup="Attention, Google met environ 48h pour mettre à jour le calendrier..." style="<? echo $hideForPoppy; ?>">
+		<button class="bouton marge10l" id='exportICS' popup="Attention, Google met environ 48h pour mettre à jour le calendrier..." style="<?php echo $hideForPoppy; ?>">
 			Actualiser pour google Calendar
 		</button>
 		<br />
@@ -128,7 +128,7 @@ if ( ! $_SESSION["user"]->isLevelMod() )
 	<div class="ui-widget-header ui-corner-all gros center">Rendez-vous, trucs importants, les post-it quoi</div>
 	<br />
 	<div style="float: right;" class="big">
-		<?
+		<?php
 		if ($_SESSION['user']->isLevelMod()) {
 			echo '<button id="addNote" class="bouton" title="Ajouter un post-it"><span class="ui-icon ui-icon-plusthick"></span></button><br /><br />';
 			echo '<button id="purgeNotes" class="bouton" title="Supprimer TOUS les post-it passés"><span class="ui-icon ui-icon-eject"></span></button>';
@@ -136,7 +136,7 @@ if ( ! $_SESSION["user"]->isLevelMod() )
 		?>
 	</div>
 	<div id="blocNote_content" style="margin-right: 70px;">
-		<? include('notes_calendrier.php'); ?>
+		<?php include('notes_calendrier.php'); ?>
 	</div>
 </div>
 
@@ -162,7 +162,7 @@ if ( ! $_SESSION["user"]->isLevelMod() )
 
 <div id="dialogContrat" title="Édition du contrat" class="hide">
 	<p>Vérifiez les infos du contrat et modifiez-les si besoin, ci-dessous :</p>
-	<textarea id="contratText" rows="20" cols="100"><? 
+	<textarea id="contratText" rows="20" cols="100"><?php 
 		$contratDefaut = file_get_contents(FOLDER_CONFIG.'default_contrat.txt');
 		echo $contratDefaut;
 	?></textarea>

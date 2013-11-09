@@ -11,7 +11,7 @@ $list_Users_connected = $l->getListe(TABLE_USERS, 'prenom, level, date_last_acti
 
 <script src="./js/modifInfosUser.js"></script>
 
-<?
+<?php
 echo 'Hello <b>'.$_SESSION['user']->getUserInfos('prenom').'</b> !
 
 	<span class="boutonMenu"><a href="index.php?action=deconx">déconnexion</a></span>
@@ -25,7 +25,7 @@ echo 'Hello <b>'.$_SESSION['user']->getUserInfos('prenom').'</b> !
 	</p>';
 ?>
 
-<button class="bouton" id="modifInfoUserActif" idUser="<? echo $_SESSION['user']->getUserInfos('id'); ?>">Mes infos</button>
+<button class="bouton" id="modifInfoUserActif" idUser="<?php echo $_SESSION['user']->getUserInfos('id'); ?>">Mes infos</button>
 
 <br />
 <br />--------------------------<br />
@@ -35,7 +35,7 @@ echo 'Hello <b>'.$_SESSION['user']->getUserInfos('prenom').'</b> !
 	<div class="ui-state-default ui-corner-all">
 		Qui était là aussi<br /><i class="mini">ces 10 dernières min. ?</i>
 		<p class="padV10 leftText gros">
-			<?
+			<?php
 			if (count($list_Users_connected) == 1)
 				echo "Personne.";
 			else {
@@ -47,9 +47,9 @@ echo 'Hello <b>'.$_SESSION['user']->getUserInfos('prenom').'</b> !
 			?>
 		</p>
 	</div>
-	<? if (!isset($_SESSION['plan_mod']) && !isset($_SESSION['plan_add'])) $hideRaccourcis = "style='display: none;'";  ?>
-	<div id="raccourcisPlans" class="ui-state-highlight ui-corner-all petit margeTop10 marge15bot padH5" <? echo @$hideRaccourcis; ?>  >
-		<?
+	<?php if (!isset($_SESSION['plan_mod']) && !isset($_SESSION['plan_add'])) $hideRaccourcis = "style='display: none;'";  ?>
+	<div id="raccourcisPlans" class="ui-state-highlight ui-corner-all petit margeTop10 marge15bot padH5" <?php echo @$hideRaccourcis; ?>  >
+		<?php
 		if (isset($_SESSION['plan_mod'])) {
 			$planMod_RM = unserialize($_SESSION['plan_mod']);
 			echo '<div id="raccourci_plan_mod">
@@ -83,14 +83,14 @@ echo 'Hello <b>'.$_SESSION['user']->getUserInfos('prenom').'</b> !
 </div>
 
 <div id="versionRobert">
-	<b>Robert v<? echo R_VERSION; ?></b><br />GNU Affero (AGLP)
+	<b>Robert v<?php echo R_VERSION; ?></b><br />GNU Affero (AGLP)
 </div>
 
 
 <div id="dialogMyInfos" title="Modifier mes infos" class="petit hide">
 	<div id="retourModUserAjax" class="ui-state-error ui-corner-all pad5 marge15bot gros hide"></div>
 	<div id="infosUserDiv">
-	<?
+	<?php
 	$info = $_SESSION['user']->getUserInfos();
 	foreach ($info as $k => $v) {
 		$boutonDelInfo = '';
@@ -108,7 +108,7 @@ echo 'Hello <b>'.$_SESSION['user']->getUserInfos('prenom').'</b> !
 	}
 	?>
 	</div>
-	<?
+	<?php
 	if ($_SESSION['user']->isAdmin() === true) {
 		echo '<div class="inline top marge30l" id="divAddInfoUsers" style="width: 175px;">
 				 <div class="big" title="Ajouter une info">

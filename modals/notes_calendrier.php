@@ -20,11 +20,11 @@ unset($lp);
 <script>
 	$(function() {
 		$('.bouton').button();
-		<? echo $btnPurge ; ?>
+		<?php echo $btnPurge ; ?>
 	});
 </script>
 
-<?
+<?php
 
 if (!is_array($listeNotes)) {
 	echo '<div class="ui-state-default ui-corner-all pad10 gros center">Cliquez sur le bouton "+" <i class="mini">(à droite ci-contre)</i> pour ajouter un post-it !</div>';

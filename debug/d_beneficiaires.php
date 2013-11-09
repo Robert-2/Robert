@@ -12,7 +12,7 @@ $liste_interloc = $l->getListe(TABLE_INTERLOC);
 <div class="debugSection ui-widget-content ui-corner-all center pad20">
 	<div class="ui-widget-header ui-corner-all">Liste des structures bénéficiaires</div>
 	<br />
-	<table class="debugTable leftText"> <?
+	<table class="debugTable leftText"> <?php
 		echo '<tr>';
 		foreach (getNomsChamps(TABLE_STRUCT) as $k => $titreChamp) {
 			echo '<td style="text-align:center;"><b>'.$titreChamp.'</b></td>';
@@ -85,7 +85,7 @@ $liste_interloc = $l->getListe(TABLE_INTERLOC);
 <div class="debugSection ui-widget-content ui-corner-all center pad20">
 	<div class="ui-widget-header ui-corner-all">Liste des interlocuteurs</div>
 	<br />
-	<table class="debugTable leftText"> <?
+	<table class="debugTable leftText"> <?php
 		echo '<tr>';
 		foreach (getNomsChamps(TABLE_INTERLOC) as $k => $titreChamp) {
 			echo '<td style="text-align:center;"><b>'.$titreChamp.'</b></td>';
@@ -126,7 +126,7 @@ $liste_interloc = $l->getListe(TABLE_INTERLOC);
 		<div class="ui-widget-header ui-corner-all">Structure associée :</div>
 		<select id="newInterlocStruct">
 			<option value="0" disabled selected>Choisir une structure</option>
-			<? foreach ($liste_struct as $structure)
+			<?php foreach ($liste_struct as $structure)
 				echo '<option value="'.$structure['id'].'">'.$structure['label'].'</option>';
 			?>
 		</select>

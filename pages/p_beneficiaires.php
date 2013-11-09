@@ -16,7 +16,7 @@
 	<div class="inline top leftText">
 		<div class="sousMenuBtns hide" id="structMenuBtns">
 			<a class="bouton miniSmenuBtn" id="benef_list_struct" href="#">Liste</a>
-			<a class="bouton miniSmenuBtn" id="benef_add_struct" <? echo $hideForPoppy; ?> href="#">Ajout</a>
+			<a class="bouton miniSmenuBtn" id="benef_add_struct" <?php echo $hideForPoppy; ?> href="#">Ajout</a>
 		</div>
 	</div>
 	
@@ -26,7 +26,7 @@
 	<div class="inline top rightText">
 		<div class="sousMenuBtns hide" id="interlocMenuBtns">
 			<a class="bouton miniSmenuBtn" id="benef_list_interloc" href="#">Liste</a>
-<!--			<a class="bouton miniSmenuBtn" id="benef_add_interloc" <? echo $hideForPoppy; ?> href="#">Ajout</a>-->
+<!--			<a class="bouton miniSmenuBtn" id="benef_add_interloc" <?php echo $hideForPoppy; ?> href="#">Ajout</a>-->
 		</div>
 	</div>
 	
@@ -56,7 +56,7 @@
 
 
 <div id="benefPage" class="pageContent">
-	<?
+	<?php
 	if ( isset($_GET['sousPage']) ) {
 		$goto = $_GET['sousPage'].'.php';
 	}

@@ -55,7 +55,7 @@ $liste_ssCat = $lm->getListe(TABLE_MATOS_CATEG);
 		<div class="ui-widget-header ui-corner-all">Sous Categ :</div>
 		<select id="newMatosSousCateg">
 			<option value="0">---</option>
-			<?
+			<?php
 			foreach ($liste_ssCat as $ssCat) {
 				echo '<option value="'.$ssCat['id'].'">'.$ssCat['label'].'</option>';
 			}

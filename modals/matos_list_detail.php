@@ -63,7 +63,7 @@ $liste_ssCat = $lm->getListe(TABLE_MATOS_CATEG, '*', 'ordre', 'ASC');
 			<th class="ui-state-disabled">Actions</th>
 		</tr>
 
-		<?
+		<?php
 		include('matos_tri_sousCat.php');
 
 		$matos_by_categ = creerSousCatArray($liste_matos);
@@ -145,7 +145,7 @@ $liste_ssCat = $lm->getListe(TABLE_MATOS_CATEG, '*', 'ordre', 'ASC');
 			<div class="ui-widget-header ui-corner-all">Sous Categ :</div>
 			<select id="modMatosSousCateg">
 				<option value="0">---</option>
-				<?
+				<?php
 				foreach ($liste_ssCat as $ssCat) {
 					echo '<option value="'.$ssCat['id'].'">'.$ssCat['label'].'</option>';
 				}

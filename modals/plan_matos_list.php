@@ -33,7 +33,7 @@
 	
 
 	<div id="packsHolder" class="center shadowOut">
-		<?
+		<?php
 			foreach ( $listePacks as $k => $v ){
 				$id         = $v['id'] ;
 				$label      = $v['ref'] ;
@@ -86,7 +86,7 @@
 		?>
 	</div>
 	
-	<div id="matosHolder" class="center shadowOut gros hide"> <?
+	<div id="matosHolder" class="center shadowOut gros hide"> <?php
 		include('matos_tri_sousCat.php');
 		
 		$matos_by_categ = creerSousCatArray($listeMatos);
@@ -154,7 +154,7 @@
 	<br />
 </div>
 
-<?
+<?php
 $lm = new Liste();
 $liste_ssCat = $lm->getListe(TABLE_MATOS_CATEG);
 ?>
@@ -182,7 +182,7 @@ $liste_ssCat = $lm->getListe(TABLE_MATOS_CATEG);
 		<div class="ui-widget-header ui-corner-all">Sous Categ :</div>
 		<select id="newMatosSousCateg">
 			<option value="0">---</option>
-			<?
+			<?php
 			foreach ($liste_ssCat as $ssCat) {
 				echo '<option value="'.$ssCat['id'].'">'.$ssCat['label'].'</option>';
 			}

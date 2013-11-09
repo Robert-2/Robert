@@ -20,17 +20,17 @@
 	<div class="inline top leftText">
 		<div class="sousMenuBtns hide" id="tekosMenuBtns">
 			<a class="bouton miniSmenuBtn" id="personnel_list_techniciens" href="#">Liste</a>
-			<a class="bouton miniSmenuBtn" id="personnel_add_techniciens" <? echo $hideForPoppy ?> href="#">Ajout</a>
+			<a class="bouton miniSmenuBtn" id="personnel_add_techniciens" <?php echo $hideForPoppy ?> href="#">Ajout</a>
 		</div>
 	</div>
 	
-	<div class="sousMenuIcon inline bouton big marge30l usersMiniSsMenu" <? echo $hideForUser ?> title="UTILISATEURS">
+	<div class="sousMenuIcon inline bouton big marge30l usersMiniSsMenu" <?php echo $hideForUser ?> title="UTILISATEURS">
 		<img src="gfx/icones/menu/mini-personnel.png" />
 	</div>
 	<div class="inline top rightText">
 		<div class="sousMenuBtns hide" id="usersMenuBtns">
 			<a class="bouton miniSmenuBtn" id="personnel_list_utilisateurs" href="#">Liste</a>
-			<a class="bouton miniSmenuBtn" id="personnel_add_utilisateurs" <? echo $hideForPoppy ?> href="#">Ajout</a>
+			<a class="bouton miniSmenuBtn" id="personnel_add_utilisateurs" <?php echo $hideForPoppy ?> href="#">Ajout</a>
 		</div>
 	</div>
 	
@@ -59,7 +59,7 @@
 
 
 <div id="personnelPage" class="pageContent">
-	<?
+	<?php
 	if ( isset($_GET['sousPage']) ) {
 		$goto = $_GET['sousPage'].'.php';
 	}

@@ -3,12 +3,12 @@
 	<div id="logo"><img src="gfx/Robert2.png" alt="LOGO"/></div>
 	
     <div id="titrePage">
-		<? echo $titrePage; ?><br />
+		<?php echo $titrePage; ?><br />
 		<span class="boutonMenu nano noMarge">system <a href="debug.php?file=d_Calendar.php"><b>Flask</b></a></span>
 	</div>
 	
 	<div id="connexion">
-		<? 
+		<?php 
 		if ($logged === true) {
 			echo 'Bienvenue <b>'.$_SESSION['user']->getUserInfos('prenom').'</b> !
 				  <span class="boutonMenu"><a href="index.php?action=deconx">déconnexion</a></span><br />

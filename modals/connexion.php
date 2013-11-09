@@ -25,7 +25,7 @@
 	</form>
 </div>
 <br /><br />
-<?
+<?php
 if ($errAuth === true) echo '<div class="ui-state-error ui-corner-all pad10 enorme center">ERREUR ! mauvais mail / mot de passe !</div>';
 if (isset($_GET['action']) && $_GET['action'] == 'deconx') echo '<div class="ui-state-default ui-corner-all pad10 enorme center" id="byebye">A bientôt !</div>';
 else echo '<div class="ui-state-default ui-corner-all pad10 enorme center" id="byebye">BIENVENUE !</div>';
@@ -35,7 +35,7 @@ else echo '<div class="ui-state-default ui-corner-all pad10 enorme center" id="b
 	<div class="inline ui-state-highlight ui-corner-all shadowOut padV10 gros leftText" id="messageAccueil" style="width:85%; display:none;">
 		<h3 class="center">BIENVENUE !</h3>
 		<p class="gros">
-			<a href="http://www.robert.polosson.com" target="_new">ROBERT v.<? echo R_VERSION ?></a>
+			<a href="http://www.robert.polosson.com" target="_new">ROBERT v.<?php echo R_VERSION ?></a>
 		</p>
 		<p>
 			Si vous ne savez pas à quoi correspond un bouton, vous pourrez voir plus d'infos en <b>laissant la souris</b> au dessus

@@ -25,7 +25,7 @@
 			<span class="boutonMenu marge30l"><a href="index.php">RETOUR INDEX</a></span>
 			<select id="themeSel">
 				<option disabled selected>CHOIX DU THEME</option>
-				<? include ('fct/list_themes.php');
+				<?php include ('fct/list_themes.php');
 				$themesDispo = list_themes();
 				foreach ($themesDispo as $theme)
 					echo "<option value='$theme'>$theme</option>";

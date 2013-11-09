@@ -19,7 +19,7 @@ else $liste_packs = $l->getListe(TABLE_PACKS, '*', 'ref');
 <script>
 	var listDetailPack = {};
 	var refMatos = {};
-	<? foreach($liste_matos as $matos) echo 'refMatos["'.$matos['id'].'"] = "'.$matos['ref'].'" ;'."\n" ; ?>
+	<?php foreach($liste_matos as $matos) echo 'refMatos["'.$matos['id'].'"] = "'.$matos['ref'].'" ;'."\n" ; ?>
 </script>
 <script src="./fct/packs_Ajax.js"></script>
 <script>
@@ -62,7 +62,7 @@ else $liste_packs = $l->getListe(TABLE_PACKS, '*', 'ref');
 			<th>Qté possible en Parc</th>
 		</tr>
 		
-		<?
+		<?php
 		if (is_array($liste_packs)) {
 			foreach ($liste_packs as $info) {
 				if ( $_SESSION['user']->isLevelMod() ) {
@@ -179,7 +179,7 @@ else $liste_packs = $l->getListe(TABLE_PACKS, '*', 'ref');
 </div>
 
 <div class="petit hide" id="DialogDetailPack">
-	<? include('pack_add_detail.php') ?>
+	<?php include('pack_add_detail.php') ?>
 </div>
 
 

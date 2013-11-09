@@ -38,7 +38,7 @@ $liste_struct = $l->getListe(TABLE_STRUCT);
 		<div class="ui-widget-header ui-corner-all">Structure associée : <b class="red">*</b></div>
 		<select id="newInterlocStruct">
 			<option value="0" disabled selected>Choisir une structure</option>
-			<? foreach ($liste_struct as $structure)
+			<?php foreach ($liste_struct as $structure)
 				echo '<option value="'.$structure['id'].'">'.$structure['label'].'</option>';
 			?>
 		</select>

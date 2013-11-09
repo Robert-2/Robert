@@ -88,7 +88,7 @@
 
 
 			<div class="colonne R bordSection ui-widget ui-corner-all fondSect1 petit center">
-				<?
+				<?php
 				if ($logged == true) {
 					include('menuRight.php');
 				}
@@ -98,7 +98,7 @@
 
 		</div>
 
-		<? // include('pages/footPage.php'); ?>
+		<?php // include('pages/footPage.php'); ?>
 
 	</div>
 </body>

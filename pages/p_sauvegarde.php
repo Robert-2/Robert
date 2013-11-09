@@ -19,7 +19,7 @@
 			<div class="ui-widget-header ui-corner-all pad5">Choix des données à sauvegarder (table)</div><br />
 			<select id="tableList" multiple="multiple" size="7" class="moyen pad5">
 				<option value="all" selected>TOUT</option>
-				<? foreach (getTableList() as $name) {echo '<option value="'.$name.'">'.$name.'</option>';} ?>
+				<?php foreach (getTableList() as $name) {echo '<option value="'.$name.'">'.$name.'</option>';} ?>
 			</select><br /><br />
 			<button class="bouton" id="dumpSQL" >SAUVEGARDER LA SÉLECTION</button>
 		</div>
@@ -34,7 +34,7 @@
 			<div class="ui-widget-header ui-corner-all pad5">Choix du fichier à restaurer dans la base :</div><br />
 			<select id="dumpList" size="7" class="moyen pad5">
 				<option disabled selected>----</option>
-				<? foreach (getDumpList() as $name) {echo '<option value="'.$name.'">'.$name.'</option>';} ?>
+				<?php foreach (getDumpList() as $name) {echo '<option value="'.$name.'">'.$name.'</option>';} ?>
 			</select><br /><br /><br />
 			<button class="bouton" id="restoreSQL" >RESTAURER LE FICHIER</button><br />
 			<button class="bouton" id="downloadSQL" >TELECHARGER LE FICHIER</button><br />

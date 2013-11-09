@@ -17,7 +17,7 @@ catch (Exception $e) { echo $e->getMessage(); }
 <div class="debugSection ui-widget-content ui-corner-all center pad20">
 	<div class="ui-widget-header ui-corner-all">Liste des techniciens</div>
 	<br />
-	<table class="debugTable leftText"> <?
+	<table class="debugTable leftText"> <?php
 		echo '<tr>';
 		foreach (getNomsChamps(TABLE_TEKOS) as $k => $titreChamp) {
 			echo '<td style="text-align:center;"><b>'.$titreChamp.'</b></td>';

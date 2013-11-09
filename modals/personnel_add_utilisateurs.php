@@ -53,7 +53,7 @@ $liste_tekos = $l->getListe(TABLE_TEKOS, '*', 'surnom', 'ASC', 'idUser', '<', 1)
 		<div class="ui-widget-header ui-corner-all">Technicien associé :</div>
 		<select id="cTekosAssoc" style="width: 150px;">
 			<option value="0"> ---- </option>
-			<? 
+			<?php 
 			foreach ($liste_tekos as $tekos)
 				echo '<option value="'.$tekos['id'].'">'.$tekos['surnom'].'</option>'
 			?>

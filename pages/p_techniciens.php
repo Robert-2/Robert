@@ -16,7 +16,7 @@
 	<div class="inline top leftText">
 		<div class="sousMenuBtns" id="tekosMenuBtns">
 			<a class="bouton miniSmenuBtn" id="personnel_list_techniciens" href="#">Liste</a>
-			<a class="bouton miniSmenuBtn" id="personnel_add_techniciens" <? echo $hideForPoppy; ?> href="#">Ajout</a>
+			<a class="bouton miniSmenuBtn" id="personnel_add_techniciens" <?php echo $hideForPoppy; ?> href="#">Ajout</a>
 		</div>
 	</div>
 	
@@ -44,7 +44,7 @@
 
 
 <div id="tekosPage" class="pageContent">
-	<?
+	<?php
 	if ( isset($_GET['sousPage']) ) {
 		$goto = $_GET['sousPage'].'.php';
 		if ((@include($goto)) == false)

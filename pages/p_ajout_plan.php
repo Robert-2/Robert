@@ -62,14 +62,14 @@ else {													// Sinon, on met des valeurs par défaut
 <script src="./fct/ajout_plan_Ajax.js"></script>
 
 <script type="text/javascript">
-	var autoCompleteBENEF = [<? echo $varsBenefs; ?>];
+	var autoCompleteBENEF = [<?php echo $varsBenefs; ?>];
 	
 	$(function() {
 		
 		$("#themeSel").parent('p').hide();
 		$("#modifInfoUserActif").hide();
 		
-		$("#<? echo Plan::PLAN_cBENEFICIAIRE ; ?>").autocomplete( { source: autoCompleteBENEF });
+		$("#<?php echo Plan::PLAN_cBENEFICIAIRE ; ?>").autocomplete( { source: autoCompleteBENEF });
 		
 	/// Initialisation de l'aperçu des détails dans le menu de droite
 		$('#rightMenuSection').html(
@@ -101,7 +101,7 @@ else {													// Sinon, on met des valeurs par défaut
 		
 		matosIdQte['1'] = 0; qteMatos_update(1);
 		
-<?
+<?php
 if (isset($recupStart)) echo "		$('#picker_start').datepicker('setDate', '$recupStart');\n";
 if (isset($recupEnd))   echo "		$('#picker_end').datepicker('setDate', '$recupEnd');\n";
 echo $refreshEtape1;
@@ -152,13 +152,13 @@ if (isset($recupMatos)) {
 	<br />
 	<div class="inline top gros" style="width: 250px;">
 		<div class="ui-widget-header ui-corner-all petit">Titre : <b class="red">*</b></div>
-		<input class="newPlan_data" type="text" id="<? echo Plan::PLAN_cTITRE ; ?>" size="25" value="<? echo $recupTitre; ?>"/>
+		<input class="newPlan_data" type="text" id="<?php echo Plan::PLAN_cTITRE ; ?>" size="25" value="<?php echo $recupTitre; ?>"/>
 		<br />
 		<div class="ui-widget-header ui-corner-all petit margeTop5">Bénéficiaire : <b class="red">*</b></div>
-		<input class="newPlan_data" type="text" id="<? echo Plan::PLAN_cBENEFICIAIRE ; ?>" size="25" value="<? echo $recupBenef; ?>"/>
+		<input class="newPlan_data" type="text" id="<?php echo Plan::PLAN_cBENEFICIAIRE ; ?>" size="25" value="<?php echo $recupBenef; ?>"/>
 		<br />
 		<div class="ui-widget-header ui-corner-all petit margeTop5">Lieu : <b class="red">*</b></div>
-		<input class="newPlan_data" type="text" id="<? echo Plan::PLAN_cLIEU ; ?>" size="25" value="<? echo $recupLieu; ?>"/>
+		<input class="newPlan_data" type="text" id="<?php echo Plan::PLAN_cLIEU ; ?>" size="25" value="<?php echo $recupLieu; ?>"/>
 		<br />
 	</div>
 	<div class="inline top big" style="width: 250px;">
@@ -177,10 +177,10 @@ if (isset($recupMatos)) {
 <div id="addBenefDialog" title="Renseigner le bénéficiaire" class="petit hide"></div>
 
 
-<? include 'plan_tekos_list.php' ; // ETAPE 2 ?>
+<?php include 'plan_tekos_list.php' ; // ETAPE 2 ?>
 
 
-<? include 'plan_matos_list.php' ; // ETAPE 3 ?>
+<?php include 'plan_matos_list.php' ; // ETAPE 3 ?>
 
 
 

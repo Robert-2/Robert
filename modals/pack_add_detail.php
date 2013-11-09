@@ -44,7 +44,7 @@ else $liste_matos = $l->getListe(TABLE_MATOS, '*', 'label');
 			<th>Ajouter</th>
 		</tr>
 		
-		<?
+		<?php
 		if (is_array($liste_matos)) {
 			foreach ($liste_matos as $info) {
 				

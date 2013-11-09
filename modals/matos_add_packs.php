@@ -88,6 +88,6 @@ require_once ('checkConnect.php' );
 
 
 <div class="petit hide" id="Dialog">
-	<? include('pack_add_detail.php'); ?>
+	<?php include('pack_add_detail.php'); ?>
 </div>
 

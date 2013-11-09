@@ -19,7 +19,7 @@ $listeInterlocks = $l->getListe ( TABLE_INTERLOC, '*', 'label' );
 <script src="./fct/beneficiaires_Ajax.js"></script>
 <script>
 
-	cssFile = '<? echo chooseThemeFolder(); ?>';
+	cssFile = '<?php echo chooseThemeFolder(); ?>';
 
 	$(function() {
 		$('.bouton').button();
@@ -49,7 +49,7 @@ $listeInterlocks = $l->getListe ( TABLE_INTERLOC, '*', 'label' );
 	<div class="ui-widget-header ui-corner-all gros center pad3">Liste des structures bénéficiaires</div>
 	<br />
 	<div id='Strucs'>
-	<?
+	<?php
 		if (is_array($liste_struct)) {
 			foreach ($liste_struct as $info) {
 				$added = false ;

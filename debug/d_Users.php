@@ -49,7 +49,7 @@ $liste_users = $u->getListe(TABLE_USERS);
 	<button class="bouton petit" id='btnDelUser'>SUPPRIMER</button>
 	
 	<div class="leftText pad20" id='modifUser'>
-	<?
+	<?php
 /*
 		foreach (getNomsChamps('users') as $k => $titreChamp) {
 			if ($titreChamp != 'date_inscription' && $titreChamp != 'date_last_action' && $titreChamp != 'date_last_connexion' ) {
@@ -78,7 +78,7 @@ $liste_users = $u->getListe(TABLE_USERS);
 <div class="debugSection ui-widget-content ui-corner-all center pad20">
 	<div class="ui-widget-header ui-corner-all gros">Liste des users dans la BDD :</div>
 	<br />
-	<table class="debugTable"> <?
+	<table class="debugTable"> <?php
 		echo '<tr>';
 		foreach (getNomsChamps(TABLE_USERS) as $k => $titreChamp) {
 			echo '<td style="text-align:center;"><b>'.$titreChamp.'</b></td>';
@@ -96,7 +96,7 @@ $liste_users = $u->getListe(TABLE_USERS);
 </div>
 
 <div class="debugSection ui-widget-content ui-corner-all center pad20">
-	<? echo '<pre>';
+	<?php echo '<pre>';
 		print_r($_SESSION['user']);
 		echo '</pre>';
 	?>

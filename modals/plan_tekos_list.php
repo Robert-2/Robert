@@ -41,7 +41,7 @@
 		<span id="displayNbPlanSimult" class="red mini"></span>
 	</div>
 	<br /><br />
-	<div id="tekosHolder" class="inline top tiers center shadowOut"> <?
+	<div id="tekosHolder" class="inline top tiers center shadowOut"> <?php
 		foreach ( $listeTekos as $k => $v ) {
 			$id  = $v['id'];
 			$surnom = $v['surnom'];

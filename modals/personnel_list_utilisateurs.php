@@ -52,7 +52,7 @@ if ( $_SESSION["user"]->isAdmin() !== true ) die('Vous n\'avez pas accès à cet
 			<th></th>
 		</tr>
 		
-		<?
+		<?php
 		if (is_array($liste_Users)) {
 			foreach ($liste_Users as $info) {
 				$tekos = ' --- '; $tekosInfo = array();
@@ -138,7 +138,7 @@ if ( $_SESSION["user"]->isAdmin() !== true ) die('Vous n\'avez pas accès à cet
 		<div class="ui-widget-header ui-corner-all">Technicien associé :</div>
 		<select id="modUserTekos" style="width: 150px;">
 			<option value="0"> ---- </option>
-			<? 
+			<?php 
 			foreach ($liste_tekos as $tekos) {
 				($tekos['idUser'] == 0) ? $disable = '' : $disable = 'disabled';
 				echo '<option value="'.$tekos['id'].'" '.$disable.'>'.$tekos['surnom'].'</option>';

@@ -134,17 +134,17 @@ require_once ('infos_boite.php');
 
 ?>
 
-<script> var id_MODPLAN = <? echo $_GET['plan'] ?> ; </script>
+<script> var id_MODPLAN = <?php echo $_GET['plan'] ?> ; </script>
 
 <script src="./fct/plan_matos_init_modal.js"></script>
 <script src="./fct/modif_plan_Ajax.js"></script>
 
 <script>
-	var old_date_start = "<? echo $js.'/'.$ms.'/'.$as; ?>";
-	var old_date_end   = "<? echo $je.'/'.$me.'/'.$ae; ?>";
-	var autoCompleteBENEF = [<? echo $varsBenefs; ?>];
-	var planConfirmed  = '<? echo $confirmedPlan; ?>';
-<?
+	var old_date_start = "<?php echo $js.'/'.$ms.'/'.$as; ?>";
+	var old_date_end   = "<?php echo $je.'/'.$me.'/'.$ae; ?>";
+	var autoCompleteBENEF = [<?php echo $varsBenefs; ?>];
+	var planConfirmed  = '<?php echo $confirmedPlan; ?>';
+<?php
 if (!isset($_SESSION['plan_mod_backup'])) {
 	echo 'if (planConfirmed == "1") {
 			if (!confirm("ATTENTION !\n\nCet évènement a déjà été confirmé !\n(le devis a été accepté, la réservation effectuée)...\n\nVoulez-vous VRAIMENT le modifier ?"))
@@ -153,8 +153,8 @@ if (!isset($_SESSION['plan_mod_backup'])) {
 }
 ?>
 	$(function() {
-<? foreach ($tekosPlanMod as $t) echo "		tekosIds.push('$t'); $('.tek_name[id*=\"$t\"]').click();\n" ?>
-<? foreach ($matosPlanMod as $m => $q) echo "		matosIdQte['$m'] = $q; qteMatos_update($m);\n" ?> //  /* $('.qtePik[id*=\"$m\"]').children('.qtePikInput').show().val('$q').focus(); */
+<?php foreach ($tekosPlanMod as $t) echo "		tekosIds.push('$t'); $('.tek_name[id*=\"$t\"]').click();\n" ?>
+<?php foreach ($matosPlanMod as $m => $q) echo "		matosIdQte['$m'] = $q; qteMatos_update($m);\n" ?> //  /* $('.qtePik[id*=\"$m\"]').children('.qtePikInput').show().val('$q').focus(); */
 		$("#themeSel").parent('p').hide();
 		$("#modifInfoUserActif").hide();
 		$("#modPlanBenef").autocomplete( { source: autoCompleteBENEF });
@@ -167,7 +167,7 @@ if (!isset($_SESSION['plan_mod_backup'])) {
 </script>
 
 
-<?
+<?php
 // Met le plan à modifier en var de session
 $_SESSION['plan_mod'] = serialize($thePlan);
 // enregistrement en session d'une sauvegarde du plan avant la modif (au cas ou clic sur Annuler)
@@ -181,10 +181,10 @@ if (!isset($_SESSION['plan_mod_backup'])) $_SESSION['plan_mod_backup'] = array($
 	</div>
 	<div class="inline demi center">
 		<div class="inline ui-state-highlight ui-corner-all pad5 gros"id="rappelPlanInfos">
-			Modification de <i><b><? echo $titrePlanMod; ?></b></i>	à <b><? echo $lieuPlanMod; ?></b>, pour <b><? echo $benefPlanMod; ?></b>
+			Modification de <i><b><?php echo $titrePlanMod; ?></b></i>	à <b><?php echo $lieuPlanMod; ?></b>, pour <b><?php echo $benefPlanMod; ?></b>
 		</div>
 	</div>
-	<div class="inline ui-state-focus ui-corner-all pad5">créateur : <? echo $userPlanMod; ?></div>
+	<div class="inline ui-state-focus ui-corner-all pad5">créateur : <?php echo $userPlanMod; ?></div>
 	<div id="retourAjax" class="ui-state-error ui-corner-all pad10"></div>
 	
 </div>
@@ -194,13 +194,13 @@ if (!isset($_SESSION['plan_mod_backup'])) $_SESSION['plan_mod_backup'] = array($
 		<div class="ui-widget-header ui-corner-all pad3">Informations</div>
 		<br />
 		<div class="inline mid marge30r">
-			<div class="inline" style="width:100px;">Titre :</div>		  <div class="inline"><input type="text" id="modPlanTitre" value="<? echo $titrePlanMod; ?>" /></div><br />
-			<div class="inline" style="width:100px;">Bénéficiaire :</div> <div class="inline"><input type="text" id="modPlanBenef" value="<? echo $benefPlanMod; ?>" /></div><br />
-			<div class="inline" style="width:100px;">Lieu :</div>		  <div class="inline"><input type="text" id="modPlanLieu"  value="<? echo $lieuPlanMod; ?>" /></div>
+			<div class="inline" style="width:100px;">Titre :</div>		  <div class="inline"><input type="text" id="modPlanTitre" value="<?php echo $titrePlanMod; ?>" /></div><br />
+			<div class="inline" style="width:100px;">Bénéficiaire :</div> <div class="inline"><input type="text" id="modPlanBenef" value="<?php echo $benefPlanMod; ?>" /></div><br />
+			<div class="inline" style="width:100px;">Lieu :</div>		  <div class="inline"><input type="text" id="modPlanLieu"  value="<?php echo $lieuPlanMod; ?>" /></div>
 		</div>
 		<div class="inline mid center enorme marge30l">
-			DU : <input type="text" class="inputCal" id="modPlanStart" value="<? echo $js.'/'.$ms.'/'.$as; ?>" size="12" />
-			AU : <input type="text" class="inputCal" id="modPlanEnd" value="<? echo $je.'/'.$me.'/'.$ae; ?>" size="12" />
+			DU : <input type="text" class="inputCal" id="modPlanStart" value="<?php echo $js.'/'.$ms.'/'.$as; ?>" size="12" />
+			AU : <input type="text" class="inputCal" id="modPlanEnd" value="<?php echo $je.'/'.$me.'/'.$ae; ?>" size="12" />
 		</div>
 		<div class="inline mid center marge30l">
 			<button class="bouton ui-state-highlight" id="refreshModPlanDates">ACTUALISER</button>
@@ -212,7 +212,7 @@ if (!isset($_SESSION['plan_mod_backup'])) $_SESSION['plan_mod_backup'] = array($
 	<div class="ui-state-default ui-corner-all pad10 leftText shadowOut margeTop10">
 		<div class="ui-widget-header ui-corner-all pad3">Techniciens et remarques pour chaque jour</div>
 		<br />
-		<?
+		<?php
 		foreach ($sousPlans as $spInfo) {
 			$tmpDate = $spInfo['time'];
 			$tmpTime = $spInfo['jour'];
@@ -237,7 +237,7 @@ if (!isset($_SESSION['plan_mod_backup'])) $_SESSION['plan_mod_backup'] = array($
 		<br />
 		<div class="center"><button class="bouton ui-state-highlight" id="modPlan_modMatosListe">MODIFIER LA LISTE</button></div>
 		<br />
-		<?
+		<?php
 		foreach ($matosListByCateg as $categ => $listM) {
 			echo '<div class="inline top ui-corner-all shadowIn marge10l pad10 leftText" style="width:21%;">
 					<div class="ui-widget-header ui-corner-all center pad3"> <img src="gfx/icones/categ-'.$categ.'.png" style="float:right; margin-right:10px;" />'.strtoupper($categ).'</div>
@@ -253,14 +253,14 @@ if (!isset($_SESSION['plan_mod_backup'])) $_SESSION['plan_mod_backup'] = array($
 		<div class="ui-widget-header ui-corner-all pad3">Totaux</div>
 		<br />
 		<div class="inline top tiers padV10">
-			<?
+			<?php
 			foreach ($SsTotalCateg as $cat => $ssTc) {
 				echo 'total '.strtoupper($cat).' = <b>'.$ssTc.' €</b><br />';
 			}
 			?>
 		</div>
 		<div class="inline top tiers rightText">
-			<? echo '<div class="enorme">TOTAL H.T. : '.number_format($totalFinal, 2).' €</div>
+			<?php echo '<div class="enorme">TOTAL H.T. : '.number_format($totalFinal, 2).' €</div>
 					 <div class="enorme">TOTAL T.T.C. : '.number_format($totalFinal + ($totalFinal * TVA_VAL), 2).' €</div>';
 			?>
 		</div>
@@ -278,12 +278,12 @@ if (!isset($_SESSION['plan_mod_backup'])) $_SESSION['plan_mod_backup'] = array($
 
 
 <div id="modalTekos" class="hide">
-	<? include 'plan_tekos_list.php' ; ?>
+	<?php include 'plan_tekos_list.php' ; ?>
 </div>
 
 
 <div id="modalMatos" class="petit hide">
-	<? include 'plan_matos_list.php' ; ?>
+	<?php include 'plan_matos_list.php' ; ?>
 </div>
 
 

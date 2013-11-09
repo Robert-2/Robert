@@ -14,7 +14,7 @@ require_once('SQL_getDumpList.php');
 		<br />
 		<select id="tableList" multiple="multiple" class="moyen pad5">
 			<option value="all" selected>TOUT</option>
-			<? foreach (getTableList() as $name) {echo '<option value="'.$name.'">'.$name.'</option>';} ?>
+			<?php foreach (getTableList() as $name) {echo '<option value="'.$name.'">'.$name.'</option>';} ?>
 		</select><br /><br />
 		<button class="bouton" id="dumpSQL" >BACKUP BDD</button><br />
 	</div>
@@ -24,7 +24,7 @@ require_once('SQL_getDumpList.php');
 		<br /><br />
 		<select id="dumpList" class="pad5">
 			<option disabled selected>----</option>
-			<? foreach (getDumpList() as $name) {echo '<option value="'.$name.'">'.$name.'</option>';} ?>
+			<?php foreach (getDumpList() as $name) {echo '<option value="'.$name.'">'.$name.'</option>';} ?>
 		</select><br /><br /><br />
 		<button class="bouton" id="restoreSQL" >RESTORE BDD</button><br />
 	</div>

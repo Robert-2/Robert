@@ -13,7 +13,7 @@ $liste_packs = $l->getListe(TABLE_PACKS);
 <div class="debugSection ui-widget-content ui-corner-all center pad20">
 	<div class="ui-widget-header ui-corner-all">Liste des packs</div>
 	<br />
-	<table class="debugTable leftText"> <?
+	<table class="debugTable leftText"> <?php
 		echo '<tr>';
 		foreach (getNomsChamps(TABLE_PACKS) as $k => $titreChamp) {
 			echo '<td style="text-align:center;"><b>'.$titreChamp.'</b></td>';

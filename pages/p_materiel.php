@@ -85,7 +85,7 @@
 	<div class="inline top leftText">
 		<div class="sousMenuBtns hide" id="detailMenuBtns">
 			<a class="bouton miniSmenuBtn" id="matos_list_detail" href="#">Liste</a>
-			<a class="bouton miniSmenuBtn" id="matos_add_detail" <? echo $hideForPoppy; ?> href="#">Ajout</a>
+			<a class="bouton miniSmenuBtn" id="matos_add_detail" <?php echo $hideForPoppy; ?> href="#">Ajout</a>
 		</div>
 	</div>
 	
@@ -95,7 +95,7 @@
 	<div class="inline top rightText">
 		<div class="sousMenuBtns hide" id="packsMenuBtns">
 			<a class="bouton miniSmenuBtn" id="matos_list_packs" href="#">Liste</a>
-			<a class="bouton miniSmenuBtn" id="matos_add_packs" <? echo $hideForPoppy; ?> href="#">Ajout</a>
+			<a class="bouton miniSmenuBtn" id="matos_add_packs" <?php echo $hideForPoppy; ?> href="#">Ajout</a>
 		</div>
 	</div>
 	
@@ -136,12 +136,12 @@
 
 
 <div id="modalGestionSousCatMatos" title="Modification de la liste des sous catégories de matériel" class="mini hide">
-	<? include('matos_gere_sous_cat.php'); ?>
+	<?php include('matos_gere_sous_cat.php'); ?>
 </div>
 
 
 <div id="matosPage" class="pageContent">
-	<?
+	<?php
 	if ( isset($_GET['sousPage']) ) {
 		$goto = $_GET['sousPage'].'.php';
 	}

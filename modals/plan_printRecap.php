@@ -1,4 +1,4 @@
-<?
+<?php
 	session_start();
 	require_once ('initInclude.php');
 	require_once ('common.inc');		// OBLIGATOIRE pour les sessions, à placer TOUJOURS EN HAUT du code !!
@@ -133,14 +133,14 @@ catch( Exception $e) {
 
 	<meta name="robots" content="noindex,nofollow" />
 
-	<title><? echo $titrePageBar ; ?></title>
+	<title><?php echo $titrePageBar ; ?></title>
 
 	<link rel="shortcut icon" type="image/x-icon" href="../gfx/favicon.ico" />
 
-	<link type="text/css" href="../<? echo chooseThemeFolder(); ?>/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
+	<link type="text/css" href="../<?php echo chooseThemeFolder(); ?>/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
 	<link type="text/css" href="../css/ossature.css" rel="stylesheet" />
 	<link type="text/css" href="../css/ossature_print.css" rel="stylesheet" media="print"/>
-	<link type="text/css" href="../<? echo chooseThemeFolder(); ?>/colors.css" rel="stylesheet" />
+	<link type="text/css" href="../<?php echo chooseThemeFolder(); ?>/colors.css" rel="stylesheet" />
 
 	<script type="text/javascript" src="../js/jquery-1.7.min.js">// JQUERY CORE</script>
 	<script type="text/javascript" src="../js/jquery-ui-1.8.17.custom.min.js">// JQUERY UI</script>
@@ -158,14 +158,14 @@ catch( Exception $e) {
 
 	<div id='planInfos' class='ui-widget titreSection bordFin ui-corner-all'>
 		<div class='ui-widget-header ui-corner-all gros pad5' style='color:white; background-color:orange;'>
-			<?  echo $retour['titre'];  ?>
-			<span style='margin-left:10%' id='dateStart'> du  <?  echo $retour['dateDebut'];  ?> </span>
-			<span id='dateEnd'>, au  <?  echo $retour['dateFin'];  ?> </span>
-			<span id='lieu'> à <?  echo $retour['lieu'];  ?> </span>
+			<?php  echo $retour['titre'];  ?>
+			<span style='margin-left:10%' id='dateStart'> du  <?php  echo $retour['dateDebut'];  ?> </span>
+			<span id='dateEnd'>, au  <?php  echo $retour['dateFin'];  ?> </span>
+			<span id='lieu'> à <?php  echo $retour['lieu'];  ?> </span>
 		</div>
 
 		<div class='container'>
-			<?
+			<?php
 				foreach ( $retour['sousPlans'] as $sp ){
 
 					$tekDiv = '<div class="inline marge30l" style="width:115px;">Techniciens : </div>';
@@ -192,7 +192,7 @@ catch( Exception $e) {
 	<div id='planTekos' class='ui-widget titreSection bordFin ui-corner-all'>
 		<div class='ui-widget-header ui-corner-all enorme pad5'>Infos Techniciens</div>
 		<div class='container marge30l'>
-		<?
+		<?php
 				$tekDiv = '';
 				foreach ( $retour['sousPlans'] as $sp ){
 					$tekosExp = explode(',', $sp['tekos']);
@@ -227,7 +227,7 @@ catch( Exception $e) {
 
 	<div id='benefInfo' class='ui-widget titreSection bordFin ui-corner-all'>
 		<div class='ui-widget-header ui-corner-all enorme pad5'>Bénéficiaire : <span  class='mini'>
-			<? if ( ! is_array ($benefInfos) )
+			<?php if ( ! is_array ($benefInfos) )
 					echo $retour['benef'] . ' <span class="printHide mini"><a href="../index.php?go=beneficiaires">Remplir les informations</a></span>' ;
 				else
 					echo $benefInfos['type'] . ' ' . $benefInfos['NomRS'] . ' ( ' .  formatTelephone( $benefInfos['tel'])  . ' ) ' .$benefInfos['adresse'] ; ?></span>
@@ -235,7 +235,7 @@ catch( Exception $e) {
 
 
 		<div class='container marge30l'>
-		<?
+		<?php
 			if (  ! empty ($listeInterlock) ) {
 				foreach ( $listeInterlock as $inter ){
 					echo '<div class="interlockItem gros padH5">
@@ -256,7 +256,7 @@ catch( Exception $e) {
 
 		<div id='matosContainer' class='container marge30l'>
 			<div class='inline demi'>
-		<?
+		<?php
 
 			Matos_getManque ( $retour['id'], &$retour['matos']);
 			$matosBySousCat = creerSousCatArray_showExterieur ( $retour['matos'] );
@@ -298,7 +298,7 @@ catch( Exception $e) {
 		?></div>
 
 		<div class='inline demi top'>
-			<? echo @$alouer ; ?>
+			<?php echo @$alouer ; ?>
 		</div>
 
 			<br /><br />
@@ -309,7 +309,7 @@ catch( Exception $e) {
 	<div id='planDecla' class='ui-widget titreSection pageBreakBefore bordFin ui-corner-all'>
 		<div style='width:99%'>
 			<div class='inline top padV10' style='width:47%;'><br />
-			<? echo TYPE_BOITE . ' <span class="enorme inline">' . NOM_BOITE .'</span><br />';
+			<?php echo TYPE_BOITE . ' <span class="enorme inline">' . NOM_BOITE .'</span><br />';
 			   echo ADRESSE_BOITE . "<br />" . CP_BOITE . ' ' . VILLE_BOITE . '<p>';
 			   echo "N° de TVA intracommunautaire : " . N_TVA_BOITE . '<br />';
 			   echo "N° de SIRET : " . SIRET_BOITE . '<p>';
@@ -322,9 +322,9 @@ catch( Exception $e) {
 		</div>
 
 		<div class='ui-widget-header ui-corner-all center enorme pad5'>Infos Déclaration des techniciens<span class='micro'><br />
-				Pour la période Du <?  echo $retour['timeDebut']; ?> au <? echo $retour['timeFin'] ; ?> inclus </span></div>
+				Pour la période Du <?php  echo $retour['timeDebut']; ?> au <?php echo $retour['timeFin'] ; ?> inclus </span></div>
 		<div class=''>
-		<?
+		<?php
 				$declaDiv = ''; $defaultTotalDecla = 0;
 				foreach ( $retour['sousPlans'] as $sp ){
 					$tekosExp = explode(',', $sp['tekos']);
@@ -353,14 +353,14 @@ catch( Exception $e) {
 			<div class='micro marge30l'><i><span class="enorme red">*</span> Auto-entrepreneur, fournira une facture séparée.</i></div>
 			<div class="tekName padH5 marge30r rightText enorme">
 				<i class="nano">Somme déduite de la facture globale TTC initialement prévue : </i>
-				TOTAL : <span class='totalDecla'><? echo number_format($defaultTotalDecla, 2, '.', ''); ?></span> €
+				TOTAL : <span class='totalDecla'><?php echo number_format($defaultTotalDecla, 2, '.', ''); ?></span> €
 			</div>
 		</div>
 
 		<p></p>
 		<span class='ui-widget-header ui-corner-all pad5'>Coordonnées des techniciens</span><p>
 		<div class="marge30l" style='width:99%;'>
-			<?
+			<?php
 				$tekDiv = '';
 				foreach ( $retour['sousPlans'] as $sp ){
 					$tekosExp = explode(',', $sp['tekos']);

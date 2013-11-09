@@ -52,7 +52,7 @@ else $liste_interloc = $l->getListe(TABLE_INTERLOC);
 			<th></th>
 		</tr>
 		
-		<?
+		<?php
 		if (is_array($liste_interloc)) {
 			foreach ($liste_interloc as $info) {
 				$infoStructName = '---';
@@ -101,7 +101,7 @@ else $liste_interloc = $l->getListe(TABLE_INTERLOC);
 		<div class="ui-widget-header ui-corner-all">Structure associée :</div>
 		<select id="modInterlocStruct" style="width:180px;">
 			<option>---</option>
-			<?
+			<?php
 			foreach ($liste_struct as $v ){
 				echo '<option value="'.$v['id'].'">'.$v['label'].'</option>';
 			}
