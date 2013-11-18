@@ -27,7 +27,7 @@ $serverName = php_uname('n');
 /*
 
  *	Modifiez les lignes 40 à 43 ci-dessous, en vous inspirant de l'exemple, pour renseigner :
- *	le nom de l'hôte ou se trouve la base de données
+ *	le nom de l'hôte ou se trouve la base de données SQL
  *	le nom de l'utilisateur SQL
  *	le mot de passe de l'utilisateur SQL
  *  le nom de la base de données
@@ -37,20 +37,20 @@ $serverName = php_uname('n');
 */
 
 
-	define ("HOST", "host.db");													// nom de l'hôte ou se trouve la bdd
-	define ("USER", "userDB");													// nom de l'utilisateur autorisé à se connecter
-	define ("PASS", "passDB");													// son mot de passe
-	define ("BASE", "robertBase");												// nom de la base de données
+	define ("HOST", "localhost");												// nom de l'hôte ou se trouve la bdd
+	define ("USER", "root");													// nom de l'utilisateur autorisé à se connecter
+	define ("PASS", "");														// son mot de passe
+	define ("BASE", "robert");													// nom de la base de données
 
 
 
- 
+
 
 
 /* ***************************************************************************** */
 /* ***************************************************************************** */
 
-define ("DEVS_MAILS", "polo@polosson.com, mathieu@d2mphotos.fr");
+define ("DEVS_MAILS", "polo@polosson.com, mathieu@d2mphotos.fr");				// Adresses email des développeurs
 
 define ("DSN", 'mysql:dbname='.BASE.';host='.HOST);								// données de connexion à la BDD via PDO
 

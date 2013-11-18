@@ -35,7 +35,7 @@ $liste_packs = $l->getListe(TABLE_PACKS);
 
 <div id="debugAjax" class="debugSection ui-state-error pad10"></div>
 
-	
+
 <div class="debugSection ui-widget-content ui-corner-all center pad20">
 	<div class="ui-widget-header ui-corner-all">Pack sélectionné : </div>
 	<div class="pad5 leftText" id="afficheSel">Choisir un pack dans la liste dessus</div>
@@ -92,9 +92,8 @@ $liste_packs = $l->getListe(TABLE_PACKS);
 		<br /><br />
 		<div class="ui-widget-header ui-corner-all">Référence</div>
 		<select id="addRefToPack">
-		<?	foreach ($liste_matos as $matos)
-				echo '<option value="'.$matos['id'].'">'.$matos['ref'].'</option>';
-		?>
+		<?php foreach ($liste_matos as $matos)
+				echo '<option value="'.$matos['id'].'">'.$matos['ref'].'</option>'; ?>
 		</select>
 	</div>
 	<div class="inline top" style="width: 220px;">

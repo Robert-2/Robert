@@ -3,14 +3,14 @@
 	require_once ('initInclude.php');
 	require_once ('common.inc');		// OBLIGATOIRE pour les sessions, à placer TOUJOURS EN HAUT du code !!
 	require_once ('checkConnect.php' );
-    
+
 	$titrePageBar = "MPM - DEBUG";
 	$titrePage = "DEBUG du Modèle Polo Mout";
 	include('head_html.php');
 ?>
 
 <body>
-	
+
     <style>
         .debugHeader   { width:99%; padding:4px; }
 		.debugSection  { margin-bottom: 10px; }
@@ -19,7 +19,7 @@
 		.debugTable	   { border-spacing: 0px; width: 99%; font-size: 0.8em; }
 		.debugTable td { border: 1px solid; padding:3px; }
     </style>
-    
+
 	<div id="bigDiv">
 		<div class='debugHeader ui-widget'>
 			<span class="boutonMenu marge30l"><a href="index.php">RETOUR INDEX</a></span>
@@ -31,7 +31,7 @@
 					echo "<option value='$theme'>$theme</option>";
 				?>
 			</select>
-		<?php 
+		<?php
 			if ($handle = opendir('debug/')) {
 				while (($entry = readdir($handle)) !== false) {
 					if (strpos($entry, ".php") && substr($entry,0,2) == 'd_'  )
@@ -40,13 +40,13 @@
 			}
 		?>
 		</div>
-		
+
 		<div class="PageDebug ui-widget">
-				
-			<?	if ( isset($_GET["file"])) include ('debug/' . $_GET["file"]); ?>
+
+			<?php if ( isset($_GET["file"])) include ('debug/' . $_GET["file"]); ?>
 		</div>
-		
-		
+
+
 <!--		<div id="logo"><img src="nothing" alt=""/></div>-->
 
 	</div>

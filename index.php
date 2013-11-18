@@ -71,7 +71,7 @@
 
 
 			<div class="colonne C bordSection ui-widget ui-corner-all fondSect2 petit">
-				<?	if ( !isset($_SESSION['user']) ) include ('modals/connexion.php');
+				<?php if ( !isset($_SESSION['user']) ) include ('modals/connexion.php');
 					else {
 						if ( isset($_GET["go"])) {
 							$goto = 'pages/p_' . $_GET["go"] .'.php';

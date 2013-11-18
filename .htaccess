@@ -1,3 +1,5 @@
 SetEnv PHP_VER 5
 SetEnv MAGIC_QUOTES 0
+<IfModule !mod_php5.c>
 AddType x-mapp-php5 .php
+</IfModule>
