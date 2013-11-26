@@ -12,7 +12,7 @@ if ( @$action == "addCalNote") {
 		$date = $date / 1000;
 		$postit = new Infos(TABLE_NOTES);
 		$postit->addInfo('date', $date);
-		$postit->addInfo('texte', $texte);
+		$postit->addInfo('texte', strip_tags($texte, '<b><i><ul><li>'));
 		$postit->addInfo('createur', $_SESSION['user']->getUserInfos('prenom'));
 		$postit->addInfo('important', $important);
 		$postit->save();
@@ -44,7 +44,7 @@ if ( @$action == 'purgeNotes') {
 	$ln = new Liste();
 	$thisMorning = strtotime('midnight');
 	$listeNotes = $ln->getListe(TABLE_NOTES, '*', 'date', 'ASC', 'date', '<', $thisMorning);
-	
+
 	try {
 		if (is_array($listeNotes)) {
 			foreach ($listeNotes as $note) {
