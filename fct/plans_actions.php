@@ -70,11 +70,14 @@ if ( @$action == 'afficheTekosMatos') {
 		}
 	}
 
+	$planDetails['matos'] = Array();
+	$planDetails['packs'] = Array();
+
 	$liste = new Liste () ;
 	$lm = $liste->getListe(TABLE_MATOS, 'id, panne, Qtotale', 'ref', 'ASC') ;
 	$lp = $liste->getListe(TABLE_PACKS, 'id, ref, detail', 'ref', 'ASC') ;
-	if ( $lm != false && $lp != false ) {
-		$cal->initPacks($lp);
+	if ($lm != false) {
+		if ($lp != false) $cal->initPacks($lp);
 		foreach ( $lm as $k => $v ) {
 			$idMatos = $v['id'];
 			$planDetails['matos'][$k]['panne']		= $v['panne'] ;
@@ -96,9 +99,9 @@ if ( @$action == 'afficheTekosMatos') {
 				}
 				$qteDispoPourPack -= $matosBusy['QteConfirm'] + $matosBusy['QteAttente'] + $v['panne'];
 			}
-			$cal->createPack($v['id'], $qteDispoPourPack );
+			if ($lp != false) $cal->createPack($v['id'], $qteDispoPourPack );
 		}
-		$planDetails['packs'] = $cal->countPacks();
+		if ($lp != false) $planDetails['packs'] = $cal->countPacks();
 	}
 
 	$planDetails = json_encode($planDetails);

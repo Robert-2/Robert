@@ -5,16 +5,16 @@ var tekosIds	= [] ;
 
 // Retour au calendrier pendant l'ajout de plan (annule tout)
 function retourCalendar () {
-//	if (mode_ajout == false) 
+//	if (mode_ajout == false)
 		window.location = '?go=calendrier';
 //	else window.close();
 }
 
 
 $(function() {
-	
+
 /// Init de l'accordéon des packs
-	$("#packsHolder").accordion({header: '.packPik', disabled: true, active: false, alwaysOpen: false, autoHeight: false, collapsible: true, animated: true}); 
+	$("#packsHolder").accordion({header: '.packPik', disabled: true, active: false, alwaysOpen: false, autoHeight: false, collapsible: true, animated: true});
 
 /// ouverture du bon accordion (pour éviter l'ouverture sur boutons + et -)
 	$('.accordionOpen').click(function() {
@@ -30,8 +30,8 @@ $(function() {
 		$("#packsHolder").accordion( "enable" );
 		$("#packsHolder").accordion( "activate", $("#"+idToOpen) );
 	});
-	
-	
+
+
 /// SWITCH du matos, affichage du détail ou des packs
 	$('#togglePacksMatos').click(function () {
 		var actuel = $(this).children().html();
@@ -49,21 +49,21 @@ $(function() {
 			$('#packsHolder').show();
 			$('#messHelpMatos').html('Bouton "+" pour ajouter un pack,<br /> Bouton "-" pour en enlever un.');
 		}
-		
+
 	});
-	
-	
+
+
 /// ajout d'un matos à la volée, vite fait
 	$('#add_Matos_Rapide').click(function (){
 		$('#addMatosModal').dialog({
 			autoOpen: true,
 			width : 790,
-			height: 360, 
+			height: 360,
 			title: 'Ajouter un matériel' ,
 			modal: true,
 			buttons: {'Ok'      : function() { if ( ! addMatosToBDD () ) return ; $(this).dialog('close'); },
 					  'Annuler' : function() { $(this).dialog('close'); }
-			}, 
+			},
 			close  : function() { $(".addMatosInput").val('');  }
 		});
 	});
@@ -78,16 +78,16 @@ $(function() {
 			$('#chezQuiDiv').hide();
 		}
 	});
-	
-	
+
+
 ///// Filtrage du matos et des packs par catégorie VERSION 2 (additif)
 	$('.filtreMatos').click(function() {
 		$('.matosPik').hide(); $('.packPik').hide(); $('.matosLine').hide();
-		
+
 		if ( $(this).hasClass('ui-state-error') )
 			 $(this).removeClass('ui-state-error');
 		else $(this).addClass('ui-state-error');
-		
+
 		var stillFiltred = false;
 		$('.filtreMatos').each(function(i, obj){
 			$('.sousCategLine').show();
@@ -102,7 +102,7 @@ $(function() {
 			}
 			else $('.cat-'+categ).hide(10, function(){ refreshSousCatLine(); });
 		});
-		
+
 		if (stillFiltred == false) {
 			$('.sousCategLine').show();
 			$('.matosPik').show();
@@ -110,8 +110,8 @@ $(function() {
 			$('.matosLine').show();
 		}
 	});
-	
-	
+
+
 ///// Filtrage du matos et des packs par catégorie VERSION 1 (exclusif)
 //	$('.filtreMatos').click(function() {
 //		var categ = $(this).attr('id');
@@ -147,8 +147,8 @@ $(function() {
 //			$(this).addClass('ui-state-error');
 //		}
 //	});
-	
-	
+
+
 /// Click sur le plus ou sur la croix pour ajouter un matos à la liste
 	//$(".matos_plus").click(function() {
 	$("#matosHolder").on ( 'click', '.matos_plus' , function() {
@@ -171,17 +171,17 @@ $(function() {
 			$(this).parents('.matosPik').removeClass('ui-state-highlight');
 			id   = parseInt($(this).parents().children('.qtePik').attr('id'), 10);
 			delete matosIdQte[id];
-			
+
 		}
 		qteMatos_update(id);
 		prixTotal();
 		aLouer();
-		
+
 		if (isExterne == false)
 			recalcDispoPacks();
 	});
-	
-	
+
+
 /// après avoir tapé une quantité de matos
 	$("#matosHolder").on ( 'blur', ".qtePikInput", function() {
 		var id		= parseInt($(this).parents('.qtePik').attr('id'), 10) ;
@@ -192,20 +192,20 @@ $(function() {
 		aLouer();
 		recalcDispoPacks();
 	});
-	
-	
+
+
 /// click sur bouton plus d'un pack
 	$(".pack_plus").click ( function (){
 		var plusmoins = $(this).attr('id');
 		var maximumpack  = parseInt( $(this).parents(".packPik").find('.qteDispo_MAX').html(), 10 );
 		var currentpack  = parseInt( $(this).parents(".packPik").find('.qteDispo_QTE').html(), 10 );
 		var isExterne	 = $(this).parents(".packPik").hasClass('matosExterne');
-		
+
 		var idPack = $(this).parents(".packPik").attr("id");
 		idPack = idPack.substr(5) ;
 		var PackItems = $("#packDetail-" + idPack).children(".packItem") ;
 		var currentVoulu = parseInt( $('#qtePik-'+idPack).html(), 10 );
-		
+
 		if ( isExterne == false ) {
 			if ( currentpack >= maximumpack && plusmoins == 'moins' ) return;
 		}
@@ -221,10 +221,10 @@ $(function() {
 		});
 		prixTotal();
 		aLouer();
-		
+
 		var ajoute = 1;
 		if ( plusmoins == "moins" ) ajoute = -1;
-		
+
 		if (isExterne == false) {
 			recalcDispoPacks();
 		}
@@ -236,8 +236,8 @@ $(function() {
 			else $('#qtePik-'+idPack).show();
 		}
 	});
-	
-	
+
+
 });
 //// FIN DU DOCUMENT READY
 
@@ -291,8 +291,12 @@ function displayTekosDispo (data) {
 
 
 function displayTekosMatos (data) {
+	if (data.tekos.length < 1) { alert('La liste des techniciens est vide.\n\nAjoutez des techniciens pour pouvoir continuer...'); window.location.href = "index.php?go=gens"; }
+	if (data.matos.length < 1) { alert('La liste du matériel est vide.\n\nAjoutez au moins un matériel pour pouvoir continuer...'); window.location.href = "index.php?go=materiel"; }
+//	if (data.packs.length < 1) { alert('La liste des packs de matériel est vide.\n\nVous pouvez utiliser les packs pour ajouter des listes de matériel rapidement.'); }
+
 	$("#periode").html( '<b>'+data.periodeStart +'</b> au <b>'+ data.periodeEnd +'</b>' );
-	
+
 	$('#displayNbPlanSimult').html('');
 	if (mode_ajout == false) data.nbPlansPeriode --;
 	if ( data.nbPlansPeriode > 0 ) {
@@ -301,7 +305,7 @@ function displayTekosMatos (data) {
 			plurielPlan = 's';
 		$('#displayNbPlanSimult').html( "Attention ! Déjà <b>" + data.nbPlansPeriode + " plan" + plurielPlan + "</b> en même temps dans cette période !");
 	}
-	
+
 	jQuery.each( data.tekos, function (i, val) {
 		var iconeDispo = '';
 		if (val.iconeTekos == 'option') {
@@ -317,10 +321,10 @@ function displayTekosMatos (data) {
 		else {
 			iconeDispo = "<img src='gfx/icones/icon-"+val.iconeTekos+".png' alt='"+val.iconeTekos+"' />";
 		}
-		
+
 		$("#tek-"+val.idtek).children(".tekosDispo").html(iconeDispo);
 	});
-	
+
 	jQuery.each( data.matos, function (i, valMatos) {
 		var idMatos	  = valMatos.idMatos;
 		var qtePanne  = valMatos.panne;
@@ -331,13 +335,13 @@ function displayTekosMatos (data) {
 		var isFullParc= valMatos.fullParc;
 		qteTotale -= qtePanne;
 		qteDispo  -= qtePanne;
-		
+
 		$("#matos-"+idMatos).children(".matosDispo").find(".qteDispo_total").html ( qteTotale );
 		if (matosIdQte[idMatos] == undefined)
 			$("#matos-"+idMatos).children(".matosDispo").find(".qteDispo_update").html( qteDispo );
 		else $("#matos-"+idMatos).children(".matosDispo").find(".qteDispo_update").html( qteTotale - matosIdQte[idMatos] );
 		$("#matos-"+idMatos).children(".matosDispo").find(".qteDispo_onload").html( qteDispo );
-		
+
 		if (isFullParc == 'false' ) {
 			var messagePopup = '';
 			$.each(infosPlans, function(i, info){
@@ -348,31 +352,31 @@ function displayTekosMatos (data) {
 			});
 			if ( qteAttente != 0 )
 				 messagePopup += '<b>total en attente : ' + qteAttente+'</b>';
-			 
+
 			$("#matos-"+idMatos).children(".matosDispo").children(".qteDispo").attr('popup', messagePopup);
 		}
-		
+
 		if (qtePanne != 0 ) {
 			var panneTxt = "<span class='mini red'>(+ " + qtePanne + " en pannne !)</span>";
 			$("#matos-"+idMatos).children(".matosDispo").children(".qtePanne").html( panneTxt );
 		}
-		
+
 		if (qteDispo <= 0)
 			$("#matos-"+idMatos).addClass('ui-state-error');
 		else
 			$("#matos-"+idMatos).removeClass('ui-state-error');
 	});
-	
+
 	jQuery.each( data.packs, function (i, valPack) {
 		var idPack		= valPack.id;
 		var refPack		= valPack.ref;
 		var detailPack	= valPack.detail;
 		var dispoPack	= valPack.qteMatDispo;
 		var qtePack		= valPack.QTE;
-		
+
 		$('#pack-'+idPack).children(".packDispo").find('.qteDispo_QTE').html(qtePack);
 		$('#pack-'+idPack).children(".packDispo").find('.qteDispo_MAX').html(qtePack);
-		
+
 		$.each( dispoPack, function (id, qte ) {
 			var need = $('#packDetail-'+idPack).children('#pD-'+id).children('div').children('.need').html();
 			need = parseInt(need, 10);
@@ -409,14 +413,14 @@ function addMatos ( id, qte ) {
 
 
 function qteMatos_update ( id ) {
-	var max  =  $("#matos-" + id).children(".matosDispo").find(".qteDispo_onload").html() 
+	var max  =  $("#matos-" + id).children(".matosDispo").find(".qteDispo_onload").html()
 	max = parseInt ( max, 10 );
 	var pu = $("#matos-" + id).find(".matos_PU").html() ;
 	pu = parseFloat ( pu );
 	var qte = parseInt ( matosIdQte[id], 10 );
 	if (isNaN(qte)) qte = 0;
 	var ptotal =  pu * qte  ;
-	
+
 	$("#matos-" + id).removeClass('ui-state-highlight');
 	$("#matos-" + id).find(".matos_PRICE").html ( ptotal );
 	$("#matos-" + id).children(".matosDispo").find(".qtePikInput").val( qte );
@@ -433,13 +437,13 @@ function qteMatos_update ( id ) {
 		$("#matos-" + id).children(".matosDispo").find(".qtePik").addClass('padV10');
 		$("#matos-" + id).find('.matos_plus').children('button').removeClass('plus').addClass('moins').find('.ui-icon').removeClass('ui-icon-plusthick').addClass('ui-icon-minusthick');
 	}
-	
+
 	$(".pD-" + id).each ( function (ind , obj ){
 		var reste = max - matosIdQte[id];
 		if (isNaN(reste)) reste = max;
 		$(obj).children(".dispo").html( reste );
 	});
-	
+
 	if (mode_ajout == true)
 		refreshEtapesBtns(1);
 }
@@ -450,20 +454,20 @@ function prixTotal () {
 	var divSsTotaux = "#sousTotal";
 	var matosPrix	= $(".matosPik").find(".matos_PRICE");
 	var prices		= [] ;
-	
+
 	$(matosPrix).each ( function (ind, obj) {
 		var categ = $(obj).parents(".matosPik").children(".matos_categ").children("img").attr("alt");
 		var tmpPrice = parseFloat( $(obj).html() );
 		if ( ! isNaN(tmpPrice) ) {
-			if (prices[categ] == undefined) prices[categ] = 0 ; 
+			if (prices[categ] == undefined) prices[categ] = 0 ;
 			prices[categ] += tmpPrice ;
 		}
 	});
 	$(divSsTotaux).html('');
-	var total = 0 ; 
+	var total = 0 ;
 	for ( cat in prices ) {
 		$(divSsTotaux).append( cat +' : ' + prices[cat] + '€<br />' );
-		total += prices[cat] ; 
+		total += prices[cat] ;
 	}
 	$(divTotal).html('TOTAL : ' + total + '€' );
 }
@@ -474,7 +478,7 @@ function aLouer (){
 	var matos = $(".matosPik");
 	var listToRent = '';
 	$(divOutput).html('Rien, pour le moment...');
-	
+
 	$(matos).each ( function (ind, obj){
 		var qteOnload = parseInt ( $(obj).find(".qteDispo_onload").html(), 10 );
 		var id = $(obj).attr("id");
@@ -484,7 +488,7 @@ function aLouer (){
 		var moins = qteOnload - qteAsked ;
 		var externe = $(obj).children('.matos_name').attr('ext');
 		var name = $(obj).children(".matos_name").html();
-		
+
 		if ( moins < 0 && ! isNaN(moins) && externe == '0' ) {
 			if ( qteOnload < 0 ) moins = moins - qteOnload ;
 			else moins = qteOnload - qteAsked ;
@@ -505,7 +509,7 @@ function recalcDispoPacks () {
 		var idPack = id.substr(5);
 		$('#qtePik-'+idPack).html('');
 //		if ($(pack).hasClass('matosExterne') == true) return true;
-		
+
 		var itemsObj = $('#packDetail-'+idPack).children('.packItem');
 		qteOK = 100000;
 		var nbItemsInPack = 0;
@@ -513,7 +517,7 @@ function recalcDispoPacks () {
 		$(itemsObj).each(function(i) {
 			var idMatos = $(this).attr('id');
 			idMatos = idMatos.substr(3);
-			
+
 			nbItemsInPack++;
 			var need  = parseInt($(this).find('.need').html(), 10);
 			var dispo = parseInt($(this).find('.dispo').html(), 10);
@@ -532,9 +536,9 @@ function recalcDispoPacks () {
 				$('#qtePik-'+idPack).hide();
 			}
 		});
-		
+
 		$(pack).find('.qteDispo_QTE').html(qteOK);
-		
+
 		var nbItemsWantInPack = Object.keys(nbPackPickable).length;
 		var controlQteWanted = [];
 //		$('#qtePik-'+idPack).append('Items voulu in pack = '+ nbItemsWantInPack + ', Items in Pack : '+nbItemsInPack+'<br />');$('#qtePik-'+idPack).show();
@@ -584,7 +588,7 @@ function addMatosToBDD(){
 		var remarque	= encodeURIComponent($('#newMatosRemark').val()) ;
 		var externe		= 0;
 		if ($('#newMatosExterne').attr('checked')) externe	= 1 ;
-		
+
 		if (label == '' || ref == '' || categ == '' || Qtotale == '' || tarifLoc == '' || valRemp == '' ) {
 			alert('Vous devez remplir tous les champs marqués d\'une étoile !');
 			return false;
@@ -601,7 +605,7 @@ function addMatosToBDD(){
 
 
 function matos_list_detail( retour ){
-	if ( retour.success != 'SUCCESS' ) { alert (retour.success) ;  return; } 
+	if ( retour.success != 'SUCCESS' ) { alert (retour.success) ;  return; }
 
 	retour = retour.matos ;
 	var externeIcon = '';
@@ -612,7 +616,7 @@ function matos_list_detail( retour ){
 		externeClass = "matosExterne"  ;
 		externeHideDispo = "class='hide'"  ;
 	}
-		
+
 	var newMatos= "<div id='matos-"+ retour.id +"' class='ui-state-default matosPik cat-"+ retour.categorie + " " +externeClass+" pad3'>"
 						+" <div class='inline mid rightText' style='width:100px; '>"
 							+" <span class='ui-state-disabled'>DETAIL</span>"
@@ -639,7 +643,7 @@ function matos_list_detail( retour ){
 							+" <div class='inline mid demi gros'> = <span class='matos_PRICE'>0</span> €</div>"
 						+" </div>"
 				 +" </div>" ;
-	
+
 	$('#matosHolder').find('.sousCategLine[idSsCat*="'+retour.sousCateg+'"]').show().after( newMatos ) ;
 	$('.bouton').button();
 }
