@@ -88,6 +88,7 @@ define ("COOKIE_NAME_LOG",	'auth_login');										// nom du cookie gestion logi
 define ("COOKIE_NAME_PASS", 'auth_password');									// nom du cookie gestion password
 define ("COOKIE_PEREMPTION", time() + (3600 * 24 * 2));							// péremption des cookies : 2 jours.
 
+date_default_timezone_set('Europe/Paris');										// La timezone par défaut, si introuvable dans le php.ini
 
 // fonction de suppression de dossier, vite fait, dispo pour tout le monde !
 function rrmdir($dir) {
