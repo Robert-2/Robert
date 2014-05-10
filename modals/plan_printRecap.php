@@ -154,7 +154,7 @@ catch( Exception $e) {
 </head>
 
 <body>
-	<div style="float:right;"><button class="enorme printHide" onClick="window.print()">IMPRIMER</button></div>
+	<div style="float:right;"><button class="gros marge30r margeTop5 printHide" onClick="window.print()">IMPRIMER</button></div>
 
 	<div id='planInfos' class='ui-widget titreSection bordFin ui-corner-all'>
 		<div class='ui-widget-header ui-corner-all gros pad5' style='color:white; background-color:orange;'>
@@ -257,8 +257,7 @@ catch( Exception $e) {
 		<div id='matosContainer' class='container marge30l'>
 			<div class='inline demi'>
 		<?php
-
-			Matos_getManque ( $retour['id'], &$retour['matos']);
+			$retour['matos'] = Matos_getManque ( $retour['id'], $retour['matos']);
 			$matosBySousCat = creerSousCatArray_showExterieur ( $retour['matos'] );
 
 			foreach( $matosBySousCat as $id => $matos ){

@@ -264,7 +264,7 @@ function Matos_getManque( $idPlan, $listMatos ){
 
 	$lmatos = $tmpPlan->getPlanMatos();
 
-	$retour = array();
+//	$retour = $listMatos;
 	foreach( $lmatos as $id => $qte ){
 		if (!isset($lm[$id])) continue;
 		$dispo = $lm[$id]['Qtotale'] - $lm[$id]['panne'];
@@ -283,7 +283,7 @@ function Matos_getManque( $idPlan, $listMatos ){
 		if ( $dispo <= 0 && $dispo <= - ($qte) ) $listMatos[$id]['manque'] = $qte ;
 
 	}
-	return ($retour);
+	return ($listMatos);
 }
 
 
