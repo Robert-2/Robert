@@ -1,14 +1,15 @@
 
 $(function() {
-	
+
 	///// Filtrage du matos et des packs par catégorie VERSION 2 (additif)
-	$('.filtre').click(function() {
+	$('#filtresDiv').off('click', '.filtre');
+	$('#filtresDiv').on('click', '.filtre', function() {
 		$('.matosLine').hide();
-		
+
 		if ( $(this).hasClass('ui-state-error') )
 			 $(this).removeClass('ui-state-error');
 		else $(this).addClass('ui-state-error');
-		
+
 		var stillFiltred = false;
 		var filtredExt	 = false;
 		$('.filtre').each(function(i, obj){
@@ -25,7 +26,7 @@ $(function() {
 			}
 			else $('.cat-'+categ).hide(10, function(){refreshSousCatLine();});
 		});
-		
+
 		if (stillFiltred == false) {
 			$('.sousCategLine').show();
 			$('.matosPik').show();
@@ -33,7 +34,7 @@ $(function() {
 			$('.matosLine').show();
 			$('.matosExterne').hide();
 		}
-		
+
 		if (filtredExt == true) {
 			$('.matosInterne').hide();
 			if (stillFiltred == false) {
@@ -44,52 +45,8 @@ $(function() {
 			$('.matosExterne').hide();
 		}
 	});
-	
-	
-	
-	// Filtrage de la liste du matos par catégories et Switch vue du matos interne / externe
-//	if (filtreRunning == false) {			// Pour ne le lancer qu'une seule fois !
-//		$('.filtre').click(function() {
-//			filtreRunning = true;
-//			var categ = $(this).attr('id');
-//			$('.matosLine').hide();
-//			if ($(this).hasClass('ui-state-error')) {
-//				$('.filtre').removeClass('ui-state-error');
-//				$('.sousCategLine').show();
-//				if (categ == 'int-ext') {
-//					$('.matosExterne').hide();
-//					$('.matosInterne').show();
-//				}
-//				else {
-//					$('.matosInterne').show();
-//				}
-//			}
-//			else {
-//				$('.filtre').removeClass('ui-state-error');
-//				$('.sousCategLine').show();
-//				if (categ == 'int-ext') {
-//					$('.matosInterne').hide();
-//					$('.matosExterne').show(10, function(){
-//						$('.sousCategLine').each(function(){
-//							if ($(this).next().attr('style') == 'display: none;')
-//								$(this).hide();
-//						});
-//					});
-//				}
-//				else {
-//					$('.cat-'+categ).show(10, function(){
-//						$('.sousCategLine').each(function(){
-//							if ($(this).next().attr('style') == 'display: none;')
-//								$(this).hide();
-//						});
-//					});
-//				}
-//				$(this).addClass('ui-state-error');
-//			}
-//		});
-//	}
-	
-	
+
+
 	// sélection d'un matos
 	$('.selectMatos').click(function() {
 		var idSel  = $(this).attr('id');
@@ -100,8 +57,8 @@ $(function() {
 		$('#modifieurPage').show(transition);
 		AjaxJson(ajaxStr, 'matos_actions', displaySelMatos);
 	});
-	
-	
+
+
 	// modification d'un matos
 	$('#modifieurPage').on('click', '.modif', function () {
 		var idMatos		= $('#modMatosId').val();
@@ -127,8 +84,8 @@ $(function() {
 						+'&remarque='+remarque ;
 		AjaxFct(AjaxStr, 'matos_actions', false, 'retourAjax', 'matos_list_detail');
 	});
-	
-	
+
+
 	// Suppression d'un matos
 	$('.deleteMatos').click(function () {
 		var id = $(this).attr('id');
@@ -137,7 +94,7 @@ $(function() {
 		if (confirm('Supprimer le matériel "'+nom+'" ? Sûr ??'))
 			AjaxJson(AjaxStr, 'matos_actions', alerteErr);
 	});
-	
+
 	// Si click sur matos externe, change l'info de date par "chez qui ?"
 	$('.externeBox').click(function () {
 		if ($(this).attr('checked') == 'checked') {
@@ -149,8 +106,8 @@ $(function() {
 			$('#chezQuiDiv').hide();
 		}
 	});
-	
-	
+
+
 	// Ajout d'un matos
 	$("#addMatos").click(function () {
 		var label		= encodeURIComponent($('#newMatosLabel').val()) ;
@@ -165,7 +122,7 @@ $(function() {
 		var remarque	= encodeURIComponent($('#newMatosRemark').val()) ;
 		var externe		= 0;
 		if ($('#newMatosExterne').attr('checked')) externe	= 1 ;
-		
+
 		if (label == '' || ref == '' || categ == '' || Qtotale == '' || tarifLoc == '' || valRemp == '') {
 			alert('Vous devez remplir tous les champs marqués d\'une étoile !');
 			return;
@@ -178,7 +135,7 @@ $(function() {
 					 +'&remarque='+remarque ;
 		AjaxFct(strAjax, 'matos_actions', false, 'retourAjax', 'matos_list_detail');
 	});
-	
+
 });
 
 function refreshSousCatLine () {
