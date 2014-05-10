@@ -72,7 +72,7 @@ class Infos implements Iterator {
 		$q->execute();
 		$nbResults = $q->rowCount();
 		// vérifie si un enregistrement a été trouvé
-	    if ($nbResults == 0) { throw new Exception(Infos::NO_INFO.' pour "'.$filtre_key.'" dans '.$this->table) ; }
+	    if ($nbResults == 0) { throw new Exception(Infos::NO_INFO." pour $filtre = $filtre_key dans ".$this->table) ; }
 		elseif ($nbResults == 1) $result = $q->fetch(PDO::FETCH_ASSOC) ;
 		elseif ($nbResults > 1) $result = $q->fetchAll(PDO::FETCH_ASSOC) ;
 		foreach ( $result as $key => $val ){
