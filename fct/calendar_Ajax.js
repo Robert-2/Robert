@@ -272,6 +272,10 @@ function displayFrise ( data, displayDiv ) {
 	$(displayDiv).html('');
 	$("#frise_echelle").html('');
 
+	// Ajustage de la hauteur du container de la frise en fonction du nbre de plans
+	var NBplans = Object.keys(data).length;
+	$("#frise_container").height(NBplans * 20);
+
 	var maxX = $(displayDiv).width();
 	var maxY = $("#frise_container").height() - 20;
 	var widthUnit   = maxX / nbJoursSelection ;

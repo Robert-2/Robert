@@ -28,7 +28,7 @@ if ( ! $_SESSION["user"]->isLevelMod() )
 </script>
 
 <style>
-	#frise_container { border: 2px solid black; width: 100%; height: 370px; box-shadow: inset 0 0 8px #444444; }
+	#frise_container { border: 2px solid black; width: 100%; min-height: 370px; height: 370px; box-shadow: inset 0 0 8px #444444; }
 	#frise_echelle   { position: relative; margin: 0px; padding: 0px; height: 100%; width:100%; }
 	#frise_data		 { position: relative; margin: 0px; padding: 0px; font-size: 0.8em; }
 	#blocNote		 { position: relative; margin: 0px; overflow: hidden; }
@@ -36,17 +36,17 @@ if ( ! $_SESSION["user"]->isLevelMod() )
 	.plan			 { position: relative; text-align:center; font-size: 1.3em; margin-top: 2px; padding: 3px 0px; box-shadow: 0 3px 5px #888888; }
 </style>
 
-	
+
 <div id="pageCalendrier" class="ui-widget-content ui-corner-all center pad20">
 	<div class="ui-widget-header ui-corner-all gros">Calendrier</div>
 	<?php /////////////////////////////// POUR DÉFINIR LES DATES DE DÉBUT ET FIN DE PÉRIODE PAR DÉFAUT DU CALENDRIER
 		$now = new DateTime();
 		$monthNow  = $now->format('m');
 		$yearNow   = $now->format('Y');
-		
+
 		$PjourMois = '01/'.$monthNow.'/'.$yearNow;
 		$DjourMois = date('d/m/Y', strtotime($yearNow.'-'.$monthNow." next month - 12 hour"));
-		
+
 		// init des variables pour les mettre dans les inputs "#calStart" et "#calEnd" ( ! qui veut du format 'd/m/Y')
 		if (isset($_SESSION['periodeCal'])) {
 			$calStart = $_SESSION['periodeCal']['start'];
@@ -56,7 +56,7 @@ if ( ! $_SESSION["user"]->isLevelMod() )
 			$_SESSION['periodeCal']['start'] = $calStart = $PjourMois;
 			$_SESSION['periodeCal']['end']   = $calEnd   = $DjourMois;
 		}
-		
+
 	?>
 	<div class="ui-widget leftText petit">
 		<div class="inline top center">
@@ -89,12 +89,12 @@ if ( ! $_SESSION["user"]->isLevelMod() )
 			<a style="font-size: 1.2em; border: 1px solid red; <?php echo $hideForPoppy; ?>" class="bouton marge30l" href="?go=ajout_plan" title="CRTL+clic sur le calendrier puis bouger la souris pour choisir les dates vite fait.">Ajouter un évènement</a>
 		</div>
 	</div>
-	
+
 	<div id='frise_container' class="ui-widget ui-corner-all gros margeTop5">
 		<div id='frise_echelle'></div>
 		<div id='frise_data'></div>
 	</div>
-	
+
 </div>
 
 
@@ -115,7 +115,7 @@ if ( ! $_SESSION["user"]->isLevelMod() )
 			<font style="color:#41c2bc">plus</font>
 			<font style="color:#416cc2">lointains)</font>
 		</span>
-		
+
 		<button class="bouton marge10l" id='exportICS' popup="Attention, Google met environ 48h pour mettre à jour le calendrier..." style="<?php echo $hideForPoppy; ?>">
 			Actualiser pour google Calendar
 		</button>
@@ -162,7 +162,7 @@ if ( ! $_SESSION["user"]->isLevelMod() )
 
 <div id="dialogContrat" title="Édition du contrat" class="hide">
 	<p>Vérifiez les infos du contrat et modifiez-les si besoin, ci-dessous :</p>
-	<textarea id="contratText" rows="20" cols="100"><?php 
+	<textarea id="contratText" rows="20" cols="100"><?php
 		$contratDefaut = file_get_contents(FOLDER_CONFIG.'default_contrat.txt');
 		echo $contratDefaut;
 	?></textarea>
