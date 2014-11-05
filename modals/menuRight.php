@@ -24,7 +24,7 @@ echo 'Hello <b>'.$_SESSION['user']->getUserInfos('prenom').'</b> !
 		echo '</select>
 	</p>';
 
-if ($_SESSION['user']->getUserInfos('prenom' != "Demo")) : ?>
+if ($_SESSION['user']->getUserInfos('prenom') != "Demo") : ?>
 	<button class="bouton" id="modifInfoUserActif" idUser="<?php echo $_SESSION['user']->getUserInfos('id'); ?>">Mes infos</button>
 <?php endif; ?>
 
