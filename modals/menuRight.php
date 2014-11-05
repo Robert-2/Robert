@@ -23,9 +23,10 @@ echo 'Hello <b>'.$_SESSION['user']->getUserInfos('prenom').'</b> !
 			echo "<option value='$theme'>$theme</option>";
 		echo '</select>
 	</p>';
-?>
 
-<button class="bouton" id="modifInfoUserActif" idUser="<?php echo $_SESSION['user']->getUserInfos('id'); ?>">Mes infos</button>
+if ($_SESSION['user']->getUserInfos('prenom' != "Demo")) : ?>
+	<button class="bouton" id="modifInfoUserActif" idUser="<?php echo $_SESSION['user']->getUserInfos('id'); ?>">Mes infos</button>
+<?php endif; ?>
 
 <br />
 <br />--------------------------<br />
