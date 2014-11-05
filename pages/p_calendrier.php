@@ -16,7 +16,7 @@ if ( ! $_SESSION["user"]->isLevelMod() )
 		return coef;
 	}
 </script>
-<script type="text/javascript" src="./fct/calendar_Ajax.js"></script>
+<script type="text/javascript" src="./fct/calendar_Ajax.js?12345"></script>
 <script>
 	$(function() {
 		initToolTip('#frise_echelle', -180);
@@ -28,7 +28,7 @@ if ( ! $_SESSION["user"]->isLevelMod() )
 </script>
 
 <style>
-	#frise_container { border: 2px solid black; width: 100%; min-height: 370px; height: 370px; box-shadow: inset 0 0 8px #444444; }
+	#frise_container { border: 2px solid black; width: 100%; min-height: 370px; height: 1000px; box-shadow: inset 0 0 8px #444444; }
 	#frise_echelle   { position: relative; margin: 0px; padding: 0px; height: 100%; width:100%; }
 	#frise_data		 { position: relative; margin: 0px; padding: 0px; font-size: 0.8em; }
 	#blocNote		 { position: relative; margin: 0px; overflow: hidden; }

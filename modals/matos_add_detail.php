@@ -13,17 +13,17 @@ $liste_ssCat = $lm->getListe(TABLE_MATOS_CATEG);
 <script>
 	$(function() {
 		$('.bouton').button();
-		
+
 		// highlight des mini sous-menus
 		$('.matosMiniSsMenu').addClass('ui-state-highlight');
 		$('.miniSmenuBtn').removeClass('ui-state-highlight');
 		$('#matos_add_detail').addClass('ui-state-highlight');
 		$('.matosMiniSsMenu').next().children().show(300);
-		
+
 		// on cache le bouton de recherche et les filtres (pas besoin ici)
 		$('#chercheDiv').hide(300);
 		$('#filtresDiv').hide(300);
-		
+
 		// Calendrier sur focus d'input
 		$(".inputCal2").datepicker({dateFormat: 'yy-mm-dd', firstDay: 1, changeMonth: true, changeYear: true});
 	});

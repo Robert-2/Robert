@@ -274,7 +274,8 @@ function displayFrise ( data, displayDiv ) {
 
 	// Ajustage de la hauteur du container de la frise en fonction du nbre de plans
 	var NBplans = Object.keys(data).length;
-	$("#frise_container").height(NBplans * 20);
+//	console.log(NBplans, 'plans');
+	$("#frise_container").height(NBplans * 50);
 
 	var maxX = $(displayDiv).width();
 	var maxY = $("#frise_container").height() - 20;
