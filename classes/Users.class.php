@@ -239,7 +239,7 @@ class Users implements Iterator {
 		return Users::USERS_OK;
 	}
 	public function setPassword ( $newpass ) {
-		if ( strlen ($newpass) <=4  ) return Users::USERS_ERROR_PASSSHORT ;
+		if ( strlen ($newpass) < 4  ) return Users::USERS_ERROR_PASSSHORT ;
 		$crypt = md5(SALT_PASS.$newpass);
 		$this->infos->addInfo ( Users::USERS_PASS, $crypt );
 		return Users::USERS_OK;
