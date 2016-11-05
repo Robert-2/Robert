@@ -228,9 +228,11 @@ class Calendar implements Iterator, arrayaccess {
 	public function countPacks (){
 		foreach ( $this->Packs as $pack => $datapack ){
 			$packComplets = -1 ;
-			foreach ( $datapack["Dispo"] as $qte ){
-				if ( $packComplets == -1 ) $packComplets = $qte ;
-				if ( $packComplets > $qte ) $packComplets = $qte ;
+			if (is_array($datapack["Dispo"])) {
+				foreach ( $datapack["Dispo"] as $qte ){
+					if ( $packComplets == -1 ) $packComplets = $qte ;
+					if ( $packComplets > $qte ) $packComplets = $qte ;
+				}
 			}
 			if ( $packComplets < 0 ) $packComplets = 0 ;
 			$this->Packs[$pack]["QTE"] = $packComplets ;
