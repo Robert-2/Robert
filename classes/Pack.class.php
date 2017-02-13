@@ -27,6 +27,7 @@ class Pack implements Iterator {
 	const INFO_FORBIDDEN	= 'donnée interdite' ;					// erreur si info est une donnée sensible
 	const REF_MANQUE		= 'Il manque la référence !';			// erreur si la référence du pack n'est pas renseignée au __construct
 	const MANQUE_INFO		= 'Pas assez d\'info pour sauvegarder';	// erreur si il manque des infos lors de la sauvegarde
+	const MANQUE_MATOS		= 'Votre Pack ne contient pas de matériel au détail. Il n\'est pas sauvegardé';	// erreur si il manque des infos lors de la sauvegarde
 
 	const PACK_OK          = true ;						// retour général, si la fonction a marché
 	const PACK_ERROR       = false ;					// retour général, si la fonction n'a pas marché
@@ -175,11 +176,17 @@ class Pack implements Iterator {
 
 	public function save () {											// Sauvegarde d'un NOUVEAU PACK
 		$verifInfo = $this->infos->getInfo();							// Check si on a bien tout ce qu'il faut avant de sauvegarder en BDD
-		if ( !$verifInfo['label'] || !$verifInfo['ref'] || !$verifInfo['categorie'] )
+		$nbMatosInPack = json_decode($verifInfo['detail'], true);
+
+		if (count($nbMatosInPack) == 0){
+			throw new Exception (Pack::MANQUE_MATOS) ;
+		}
+		/*}*/
+		if ( !$verifInfo['label'] || !$verifInfo['ref'] || !$verifInfo['categorie'])
 			throw new Exception (Pack::MANQUE_INFO) ;
 
 		$this->infos->save()  ;
-		return Pack::PACK_OK ;
+		return $nbMatosInPack ;
 	}
 
 

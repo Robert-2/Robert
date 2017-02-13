@@ -39,7 +39,7 @@ $liste_tekos = $l->getListe(TABLE_TEKOS, '*', 'surnom', 'ASC', 'idUser', '<', 1)
 		<div class="ui-widget-header ui-corner-all">Prénom :</div>
 		<input type="text" id='cPren' size="20" />
 		<br />
-		<div class="ui-widget-header ui-corner-all">Nom :</div>
+		<div class="ui-widget-header ui-corner-all">Nom : <b class="red">*</b></div>
 		<input type="text" id='cName' size="20" />
 	</div>
 	<div class="inline top" style="width: 200px;">

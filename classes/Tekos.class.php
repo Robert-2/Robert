@@ -64,7 +64,7 @@ class Tekos extends Users {
 
 	public function setTekosInfo ( $key, $value ) {
 		if ($key == 'birthDay' and $value== ''){
-			$value = '0000-00-00';
+			$value = null;
 		}		
 		$this->tekosInfos->addInfo ( $key, $value ) ;
 	}

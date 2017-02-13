@@ -59,7 +59,7 @@ if ( $_SESSION["user"]->isAdmin() !== true ) die('Vous n\'avez pas accès à cet
 				if (is_array($liste_tekos)) {
 					foreach ($liste_tekos as $tekosInfo)
 						if ($tekosInfo['idUser'] == $info['id'])
-							$tekos = $tekosInfo['surnom'].' <img src="gfx/icones/categ-'.$tekosInfo['categorie'].'" style="width:20px; float:right;" />' ;
+							$tekos = $tekosInfo['surnom'].' <img src="gfx/icones/categ-'.$tekosInfo['categorie'].'.png" style="width:20px; float:right;" />' ;
 				}
 				$popupUserInfos = '';
 				foreach ($info as $k => $v) {

@@ -106,7 +106,7 @@ $listeInterlocks = $l->getListe ( TABLE_INTERLOC, '*', 'label' );
 					echo '<div class="inline deuxTiers marge30l remarqueStruct mid"><span class="ui-widget-header ui-corner-all padV10">REMARQUE</span> <span class="remarque">'. $info['remarque'] .'</span></div>';
 				echo '<br />';
 
-				foreach ( $listeInterlocks as $ind => $data ){
+				foreach ( @$listeInterlocks as $ind => $data ){
 					if ( $data['nomStruct'] ==  $info['label'] ){
 						$added = true ;
 

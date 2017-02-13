@@ -121,10 +121,15 @@ class Infos implements Iterator {
 		$keys   = ''; 	$vals   = '';  $up = '' ;
 		foreach ( $this->datas as $k => $v ) {
 			if ( is_array($v) ) continue ;
-			if ( is_string($v)) $v = addslashes($v);
+			if ( is_string($v)) $new_v = addslashes($v);
+			if ( is_null($v)){
+				$vals .= "NULL, " ;
+				$up   .= "$k=NULL, ";
+			}else{
+				$vals .= "'$v', " ;
+				$up   .= "$k='$v', ";
+			} 
 			$keys .= "`$k`, " ;
-			$vals .= "'$v', " ;
-			$up   .= "$k='$v', ";
 		}
 		// suppression de la dernière virgule
 		$keys = substr($keys, 0 , strlen($keys) -2 );
@@ -136,7 +141,7 @@ class Infos implements Iterator {
 			$req = "UPDATE `$this->table` SET $up WHERE `$filterKey` LIKE '$filter'";
 		else
 			$req = "INSERT INTO `$this->table` ($keys) VALUES ($vals)";
-//		echo $req;
+		/*echo $req;*/
 		$q = $this->bddCx->prepare($req) ;
 		try { $q->execute() ; }
 		catch (Exception $e) {

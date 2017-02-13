@@ -70,8 +70,12 @@ class Matos implements Iterator {
 
 
 	public function setVals ($arrKeysVals) {							// (re)définit les infos du matos
-		foreach ($arrKeysVals as $key => $val)
+		foreach ($arrKeysVals as $key => $val){
+			if ($key == 'dateAchat' and $val == ''){
+				$val = null;
+			}	
 			$this->infos->addInfo ($key, $val);
+		}
 	}
 
 
