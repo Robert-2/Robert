@@ -121,7 +121,7 @@ class Infos implements Iterator {
 		$keys   = ''; 	$vals   = '';  $up = '' ;
 		foreach ( $this->datas as $k => $v ) {
 			if ( is_array($v) ) continue ;
-			if ( is_string($v)) $new_v = addslashes($v);
+			if ( is_string($v)) $v = addslashes($v);
 			if ( is_null($v)){
 				$vals .= "NULL, " ;
 				$up   .= "$k=NULL, ";
