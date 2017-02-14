@@ -71,7 +71,15 @@ function backup_SQL ($toBakup='all') {											// args : 'all', ou array() des
 				$countVal = 0;
 				foreach ($row as $value) {
 					$countVal++ ;
-					$value = addslashes($value);							// valeur : ajoute des slashes devant les caractères réservés
+
+
+					// valeur : ajoute des slashes devant les caractères réservés
+					// mieux vaut doubler les apostrophes, en mysql5.7 cela ajouter un slash n'est plus compatible.
+					// commentaire à supprimer si tout le monde ok. (est qu'addslashes gère d'autres cas ?)
+					/*$value = addslashes($value);*/
+					$value = str_replace("'", "''", $value);
+
+
 					$value = preg_replace("/\\r\\n/", "/\\\r\\\n/", $value);// valeur : évite que les retours à la ligne soient traduits
 					if (isset($value)) $output .= "'$value'" ;				// $output : valeur à ajouter ('' si pas de valeur)
 					else $output .= "''";
@@ -117,7 +125,39 @@ function retore_SQL ($sqlFile) {
 	return $retour;
 }
 
+function upgrade_SQL($version){
+	global $bdd; global $codeAuthentik; global $install_path;
+	$sqlFile = $install_path . FOLDER_CONFIG . '/BDD_default_to_5.7.sql';
+	
+	if (! file_exists($sqlFile)) {
+		echo 'FICHIER INTROUVABLE ! ';
+		$retour = false ;
+	}	
+								// Si le fichier existe
+	$SQLcontent = file_get_contents($sqlFile);
+	if (!preg_match("/-- $codeAuthentik/", $SQLcontent)) {			// Si le fichier contiens bien le hash MD5 créé lors d'une sauvegarde via le "Dump"
+		echo 'CODE de sécurité ERRONÉ ! ';
+		$retour = false;
+	}
+	$requetes = explode(";", $SQLcontent);
 
+	for ($i=0; $i < count($requetes)-1; $i++) { 
+		$bdd->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); 
+		$q = $bdd->prepare( $requetes[$i] .";" );	
+		echo "Requete $i<br />" . $requetes[$i];						// Execution de la requête du fichier
+		try {
+			$q->execute(); 
+			$retour = $SQLcontent; 
+		}
+		catch (Exception $e) { 
+			$retour = "erreur SQL : $e"; 
+		}
+	}
+
+	
+
+	return $retour;	
+}
 
 //////////////////////////////////////////////////////////////////////////////// TRAITEMENT DES ACTIONS VIA _POST
 
@@ -133,6 +173,17 @@ else {
 			if (($fileLoaded = retore_SQL($_POST['fileBackup'])) != false)
 				echo "</b>RÉCUPÉRATION de <b>$fileLoaded</b> OK !";
 			else echo "Impossible de récupérer la sauvegarde...";
+		}
+/*		elseif (isset($_POST['upgradeSQL'])) {					// ACTION RESTORE : récupère le contenu d'un fichier SQL et éxécute son contenu dans MySQL
+			if (($fileLoaded = retore_SQL('../BDD_default_to_5.7.sql')) != false)
+				echo "</b>RÉCUPÉRATION de <b>$fileLoaded</b> OK !";
+			else echo "Impossible de récupérer la sauvegarde...";
+		}
+*/
+		elseif (isset($_POST['upgradeSQL'])) {			// ACTION upgradeSQL : compatible mode strict de MySQL 5.7 et redéfinit des configuration de colonnes de la base
+			if ( $ret = upgrade_SQL($_POST['upgradeSQL']) != false)
+				echo "</b>Mise à jour OK !<p>$ret";
+			else echo "<p>Action annulée";			
 		}
 		else echo 'aucune action sélectionnée...' ;
 	}
