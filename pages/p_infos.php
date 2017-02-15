@@ -71,3 +71,47 @@
 <div class="marge30l big">
 	<button class="bouton" id="saveInfos">ENREGISTRER les modifs</button>
 </div>
+
+<br/><br/>
+
+<div class="big">
+	<div class="ui-widget-header ui-corner-all center">LOGO</div>
+</div>
+
+<p><i>Logo actuel</i></p>
+<br/><br/>
+<img src="gfx/logo.jpg" />
+<br/><br/>
+
+<form id="my_form" method="post" action="fct/infos_actions.php" enctype="multipart/form-data">
+	<input type="hidden" name="action" value="upload_logo" />
+    <input type="file" name="image" accept="image/*">
+    <button type="submit" class="bouton">UPLOAD</button>
+</form>
+
+<script>
+
+$(function () {
+    $('#my_form').on('submit', function (e) {
+        // On empêche le navigateur de soumettre le formulaire
+        e.preventDefault();
+ 
+        var $form = $(this);
+        var formdata = (window.FormData) ? new FormData($form[0]) : null;
+        var data = (formdata !== null) ? formdata : $form.serialize();
+ 
+        $.ajax({
+            url: $form.attr('action'),
+            type: $form.attr('method'),
+            contentType: false, // obligatoire pour de l'upload
+            processData: false, // obligatoire pour de l'upload
+            dataType: 'json', // selon le retour attendu
+            data: data,
+            success: function (response) {
+                // La réponse du serveur
+            }
+        });
+    });
+});
+
+</script>
