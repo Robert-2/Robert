@@ -81,7 +81,7 @@ CREATE TABLE `robert_matos_detail` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
   `label` varchar(256) NOT NULL,
   `ref` varchar(128) NOT NULL,
-  `panne` int(3) DEFAULT '0',
+  `panne` int(3) DEFAULT 0,
   `externe` tinyint(1) NULL,
   `categorie` varchar(128) NOT NULL,
   `sousCateg` int(4) NULL,
@@ -217,7 +217,7 @@ DROP TABLE IF EXISTS `robert_tekos`;
 
 CREATE TABLE `robert_tekos` (
   `id` int(3) NOT NULL AUTO_INCREMENT,
-  `idUser` smallint(3) NULL,
+  `idUser` smallint(3) NULL DEFAULT 0,
   `surnom` varchar(128) NOT NULL,
   `nom` varchar(128) NOT NULL,
   `prenom` varchar(128) NOT NULL,

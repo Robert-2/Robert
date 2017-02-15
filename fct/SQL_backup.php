@@ -125,6 +125,12 @@ function retore_SQL ($sqlFile) {
 	return $retour;
 }
 
+
+////////////////////////////////////////////////// UPGRADE ////////////////////
+/*
+Impossible d'envoyer la requête du fichier en une fois comme pour la restauration.
+
+*/
 function upgrade_SQL($version){
 	global $bdd; global $codeAuthentik; global $install_path;
 	$sqlFile = $install_path . FOLDER_CONFIG . '/BDD_default_to_5.7.sql';
@@ -139,24 +145,53 @@ function upgrade_SQL($version){
 		echo 'CODE de sécurité ERRONÉ ! ';
 		$retour = false;
 	}
+
+
+
+/*
+Impossible d'envoyer la requête du fichier en une fois comme pour la restauration.
+si par exemple le fichier contient deux instructions :
+-- 6cc26d827a95499a99e293a701e77c2f
+ALTER TABLE robert_users DROP yeux;
+ALTER TABLE robert_users DROP cheveux;
+il y a une erreur de syntaxe détectée alors que la commande marche dans phpMyAdmin.
+*/
+
+/*	$q = $bdd->prepare($SQLcontent);
+	try {
+		$q->execute(); 
+		$retour = $SQLcontent; 
+	}
+	catch (Exception $e) { 
+		$retour = "erreur SQL : $e"; 
+	}
+*/
+
+	// separe les requêtes en une suite de requetes.
 	$requetes = explode(";", $SQLcontent);
+	$retour = "";
 
 	for ($i=0; $i < count($requetes)-1; $i++) { 
 		$bdd->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); 
-		$q = $bdd->prepare( $requetes[$i] .";" );	
-		echo "Requete $i<br />" . $requetes[$i];						// Execution de la requête du fichier
+		try {
+			$q = $bdd->prepare( trim($requetes[$i]) .";" );	
+		} catch (Exception $e) {
+			$retour .= "<p>Bloc $i : Erreur de préparation de la requête<br/>" . $e->getMessage();
+			continue; 
+		}
+
 		try {
 			$q->execute(); 
-			$retour = $SQLcontent; 
 		}
 		catch (Exception $e) { 
-			$retour = "erreur SQL : $e"; 
+			$retour .= "<p>Bloc $i : Erreur d'execution de la requête<br/>" . $e->getMessage();
+			continue; 
 		}
+		$retour .= "<p>Bloc $i ok <br/>";
+
 	}
 
-	
-
-	return $retour;	
+	echo $retour;	
 }
 
 //////////////////////////////////////////////////////////////////////////////// TRAITEMENT DES ACTIONS VIA _POST
@@ -181,11 +216,10 @@ else {
 		}
 */
 		elseif (isset($_POST['upgradeSQL'])) {			// ACTION upgradeSQL : compatible mode strict de MySQL 5.7 et redéfinit des configuration de colonnes de la base
-			if ( $ret = upgrade_SQL($_POST['upgradeSQL']) != false)
-				echo "</b>Mise à jour OK !<p>$ret";
-			else echo "<p>Action annulée";			
+			upgrade_SQL($_POST['upgradeSQL']);
 		}
-		else echo 'aucune action sélectionnée...' ;
+		else 
+			echo 'aucune action sélectionnée...' ;
 	}
 	else echo 'accès interdit...' ;
 }

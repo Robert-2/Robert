@@ -25,6 +25,15 @@ $(document).ready(function() {
 		else alert('Merci de choisir un fichier !');
 	});
 
+		
+	$('#upgradeSQL').click(function() {
+		if (confirm('Effectuez une sauvegarde TOTALE avant cette opération.\n\
+ La conversion ne doit pas effacer de donnée mais des incohérences pourraient apparaître.\n\
+ Dans ce cas là vous pouvez faire une restauration totale.\n\n\
+ Mettre la base de donnée à jour ?\n'))
+			AjaxFct ('upgradeSQL=5.7', 'SQL_backup', false, 'retourAjax');
+	});
+
 	
 });
 

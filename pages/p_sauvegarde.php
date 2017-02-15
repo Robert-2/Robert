@@ -9,7 +9,10 @@
 
 <div class="ui-state-error ui-corner-all center top gros" id="retourAjax"></div>
 
+
 <div class="sousMenuPage">
+	<button style="margin-bottom: 30px;" class="bouton" id="upgradeSQL" >Update BDD pour MySQL 5.7</button><br />
+
 	<div class="sousMenuIcon inline bouton big">
 		<img src="gfx/icones/menu/sauvegarde.png" />
 		<br />Sauvegarde
@@ -38,6 +41,8 @@
 			</select><br /><br /><br />
 			<button class="bouton" id="restoreSQL" >RESTAURER LE FICHIER</button><br />
 			<button class="bouton" id="downloadSQL" >TELECHARGER LE FICHIER</button><br />
+			<p>
+			</p>
 		</div>
 	</div>
 </div>
