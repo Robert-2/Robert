@@ -21,6 +21,10 @@ MODIFY remarque text NULL,
 MODIFY nomStruct varchar(64) NULL,
 MODIFY typeRetour varchar(64) NULL;
 
+ALTER TABLE `robert_matos_detail` MODIFY dateAchat VARCHAR(10) NULL;
+UPDATE `robert_matos_detail` SET dateAchat = NULL WHERE `dateAchat` = '0000-00-00';
+ALTER TABLE `robert_matos_detail` MODIFY dateAchat DATE NULL;
+
 ALTER TABLE robert_matos_detail
 MODIFY panne int(3) DEFAULT 0,
 MODIFY externe tinyint(1) NULL,
@@ -40,6 +44,9 @@ ALTER TABLE robert_matos_sous_cat
 DROP KEY label,
 ADD CONSTRAINT UNIQUE KEY label (label);
 
+ALTER TABLE `robert_tekos` MODIFY birthDay VARCHAR(10) NULL;
+UPDATE `robert_tekos` SET birthDay = NULL WHERE `birthDay` = '0000-00-00';
+ALTER TABLE `robert_tekos` MODIFY birthDay DATE NULL;
 ALTER TABLE robert_tekos 
 MODIFY idUser smallint(3) NULL DEFAULT 0,
 MODIFY email varchar(128) NULL,
