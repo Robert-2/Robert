@@ -18,7 +18,7 @@
  */
 	session_start();
 	require_once ('initInclude.php');		// OBLIGATOIRE pour les sessions,
-	require_once ('common.inc');			// à placer TOUJOURS EN HAUT du code.
+	require_once ('common.inc.php');			// à placer TOUJOURS EN HAUT du code.
 	require_once ('checkConnect.php' );
 
 	$titrePageBar = "ROBERT";

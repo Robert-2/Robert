@@ -2,7 +2,7 @@
 
 session_start();
 require_once ('initInclude.php');
-require_once ('common.inc');		// OBLIGATOIRE pour les sessions, à placer TOUJOURS EN HAUT du code !!
+require_once ('common.inc.php');		// OBLIGATOIRE pour les sessions, à placer TOUJOURS EN HAUT du code !!
 require_once ('checkConnect.php' );
 
 	if ( ! isset($_GET['dir']) || ! isset ( $_GET['file']) ) die('Il me manque le dossier et/ou le fichier à télécharger !') ; 
