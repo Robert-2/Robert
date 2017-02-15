@@ -1,6 +1,6 @@
 <?php
 require_once ('initInclude.php');
-require_once ('common.inc');		// OBLIGATOIRE pour les sessions, à placer TOUJOURS EN HAUT du code !!
+require_once ('common.inc.php');		// OBLIGATOIRE pour les sessions, à placer TOUJOURS EN HAUT du code !!
 
 /**
  * Handle file uploads via XMLHttpRequest

@@ -1,7 +1,7 @@
 <?php
 if (session_id() == '') session_start();
 require_once ('initInclude.php');
-require_once ('common.inc');		// OBLIGATOIRE pour les sessions, à placer TOUJOURS EN HAUT du code !!
+require_once ('common.inc.php');		// OBLIGATOIRE pour les sessions, à placer TOUJOURS EN HAUT du code !!
 require_once ('checkConnect.php' );
 
 ?>
