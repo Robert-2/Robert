@@ -150,11 +150,12 @@ class SortiePDF {
 
 		$this->contratTXT .= "\n\nPour tout renseignement complémentaire, n'hésitez pas à nous contacter.\n\n
 																		Signature, précédée de la mention \"bon pour accord\" :";
-
+															
 		$pdf = new PDF_Devisfacture( 'P', 'mm', 'A4' );
 		$pdf->AddPage();
 		$pdf->SetMargins(5, 5, 5);
-		$pdf->addLogo('../gfx/logoAcousmie.jpg', 73, 34, 'JPG');
+		$logoSize = getimagesize('../gfx/logo.jpg');
+		$pdf->addLogo('../gfx/logo.jpg', $logoSize[0]/5, $logoSize[1]/5, 'JPG');
 		$pdf->addSociete(NOM_BOITE, ADRESSE_BOITE . "\n"
 					    .CP_BOITE ." ". VILLE_BOITE ."\n"
 						."SIRET : " . SIRET_BOITE . "\n\n"
@@ -417,7 +418,8 @@ class SortiePDF {
 		$pdf = new PDF_Devisfacture( 'P', 'mm', 'A4' );
 		$pdf->AddPage();
 		$pdf->SetMargins(5, 5, 5);
-		$pdf->addLogo('../gfx/logoAcousmie.jpg', 73, 34, 'JPG');
+		$logoSize = getimagesize('../gfx/logo.jpg');
+		$pdf->addLogo('../gfx/logo.jpg', $logoSize[0]/5, $logoSize[1]/5, 'JPG');
 		$pdf->addSociete(NOM_BOITE, ADRESSE_BOITE . "\n"
 					    .CP_BOITE ." ". VILLE_BOITE ."\n\n"
 						."SIRET : " . SIRET_BOITE . "\n\n"

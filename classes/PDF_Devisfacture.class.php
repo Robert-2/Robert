@@ -139,9 +139,9 @@ class PDF_Devisfacture extends FPDF {
 	// Ajoute un logo en haut de page
 	function addLogo ( $fichier, $w, $h, $type ) {
 		$this->SetXY( 0, 0 );
-		$this->Image($fichier, 0, 0, $w, $h, $type);
+		$this->Image($fichier, 10, 10, $w, $h, $type);
 		$this->logoPresent = true;
-		$this->logoH = $h;
+		$this->logoH = $h*1.5;
 	}
 
 
