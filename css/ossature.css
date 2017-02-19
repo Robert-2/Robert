@@ -152,10 +152,10 @@ a { border:none; text-decoration:underline; font-size:inherit; outline: none; }
 			    -moz-border-radius: 15px; -webkit-border-radius: 15px; border-radius: 15px; }
 
 #retourAjax {
-	position: absolute;
+	position: fixed;
 	display: none;
 	top: 5px;
-	right: 10px;
+	right: 10.2%;
 	width: 30%;
 	padding: 12px 5px 0px 10px;
 	z-index: 9999;
