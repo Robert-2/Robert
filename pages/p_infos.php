@@ -1,13 +1,16 @@
 <?php
-	if ( !isset($_SESSION["user"])) { header('Location: index.php'); }
-	if ( $_SESSION["user"]->isAdmin() !== true ) { header('Location: index.php'); }
-	require('infos_boite.php');
+if (!isset($_SESSION["user"])) {
+    header('Location: index.php');
+}
+if ($_SESSION["user"]->isAdmin() !== true) {
+    header('Location: index.php');
+}
+require('infos_boite.php');
 ?>
 
 <script src="./fct/infos_Ajax.js"></script>
 
 <div class="ui-state-error ui-corner-all center top gros" id="retourAjax"></div>
-
 
 <div class="big">
 	<div class="ui-widget-header ui-corner-all center">MODIFICATION DES INFORMATIONS</div>
@@ -78,40 +81,16 @@
 	<div class="ui-widget-header ui-corner-all center">LOGO</div>
 </div>
 
-<p><i>Logo actuel</i></p>
-<br/><br/>
-<img src="gfx/logo.jpg" />
-<br/><br/>
+<div class="marge30l marge15bot big">
+    <p>Logo actuel</p>
+    <img src="gfx/logo.jpg" />
+</div>
 
-<form id="my_form" method="post" action="fct/infos_actions.php" enctype="multipart/form-data">
+<form class="marge30l margeTop10" id="changeLogo" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="action" value="upload_logo" />
-    <input type="file" name="image" accept="image/*">
-    <button type="submit" class="bouton">UPLOAD</button>
+    <input type="file" name="newLogo" accept="image/*">
+    <button type="submit" class="bouton">ENVOYER</button>
 </form>
 
-<script>
-
-$(function () {
-    $('#my_form').on('submit', function (e) {
-        // On empêche le navigateur de soumettre le formulaire
-        e.preventDefault();
- 
-        var $form = $(this);
-        var formdata = (window.FormData) ? new FormData($form[0]) : null;
-        var data = (formdata !== null) ? formdata : $form.serialize();
- 
-        $.ajax({
-            url: $form.attr('action'),
-            type: $form.attr('method'),
-            contentType: false, // obligatoire pour de l'upload
-            processData: false, // obligatoire pour de l'upload
-            dataType: 'json', // selon le retour attendu
-            data: data,
-            success: function (response) {
-                // La réponse du serveur
-            }
-        });
-    });
-});
-
-</script>
+<br/><br/>
+<br/><br/>
