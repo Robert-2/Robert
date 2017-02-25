@@ -32,7 +32,7 @@ if ($action == 'upload_logo') {
     $types           = ['jpeg', 'png'];
     $maxsize         = 5000000;
     $nouvelleHauteur = 150;
-    $destination     = '../gfx/logo';
+    $destination     = '../config/logo';
 
     if (!isset($newLogo) || $newLogo['error'] > 0) {
         displayResponseAndExit("Aucune image à traiter, ou image corrompue.");

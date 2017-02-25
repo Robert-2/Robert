@@ -154,8 +154,8 @@ class SortiePDF {
 		$pdf = new PDF_Devisfacture( 'P', 'mm', 'A4' );
 		$pdf->AddPage();
 		$pdf->SetMargins(5, 5, 5);
-		$logoSize = getimagesize('../gfx/logo.jpg');
-		$pdf->addLogo('../gfx/logo.jpg', $logoSize[0]/5, $logoSize[1]/5, 'JPG');
+		$logoSize = getimagesize('../config/logo.jpg');
+		$pdf->addLogo('../config/logo.jpg', $logoSize[0]/5, $logoSize[1]/5, 'JPG');
 		$pdf->addSociete(NOM_BOITE, ADRESSE_BOITE . "\n"
 					    .CP_BOITE ." ". VILLE_BOITE ."\n"
 						."SIRET : " . SIRET_BOITE . "\n\n"
@@ -418,8 +418,8 @@ class SortiePDF {
 		$pdf = new PDF_Devisfacture( 'P', 'mm', 'A4' );
 		$pdf->AddPage();
 		$pdf->SetMargins(5, 5, 5);
-		$logoSize = getimagesize('../gfx/logo.jpg');
-		$pdf->addLogo('../gfx/logo.jpg', $logoSize[0]/5, $logoSize[1]/5, 'JPG');
+		$logoSize = getimagesize('../config/logo.jpg');
+		$pdf->addLogo('../config/logo.jpg', $logoSize[0]/5, $logoSize[1]/5, 'JPG');
 		$pdf->addSociete(NOM_BOITE, ADRESSE_BOITE . "\n"
 					    .CP_BOITE ." ". VILLE_BOITE ."\n\n"
 						."SIRET : " . SIRET_BOITE . "\n\n"
