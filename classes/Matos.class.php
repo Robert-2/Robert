@@ -98,9 +98,34 @@ class Matos implements Iterator {
 
 
 	public function save () {											// Sauvegarde d'un NOUVEAU MATOS
-		$verifInfo = $this->infos->getInfo();							// Check si on a bien tout ce qu'il faut avant de sauvegarder en BDD
-		if ( !$verifInfo['label'] || !$verifInfo['ref'] || !$verifInfo['Qtotale'] || !$verifInfo['tarifLoc'] || !$verifInfo['categorie'] || $verifInfo['valRemp'] == '')
-			throw new Exception (Matos::MANQUE_INFO) ;
+		$verifInfo = $this->infos->getInfo();                           // Check si on a bien tout ce qu'il faut avant de sauvegarder en BDD
+		// if ( !$verifInfo['label'] || !$verifInfo['ref'] || !$verifInfo['Qtotale'] || !$verifInfo['tarifLoc'] || !$verifInfo['categorie'] || $verifInfo['valRemp'] == '')
+		//     throw new Exception (Matos::MANQUE_INFO) ;
+
+		if (!$verifInfo['label']) {
+			throw new Exception(Matos::MANQUE_INFO . '<br/ >La <b>désignation</b> n\'est pas renseignée') ;
+		}
+
+		if (!$verifInfo['ref']) {
+			throw new Exception(Matos::MANQUE_INFO . '<br/ >La <b>référence</b> n\'est pas renseignée') ;
+		}
+
+		if (!$verifInfo['Qtotale']) {
+			throw new Exception(Matos::MANQUE_INFO . '<br/ >La <b>quantité totale</b> n\'est pas renseignée') ;
+		}
+
+		if (!$verifInfo['tarifLoc']) {
+			throw new Exception(Matos::MANQUE_INFO . '<br/ >Le <b>tarif de location</b> n\'est pas renseigné') ;
+		}
+
+		if (!$verifInfo['categorie']) {
+			throw new Exception(Matos::MANQUE_INFO . '<br/ >La <b>catégorie</b> n\'est pas renseignée') ;
+		}
+
+		if ($verifInfo['valRemp'] =='') {
+			throw new Exception(Matos::MANQUE_INFO . '<br/ >La <b>valeur de remplacement</b> n\'est pas renseignée') ;
+		}
+
 
 		$this->infos->save()  ;
 		return Matos::MATOS_OK ;
