@@ -83,7 +83,7 @@ require('infos_boite.php');
 
 <div class="marge30l marge15bot big">
     <p>Logo actuel</p>
-    <img src="gfx/logo.jpg" />
+    <img src="config/logo.jpg" />
 </div>
 
 <form class="marge30l margeTop10" id="changeLogo" method="post" enctype="multipart/form-data">
