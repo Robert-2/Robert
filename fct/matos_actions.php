@@ -49,9 +49,12 @@ if ( $action == 'modif') {
 	unset($_POST['action']); unset($_POST['id']);
 	$modMatos = new Matos ('id', $id);
 	$modMatos->setVals ($_POST);
-	if ($modMatos->save())
+	try {
+		$modMatos->save();
 		echo 'Matériel sauvegardé !';
-	else echo 'Impossible de sauvegarder.';
+	} catch (Exception $e) {
+		echo $e->getMessage();
+	}
 }
 
 if ( $action == 'delete') {
