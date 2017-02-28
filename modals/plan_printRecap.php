@@ -317,7 +317,7 @@ catch( Exception $e) {
 			?>
 			</div>
 
-			<div class='demi inline rightText'><img src="../gfx/logoAcousmie.jpg" /></div>
+			<div class='demi inline rightText'><img src="../config/logo.jpg" /></div>
 		</div>
 
 		<div class='ui-widget-header ui-corner-all center enorme pad5'>Infos Déclaration des techniciens<span class='micro'><br />
