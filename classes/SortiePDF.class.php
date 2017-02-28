@@ -145,16 +145,17 @@ class SortiePDF {
 
 		$this->contratTXT = "Ce devis est valable jusqu'au " . $this->dateFinDevis . ", et a valeur de contrat, dont les conditions sont les suivantes :\n\n";
 		if ($contratTxt == false)
-			$this->contratTXT .= file_get_contents('../'.FOLDER_CONFIG.'default_contrat.txt');
+			$this->contratTXT .= include('../fct/contrat_location.php');
 		else $this->contratTXT .= $contratTxt;
 
 		$this->contratTXT .= "\n\nPour tout renseignement complémentaire, n'hésitez pas à nous contacter.\n\n
 																		Signature, précédée de la mention \"bon pour accord\" :";
-
+															
 		$pdf = new PDF_Devisfacture( 'P', 'mm', 'A4' );
 		$pdf->AddPage();
 		$pdf->SetMargins(5, 5, 5);
-		$pdf->addLogo('../gfx/logoAcousmie.jpg', 73, 34, 'JPG');
+		$logoSize = getimagesize('../config/logo.jpg');
+		$pdf->addLogo('../config/logo.jpg', $logoSize[0]/5, $logoSize[1]/5, 'JPG');
 		$pdf->addSociete(NOM_BOITE, ADRESSE_BOITE . "\n"
 					    .CP_BOITE ." ". VILLE_BOITE ."\n"
 						."SIRET : " . SIRET_BOITE . "\n\n"
@@ -417,7 +418,8 @@ class SortiePDF {
 		$pdf = new PDF_Devisfacture( 'P', 'mm', 'A4' );
 		$pdf->AddPage();
 		$pdf->SetMargins(5, 5, 5);
-		$pdf->addLogo('../gfx/logoAcousmie.jpg', 73, 34, 'JPG');
+		$logoSize = getimagesize('../config/logo.jpg');
+		$pdf->addLogo('../config/logo.jpg', $logoSize[0]/5, $logoSize[1]/5, 'JPG');
 		$pdf->addSociete(NOM_BOITE, ADRESSE_BOITE . "\n"
 					    .CP_BOITE ." ". VILLE_BOITE ."\n\n"
 						."SIRET : " . SIRET_BOITE . "\n\n"

@@ -560,7 +560,7 @@ if ( @$action == 'showDevisFiles') {
 
 // SAUVEGARDE DU CONTRAT PAR DÉFAUT
 if ( @$action == 'saveContrat') {
-	if (file_put_contents('../'.FOLDER_CONFIG.'default_contrat.txt', stripslashes($contratTxt))) {
+	if (file_put_contents('../'.FOLDER_CONFIG.'contrat_location.txt', stripslashes($contratTxt))) {
 		$retour['error'] = 'OK'	;
 		$retour['message'] = 'Contrat par défaut sauvegardé';
 	}
