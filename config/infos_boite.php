@@ -11,9 +11,5 @@ define('SIRET_BOITE', '');
 define('APE_BOITE', '9001Z');
 define('N_TVA_BOITE', '');
 define('TVA_VAL', '0.196');
-define('modUserActif-email', 'root@robertmanager.org');
-define('modUserActif-nom', 'DEBUGGER');
-define('modUserActif-prenom', 'Root');
-define('modUserActif-Pass', '');
 
 ?>
