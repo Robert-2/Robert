@@ -145,7 +145,7 @@ class SortiePDF {
 
 		$this->contratTXT = "Ce devis est valable jusqu'au " . $this->dateFinDevis . ", et a valeur de contrat, dont les conditions sont les suivantes :\n\n";
 		if ($contratTxt == false)
-			$this->contratTXT .= file_get_contents('../'.FOLDER_CONFIG.'default_contrat.txt');
+			$this->contratTXT .= include('../fct/contrat_location.php');
 		else $this->contratTXT .= $contratTxt;
 
 		$this->contratTXT .= "\n\nPour tout renseignement complémentaire, n'hésitez pas à nous contacter.\n\n
