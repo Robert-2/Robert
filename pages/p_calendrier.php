@@ -162,10 +162,7 @@ if ( ! $_SESSION["user"]->isLevelMod() )
 
 <div id="dialogContrat" title="Édition du contrat" class="hide">
 	<p>Vérifiez les infos du contrat et modifiez-les si besoin, ci-dessous :</p>
-	<textarea id="contratText" rows="20" cols="100"><?php
-		$contratDefaut = file_get_contents(FOLDER_CONFIG.'default_contrat.txt');
-		echo $contratDefaut;
-	?></textarea>
+	<textarea id="contratText" rows="20" cols="100"><?php include ('contrat_location.php'); ?></textarea>
 </div>
 
 <div id="toolTipPopup" class="ui-widget ui-state-highlight ui-corner-all pad20"></div>

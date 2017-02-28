@@ -709,7 +709,7 @@ function openContrat (idPlan) {
 
 function reloadContrat () {
 	if (confirm('Recharger le contrat par défaut ?')) {
-		$.get('config/default_contrat.txt', function(data) {
+		$.get('fct/contrat_location.php', function(data) {
 			$('#contratText').val(data);
 		});
 	}
