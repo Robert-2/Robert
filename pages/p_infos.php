@@ -5,7 +5,24 @@ if (!isset($_SESSION["user"])) {
 if ($_SESSION["user"]->isAdmin() !== true) {
     header('Location: index.php');
 }
-require('infos_boite.php');
+$cfg_boite_file = $install_path . FOLDER_CONFIG . 'infos_boite.php';
+if (file_exists( $cfg_boite_file )) {
+	include($cfg_boite_file);
+}
+else {
+    define('NOM_BOITE', '');
+	define('TYPE_BOITE', '');
+	define('ADRESSE_BOITE', '');
+	define('CP_BOITE', '');
+	define('VILLE_BOITE', '');
+	define('TEL_BOITE', '');
+	define('EMAIL_BOITE', '');
+	define('SIRET_BOITE', '');
+	define('APE_BOITE', '');
+	define('N_TVA_BOITE', '');
+	define('TVA_VAL', '0.2');
+}
+
 ?>
 
 <script src="./fct/infos_Ajax.js"></script>

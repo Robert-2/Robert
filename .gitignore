@@ -2,3 +2,5 @@ config/common.inc.php
 config/logo.jpg
 BFlogs/*
 config/contrat_location.txt
+
+config/infos_boite\.php
