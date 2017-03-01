@@ -1,7 +1,6 @@
 config/common.inc.php
-config/default_contrat.txt
 config/logo.jpg
 BFlogs/*
-config/contrat_location\.txt
+config/contrat_location.txt
 
 config/infos_boite\.php
