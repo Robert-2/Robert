@@ -114,18 +114,17 @@ class Matos implements Iterator {
 			throw new Exception(Matos::MANQUE_INFO . '<br/ >La <b>quantité totale</b> n\'est pas renseignée') ;
 		}
 
-		if (!$verifInfo['tarifLoc']) {
-			throw new Exception(Matos::MANQUE_INFO . '<br/ >Le <b>tarif de location</b> n\'est pas renseigné') ;
+		if ( !is_numeric($verifInfo['tarifLoc'])) {
+			throw new Exception(Matos::MANQUE_INFO . '<br/ >Le <b>tarif de location</b> n\'est pas correct') ;
 		}
 
 		if (!$verifInfo['categorie']) {
 			throw new Exception(Matos::MANQUE_INFO . '<br/ >La <b>catégorie</b> n\'est pas renseignée') ;
 		}
 
-		if ($verifInfo['valRemp'] =='') {
+		if (!is_numeric($verifInfo['valRemp'])) {
 			throw new Exception(Matos::MANQUE_INFO . '<br/ >La <b>valeur de remplacement</b> n\'est pas renseignée') ;
 		}
-
 
 		$this->infos->save()  ;
 		return Matos::MATOS_OK ;
