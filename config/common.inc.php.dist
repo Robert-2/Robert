@@ -54,7 +54,7 @@ define ("DEVS_MAILS", "polo@polosson.com, mathieu@d2mphotos.fr");				// Adresses
 
 define ("DSN", 'mysql:dbname='.BASE.';host='.HOST);								// données de connexion à la BDD via PDO
 
-define ("R_VERSION", '0.5');
+define ("R_VERSION", '0.5.1');
 
 define ("TABLE_USERS",			"robert_users");								// table des utilisateurs dans la BDD
 define ("TABLE_CAL"  ,			"robert_calendar");								// table du calendrier
