@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="robert-standards">
+    <description>Standards Robert</description>
+    
+    <rule ref="PSR2">
+        <!-- Désactive le check de la présence d'un namespace pour les classes -->
+        <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+        
+        <!-- Autorise les méthodes préfixées d'un underscore -->
+        <exclude name="PSR2.Classes.PropertyDeclaration.Underscore"/>
+        <exclude name="PSR2.Methods.MethodDeclaration.Underscore"/>
+        
+        <!-- Désactive la vérification des noms de méthodes en camelCase -->
+        <exclude name="PSR1.Methods.CamelCapsMethodName.NotCamelCaps"/>
+        
+        <exclude name="PSR1.Files.SideEffects.FoundWithSymbols"/>
+    </rule>
+       
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+    <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
+    
+    <rule ref="Squiz.Classes.LowercaseClassKeywords"/>
+    
+    <rule ref="Generic.CodeAnalysis.JumbledIncrementer"/>
+    <rule ref="Generic.CodeAnalysis.UnconditionalIfStatement"/>
+    <rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier"/>
+    
+    <rule ref="Squiz.Commenting.DocCommentAlignment"/>
+    
+    <rule ref="Generic.PHP.DeprecatedFunctions"/>
+    <rule ref="Squiz.PHP.DisallowSizeFunctionsInLoops"/>
+    <rule ref="Squiz.PHP.Eval"/>
+    <rule ref="Generic.PHP.ForbiddenFunctions"/>
+</ruleset>
