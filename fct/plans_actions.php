@@ -511,7 +511,6 @@ if ( @$action == 'delPlan') {
 }
 
 
-																	// DEVIS
 // Création d'un DEVIS
 if ( @$action == 'createDevis' ) {
 	$tmpPDF = new SortiePDF($id);

@@ -83,7 +83,7 @@ class SortiePDF {
 			$this->infoCreateur = new Infos(TABLE_USERS);
 			$this->infoCreateur->loadInfos('id', addslashes($this->idCreateur));
 
-			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////
 			$nomCreateur  = $this->infoCreateur->getInfo('prenom');
 			$mailCreateur = $this->infoCreateur->getInfo('email');
 			$idTekosCreateur = $this->infoCreateur->getInfo('idTekos');
@@ -326,7 +326,7 @@ class SortiePDF {
 									"DESIGNATION"  => $mat['label'],
 									"QTE"		   => $qteMatos,
 									"P.U. HT"      => $PUmatosAff,
-									"Val. Remp."   => number_format($mat['valRemp'], 2),
+									"Val. Remp."   => number_format($mat['valRemp'] * $qteMatos, 2),
 									"TOTAL HT"     => $ssTotalMatos );
 					$size = $pdf->addLine( $y, $line );
 					$y   += $size + 2;
