@@ -16,6 +16,7 @@ if ($action == 'modifConsts') {
     
     $newConstFile = "<?php \n\n";
     foreach ($_POST as $key => $val) {
+        $val = addslashes($val);
         $newConstFile .= "define('$key', '$val');\n";
     }
     $newConstFile .= "\n?>";
