@@ -5,7 +5,7 @@ if (!isset($_SESSION["user"])) {
 if ($_SESSION["user"]->isAdmin() !== true) {
     header('Location: index.php');
 }
-$cfg_boite_file = $install_path . FOLDER_CONFIG . 'infos_boite.php';
+$cfg_boite_file = INSTALL_PATH . FOLDER_CONFIG . 'infos_boite.php';
 if (file_exists( $cfg_boite_file )) {
 	include($cfg_boite_file);
 }

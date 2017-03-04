@@ -18,7 +18,7 @@
  */
 
 
-require_once ($install_path . FOLDER_CLASSES . 'Infos.class.php' );
+require_once (INSTALL_PATH . FOLDER_CLASSES . 'Infos.class.php' );
 
 class Users implements Iterator {
 

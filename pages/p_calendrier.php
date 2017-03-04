@@ -1,6 +1,6 @@
 <?php if ( !isset($_SESSION["user"])) { header('Location: index.php'); }
 
-$cfg_boite_file = $install_path . FOLDER_CONFIG . 'infos_boite.php';
+$cfg_boite_file = INSTALL_PATH . FOLDER_CONFIG . 'infos_boite.php';
 if (!file_exists( $cfg_boite_file )) {
 	header('Location: index.php?go=infos');
 	exit();

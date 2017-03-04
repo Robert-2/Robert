@@ -114,7 +114,6 @@ class Devis {
 
 	// Suppprime TOUS les devis associés à un plan (dans le cas ou on supprime le plan, pour nettoyer le serveur et la BDD)
 	public static function deleteAllDevisBDD ($idPlan) {
-		global $install_path;
 		if ($idPlan == '') return false;
 		$l = new Liste();
 		$listeDevis = $l->getListe(TABLE_DEVIS, '*', Devis::DEVIS_cNUM_DEVIS, 'ASC', Devis::DEVIS_cID_PLAN, '=', $idPlan);
@@ -129,7 +128,7 @@ class Devis {
 				unset($dI);
 			}
 		}
-		rrmdir($install_path.Devis::PATH_CONTENU_PLANS.'/'.$idPlan.'/devis/');
+		rrmdir(INSTALL_PATH.Devis::PATH_CONTENU_PLANS.'/'.$idPlan.'/devis/');
 	}
 
 

@@ -18,7 +18,7 @@
  */
 
 
-require_once ($install_path . FOLDER_CONFIG  . 'common.inc.php' );
+require_once (INSTALL_PATH . FOLDER_CONFIG  . 'global_config.php' );
 global $bdd;
 
 class Infos implements Iterator {

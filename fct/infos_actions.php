@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('initInclude.php');
-require_once('common.inc.php'); // OBLIGATOIRE pour les sessions, à placer TOUJOURS EN HAUT du code !!
+require_once('global_config.php'); // OBLIGATOIRE pour les sessions, à placer TOUJOURS EN HAUT du code !!
 require_once('checkConnect.php');
 
 if ($_SESSION["user"]->isAdmin() !== true) {
@@ -9,7 +9,7 @@ if ($_SESSION["user"]->isAdmin() !== true) {
 }
 
 extract($_POST);
-$infosBoiteFile = $install_path . FOLDER_CONFIG . 'infos_boite.php';
+$infosBoiteFile = INSTALL_PATH . FOLDER_CONFIG . 'infos_boite.php';
 
 if ($action == 'modifConsts') {
     unset($_POST['action']);

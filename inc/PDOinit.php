@@ -8,28 +8,22 @@
 
     Cette WebApp est distribuée dans l'espoir qu'elle soit utile,
     mais SANS AUCUNE GARANTIE; sans même la garantie implicite de
-	COMMERCIALISATION ou D'ADAPTATION A UN USAGE PARTICULIER.
-	Voir la Licence Publique Générale GNU Affero pour plus de détails.
+    COMMERCIALISATION ou D'ADAPTATION A UN USAGE PARTICULIER.
+    Voir la Licence Publique Générale GNU Affero pour plus de détails.
 
     Vous devriez avoir reçu une copie de la Licence Publique Générale
-	GNU Affero avec les sources du logiciel; si ce n'est pas le cas,
-	rendez-vous à http://www.gnu.org/licenses/agpl.txt (en Anglais)
+    GNU Affero avec les sources du logiciel; si ce n'est pas le cas,
+    rendez-vous à http://www.gnu.org/licenses/agpl.txt (en Anglais)
  *
  */
 
-
 try {
-	$dsn = 'mysql:dbname='.BASE.';host='.HOST ;
-	$bdd = new PDO($dsn, USER, PASS, array(PDO::ATTR_PERSISTENT => true));
-	$bdd->query("SET NAMES 'utf8'");
-	$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	global $bdd;
+    $bdd = new PDO(DSN, USER, PASS, [PDO::ATTR_PERSISTENT => true]);
+    $bdd->query("SET NAMES 'utf8'");
+    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    global $bdd;
+} catch (Exception $e) {
+    echo $err_head . $err_pdoConnexion;
+    echo $e->getMessage();
+    die();
 }
-catch (Exception $e) {
-	echo 'Host = <b>'.$host.'</b><br />';
-	echo 'Server = <b>'.$serverName.'</b><br />';
-	die('Erreur de connexion PDO : '.$e->getMessage());
-	//echo 'Erreur de connexion PDO : '.$e->getMessage();
-}
-
-?>

@@ -1,7 +1,7 @@
 <?php
 function getDumpList () {
 	$list = array();
-	$dir = opendir($install_path.FOLDER_CONFIG.'dumpSQL');
+	$dir = opendir(INSTALL_PATH.FOLDER_CONFIG.'dumpSQL');
 	while (($fileSQL = readdir($dir)) !== false) {
 		if ($fileSQL != '.' && $fileSQL != '..')
 		$list[] = $fileSQL;

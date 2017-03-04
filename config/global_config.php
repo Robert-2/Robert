@@ -17,15 +17,30 @@
  *
  */
 
+define("R_VERSION", '0.5.2');
+
 $host = $_SERVER['HTTP_HOST'];
 $serverName = php_uname('n');
-//echo $serverName ;
+
+$userConfigExample = INSTALL_PATH . 'config/exemple.user_config.php';
+$userConfig        = INSTALL_PATH . 'config/user_config.php';
+
+require('global_errors.php');
+
+if (!is_file($userConfig)) {
+    echo $err_head . $err_noConfig;
+    if (!copy($userConfigExample, $userConfig)) {
+        echo $err_noConfigCopy;
+    }
+    chmod($userConfig, 0777);
+    die();
+}
+
+require('user_config.php');
 
 define("DEVS_MAILS", "polo@polosson.com, mathieu@d2mphotos.fr"); // Adresses email des développeurs
 
 define("DSN", 'mysql:dbname='.BASE.';host='.HOST); // données de connexion à la BDD via PDO
-
-define("R_VERSION", '0.5.2');
 
 define("TABLE_USERS", "robert_users"); // table des utilisateurs dans la BDD
 define("TABLE_CAL", "robert_calendar"); // table du calendrier

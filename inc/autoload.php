@@ -8,24 +8,20 @@
 
     Cette WebApp est distribuée dans l'espoir qu'elle soit utile,
     mais SANS AUCUNE GARANTIE; sans même la garantie implicite de
-	COMMERCIALISATION ou D'ADAPTATION A UN USAGE PARTICULIER.
-	Voir la Licence Publique Générale GNU Affero pour plus de détails.
+    COMMERCIALISATION ou D'ADAPTATION A UN USAGE PARTICULIER.
+    Voir la Licence Publique Générale GNU Affero pour plus de détails.
 
     Vous devriez avoir reçu une copie de la Licence Publique Générale
-	GNU Affero avec les sources du logiciel; si ce n'est pas le cas,
-	rendez-vous à http://www.gnu.org/licenses/agpl.txt (en Anglais)
+    GNU Affero avec les sources du logiciel; si ce n'est pas le cas,
+    rendez-vous à http://www.gnu.org/licenses/agpl.txt (en Anglais)
  *
  */
 
-
-function autoload ($classname) {
-	global $install_path;
-	//echo $install_path;
-	if (file_exists ($file = $install_path.'classes/'.$classname.'.class.php'))
-
-		require ($file);
+function autoload($classname)
+{
+    if (file_exists($file = INSTALL_PATH.'classes/'.$classname.'.class.php')) {
+        require($file);
+    }
 }
 
-spl_autoload_register ('autoload');
-
-?>
+spl_autoload_register('autoload');
