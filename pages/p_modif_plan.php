@@ -182,10 +182,10 @@ require_once('infos_boite.php');
     $(function() {
         <?php
         foreach ($tekosPlanMod as $t) {
-            echo "		tekosIds.push('$t'); $('.tek_name[id*=\"$t\"]').click();\n"
+            echo "		tekosIds.push('$t'); $('.tek_name[id*=\"$t\"]').click();\n";
         }
         foreach ($matosPlanMod as $m => $q) {
-            echo "		matosIdQte['$m'] = $q; qteMatos_update($m);\n"
+            echo "		matosIdQte['$m'] = $q; qteMatos_update($m);\n";
         }
         ?>
         $("#themeSel").parent('p').hide();
