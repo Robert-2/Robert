@@ -1,5 +1,5 @@
 <?php
-define(INSTALL_PATH, dirname(__FILE__). '/../');
+define("INSTALL_PATH", dirname(__FILE__). '/../');
 
 $pathInc   = "../inc";
 $pathConf  = "../config";
