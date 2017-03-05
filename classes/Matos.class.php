@@ -173,11 +173,7 @@ class Matos implements Iterator
     }
     public function valid()
     {
-        if ($this->infos->valid() === false) {
-            return false;
-        } else {
-            return true;
-        }
+        return ($this->infos->valid() === false);
     }
     public function key()
     {
