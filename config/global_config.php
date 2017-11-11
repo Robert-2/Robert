@@ -76,22 +76,24 @@ define("COOKIE_PEREMPTION", time() + (3600 * 24 * 2)); // péremption des cookie
 
 date_default_timezone_set('Europe/Paris'); // La timezone par défaut, si introuvable dans le php.ini
 
-// fonction de suppression de dossier, vite fait, dispo pour tout le monde !
-function rrmdir($dir)
-{
-    if (is_dir($dir)) {
-        $objects = scandir($dir);
-        foreach ($objects as $object) {
-            if ($object != "." && $object != "..") {
-                if (filetype($dir."/".$object) == "dir") {
-                    rrmdir($dir."/".$object);
-                } else {
-                    unlink($dir."/".$object);
+// fonction de suppression de dossier récursive
+if (!function_exists('rrmdir')) {
+    function rrmdir($dir)
+    {
+        if (is_dir($dir)) {
+            $objects = scandir($dir);
+            foreach ($objects as $object) {
+                if ($object != "." && $object != "..") {
+                    if (filetype($dir."/".$object) == "dir") {
+                        rrmdir($dir."/".$object);
+                    } else {
+                        unlink($dir."/".$object);
+                    }
                 }
             }
+            reset($objects);
+            rmdir($dir);
         }
-        reset($objects);
-        rmdir($dir);
     }
 }
 
