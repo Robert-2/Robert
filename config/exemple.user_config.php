@@ -1,21 +1,21 @@
 <?php
 /*
- * Modifiez les lignes 40 à 43 ci-dessous, en vous inspirant de l'exemple, pour renseigner :
- * le nom de l'hôte ou se trouve la base de données SQL
- * le nom de l'utilisateur SQL
- * le mot de passe de l'utilisateur SQL
+ * Modifiez les lignes 12 à 15 ci-dessous, en vous inspirant de l'exemple, pour renseigner :
+ * le nom du serveur MySQL hôte où se trouve la base de données MySQL
+ * le nom de l'utilisateur MySQL
+ * le mot de passe de l'utilisateur MySQL
  * le nom de la base de données
  *
  * N'oubliez pas de sauvegarder sous le nom : user_config.php
 */
 
-define("HOST", "localhost");   // nom de l'hôte ou se trouve la bdd
-define("USER", "root");        // nom de l'utilisateur autorisé à se connecter
-define("PASS", "      ");      // son mot de passe
+define("HOST", "localhost");   // serveur hôte MySQL
+define("USER", "root");        // utilisateur MySQL
+define("PASS", "      ");      // mot de passe MySQL
 define("BASE", "robert");      // nom de la base de données
 
 /*
- * Vous pouvez aussi modifier la fonction de calcul du coeficient
+ * Vous pouvez aussi modifier ci-dessous la fonction de calcul du coeficient,
  * qui permet d'effectuer un tarif dégressif en fonction de la durée de location
  */
 

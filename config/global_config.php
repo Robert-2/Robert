@@ -17,9 +17,9 @@
  *
  */
 
-define("R_VERSION", '0.5.2');
+define("R_VERSION", '1.0.0');
 
-$host = $_SERVER['HTTP_HOST'];
+$host       = $_SERVER['HTTP_HOST'];
 $serverName = php_uname('n');
 
 $userConfigExample = INSTALL_PATH . 'config/exemple.user_config.php';

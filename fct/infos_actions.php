@@ -13,13 +13,29 @@ $infosBoiteFile = INSTALL_PATH . FOLDER_CONFIG . 'infos_boite.php';
 
 if ($action == 'modifConsts') {
     unset($_POST['action']);
-    
-    $newConstFile = "<?php \n\n";
+
+    $allowedConsts = [
+        'NOM_BOITE',
+        'TYPE_BOITE',
+        'ADRESSE_BOITE',
+        'CP_BOITE',
+        'VILLE_BOITE',
+        'TEL_BOITE',
+        'EMAIL_BOITE',
+        'SIRET_BOITE',
+        'APE_BOITE',
+        'N_TVA_BOITE',
+        'TVA_VAL'
+    ];
+
+    $newConstFile = "<?php\n";
     foreach ($_POST as $key => $val) {
-        $val = addslashes($val);
+        if (!in_array($key, $allowedConsts)) {
+            continue;
+        }
+        $val           = addslashes($val);
         $newConstFile .= "define('$key', '$val');\n";
     }
-    $newConstFile .= "\n?>";
 
     if (file_put_contents($infosBoiteFile, $newConstFile) !== false) {
         echo 'Informations sauvegardées.';
@@ -43,7 +59,7 @@ if ($action == 'upload_logo') {
     }
     $file = $newLogo['tmp_name'];
     $what = getimagesize($file);
-    
+
     switch (strtolower($what['mime'])) {
         case 'image/png':
             $img = imagecreatefrompng($file);
@@ -57,7 +73,7 @@ if ($action == 'upload_logo') {
         default:
             displayResponseAndExit("L'image doit être un fichier JPEG, ou GIF, ou PNG !");
     }
-    
+
     $nouvelleLargeur =  $what[0] * ($nouvelleHauteur/$what[1]);
 
     $new = imagecreatetruecolor($nouvelleLargeur, $nouvelleHauteur);

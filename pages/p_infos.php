@@ -38,69 +38,69 @@ if (file_exists($cfg_boite_file)) {
     <div class="inline ui-widget-content ui-corner-all pad10">
         <div class="ui-widget-header ui-corner-all center">Raison Sociale</div>
         <div class="ui-state-default ui-corner-all">
-            <input type="text" id="NOM_BOITE" value="<?= NOM_BOITE ?>" size="20" />
+            <input type="text" id="NOM_BOITE" value="<?= NOM_BOITE ?>" size="20" class="inputConsts" />
         </div>
     </div>
     <div class="inline ui-widget-content ui-corner-all pad10">
         <div class="ui-widget-header ui-corner-all center">Statut</div>
         <div class="ui-state-default ui-corner-all">
-            <input type="text" id="TYPE_BOITE" value="<?= TYPE_BOITE ?>" size="20" />
+            <input type="text" id="TYPE_BOITE" value="<?= TYPE_BOITE ?>" size="20" class="inputConsts" />
         </div>
     </div>
     <br /><br />
     <div class="inline ui-widget-content ui-corner-all pad10">
         <div class="ui-widget-header ui-corner-all center">Adresse Postale</div>
         <div class="ui-state-default ui-corner-all">
-            <input type="text" id="ADRESSE_BOITE" value="<?= ADRESSE_BOITE ?>" size="20" /></div>
+            <input type="text" id="ADRESSE_BOITE" value="<?= ADRESSE_BOITE ?>" size="20" class="inputConsts" /></div>
     </div>
     <div class="inline ui-widget-content ui-corner-all pad10">
         <div class="ui-widget-header ui-corner-all center">Code Postal</div>
         <div class="ui-state-default ui-corner-all">
-            <input type="text" id="CP_BOITE" value="<?= CP_BOITE ?>" size="20" />
+            <input type="text" id="CP_BOITE" value="<?= CP_BOITE ?>" size="20" class="inputConsts" />
         </div>
     </div>
     <div class="inline ui-widget-content ui-corner-all pad10">
         <div class="ui-widget-header ui-corner-all center">Ville</div>
         <div class="ui-state-default ui-corner-all">
-            <input type="text" id="VILLE_BOITE" value="<?= VILLE_BOITE ?>" size="20" />
+            <input type="text" id="VILLE_BOITE" value="<?= VILLE_BOITE ?>" size="20" class="inputConsts" />
         </div>
     </div>
     <br /><br />
     <div class="inline ui-widget-content ui-corner-all pad10">
         <div class="ui-widget-header ui-corner-all center">No de Téléphone</div>
         <div class="ui-state-default ui-corner-all">
-            <input type="text" id="TEL_BOITE" value="<?= TEL_BOITE ?>" size="20" />
+            <input type="text" id="TEL_BOITE" value="<?= TEL_BOITE ?>" size="20" class="inputConsts" />
         </div>
     </div>
     <div class="inline ui-widget-content ui-corner-all pad10">
         <div class="ui-widget-header ui-corner-all center">Adresse Email</div>
         <div class="ui-state-default ui-corner-all">
-            <input type="text" id="EMAIL_BOITE" value="<?= EMAIL_BOITE ?>" size="20" />
+            <input type="text" id="EMAIL_BOITE" value="<?= EMAIL_BOITE ?>" size="20" class="inputConsts" />
         </div>
     </div>
     <br /><br />
     <div class="inline ui-widget-content ui-corner-all pad10">
         <div class="ui-widget-header ui-corner-all center">No de SIRET</div>
         <div class="ui-state-default ui-corner-all">
-            <input type="text" id="SIRET_BOITE" value="<?= SIRET_BOITE ?>" size="20" />
+            <input type="text" id="SIRET_BOITE" value="<?= SIRET_BOITE ?>" size="20" class="inputConsts" />
         </div>
     </div>
     <div class="inline ui-widget-content ui-corner-all pad10">
         <div class="ui-widget-header ui-corner-all center">Code APE</div>
         <div class="ui-state-default ui-corner-all">
-            <input type="text" id="APE_BOITE" value="<?= APE_BOITE ?>" size="20" />
+            <input type="text" id="APE_BOITE" value="<?= APE_BOITE ?>" size="20" class="inputConsts" />
         </div>
     </div>
     <div class="inline ui-widget-content ui-corner-all pad10">
         <div class="ui-widget-header ui-corner-all center">No de TVA</div>
         <div class="ui-state-default ui-corner-all">
-            <input type="text" id="N_TVA_BOITE" value="<?= N_TVA_BOITE ?>" size="20" />
+            <input type="text" id="N_TVA_BOITE" value="<?= N_TVA_BOITE ?>" size="20" class="inputConsts" />
         </div>
     </div>
     <div class="inline ui-widget-content ui-corner-all pad10">
         <div class="ui-widget-header ui-corner-all center">Valeur de TVA (%)</div>
         <div class="ui-state-default ui-corner-all">
-            <input type="text" id="TVA_VAL" value="<?= TVA_VAL * 100 ?>" size="20" />
+            <input type="text" id="TVA_VAL" value="<?= TVA_VAL * 100 ?>" size="20" class="inputConsts" />
         </div>
     </div>
 </div>
