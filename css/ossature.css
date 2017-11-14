@@ -1,4 +1,4 @@
-/* 
+/*
     Document   : ossature
     Description:
         CSS de structure des pages.
@@ -26,12 +26,12 @@ a { border:none; text-decoration:underline; font-size:inherit; outline: none; }
 	display : none;
 }
 	#logo {
-/*		position: absolute;
-		top: 5px; left: 10px;
-		width: 200px;
-		padding: 5px;*/
 		text-align: center;
 	}
+    .version {
+        font-size : 1.4em;
+        color     : #726a64;
+    }
 	#titrePage {
 		position: absolute;
 		top: 20px; left: 350px; right: 400px;
@@ -46,13 +46,34 @@ a { border:none; text-decoration:underline; font-size:inherit; outline: none; }
 		padding: 5px;
 		font-size: 0.9em;
 	}
-
 	#connexionRobert {
-		text-align: auto; 
+		text-align: auto;
 		width: 99%;
-		padding-top:30px;
-		text-align:center;
+		margin-top: 15px;
+        margin-bottom: 15px;
+		text-align: center;
+		font-size: 1.5em;
 	}
+    .connexion-input {
+        width            : 250px;
+        background-color : #f1ede9;
+        color            : #564c43;
+        border           : 1px solid #b6a291;
+        border-radius    : 3px;
+        padding          : 7px 10px;
+        margin-bottom    : 8px;
+        box-shadow       : inset 0 0 3px rgba(0, 0, 0, .2);
+    }
+    .connexion-submit {
+        width: 270px;
+    }
+    .connexion-welcome {
+        margin-top : 20px;
+        text-align : center;
+    }
+    .connexion-welcome a {
+        text-decoration: underline !important;
+    }
 
 #footPage {
 	position: absolute;
@@ -94,7 +115,7 @@ a { border:none; text-decoration:underline; font-size:inherit; outline: none; }
 	padding: 5px;
 	border: 1px solid;
 	overflow-y: auto;
-	overflow-x: hidden; 
+	overflow-x: hidden;
 }
 .L { position:absolute; top:5px; left:5px;  right:90.2%; bottom:5px; box-shadow: inset 0 0 5px #888888; }
 .C { position:absolute; top:5px; left:10%;   right:10%;  bottom:5px; box-shadow: 0 1px 3px #888888; z-index: 500; }
@@ -118,7 +139,7 @@ a { border:none; text-decoration:underline; font-size:inherit; outline: none; }
 	overflow: auto;
 	box-shadow: inset 0 0 6px #888888;
 	overflow-y: auto;
-	overflow-x: hidden; 
+	overflow-x: hidden;
 }
 
 #modifieurPage {

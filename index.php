@@ -24,7 +24,6 @@
     $titrePageBar = "ROBERT";
     include('inc/head_html.php');
 ?>
-
 <body>
 <div id="bigDiv">
     <div id="Page" class="fondPage bordPage">
@@ -65,14 +64,17 @@
                 }
             }
             ?>
-
+            <br />
             <span class="boutonMenu petit noMarge"
-                  title="Indiquez ici les bugs que vous trouvez, et ce que vous aimeriez voir sur la prochaine version...">
-                <a href="http://www.robert.polosson.com/index.php?go=7bugHunter" target="_new"><b>BugHunter</b></a>
+                  title="Site officiel de Robert">
+                <a href="http://www.robert.polosson.com" target="_new"><b>Site officiel</b></a>
             </span>
-
+            <br /><br />
+            <span class="boutonMenu petit noMarge"
+                  title="Indiquez ici les bugs que vous trouvez">
+                <a href="http://www.robert.polosson.com/buglist.php" target="_new"><b>BugHunter</b></a>
+            </span>
         </div>
-
         <div class="colonne C bordSection ui-widget ui-corner-all fondSect2 petit">
             <?php
             if (!isset($_SESSION['user'])) {
@@ -92,7 +94,6 @@
             }
             ?>
         </div>
-
         <div class="colonne R bordSection ui-widget ui-corner-all fondSect1 petit center">
             <?php
             if ($logged == true) {
