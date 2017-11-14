@@ -3,6 +3,7 @@
 - Renomme le fichier `common.inc.php` en `user_config.php`
 - Ajoute le fichier `.editorconfig`
 - Ajoute le fichier `CHANGELOG.md`
+- Révise un peu le design de la page de connexion
 
 ### 0.5.2 (2017-03-04)
 - Fix #18 : Valeur de remplacement multipliée par la quantité de _matos_
