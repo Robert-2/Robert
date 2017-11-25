@@ -31,7 +31,7 @@ if (!$_SESSION["user"]->isLevelMod()) {
         initToolTip('#frise_echelle', -180);
         initToolTip('#friseLegende', -250);
         $('#legendeConfirmCal').show();
-        $('.C').css( 'overflow-y', 'scroll');
+        $('.C').css( 'overflow-y', 'auto');
         tva_val = <?= TVA_VAL; ?>;
     });
 </script>
@@ -44,7 +44,7 @@ if (!$_SESSION["user"]->isLevelMod()) {
     .plan			 { position: relative; text-align:center; font-size: 1.3em; margin-top: 2px; padding: 3px 0px; box-shadow: 0 3px 5px #888888; }
 </style>
 
-<div id="pageCalendrier" class="ui-widget-content ui-corner-all center pad20">
+<div id="pageCalendrier" class="center pad10">
     <div class="ui-widget-header ui-corner-all gros">Calendrier</div>
 
     <?php /////////////////////////////// POUR DÉFINIR LES DATES DE DÉBUT ET FIN DE PÉRIODE PAR DÉFAUT DU CALENDRIER
@@ -66,19 +66,19 @@ if (!$_SESSION["user"]->isLevelMod()) {
     ?>
 
     <div class="ui-widget leftText petit">
-        <div class="inline top center">
+        <div class="inline mid center">
             <div class="ui-state-default pad5 ui-corner-all petit margeTop5"> VOIR
                 DU : <input type='text' value='<?= $calStart; ?>'  id='calStart' size="10" />
                 AU : <input type='text' value='<?= $calEnd; ?>' id='calEnd' size="10" />
                 <button class="bouton" id='loadFrise' title="charger le calendrier pour ces dates">Charger</button>
             </div>
         </div>
-        <div class="inline bot leftText marge30l">
-            <button class="bouton" id="ceMoisCi" title="Centrer la vue sur ce mois-ci">Ce mois-ci</button>
-            <button class="bouton marge30l" id="showPrevMois" title="mois précédent">
+        <div class="inline mid leftText marge30l">
+            <button class="bouton mid" id="ceMoisCi" title="Centrer la vue sur ce mois-ci">Ce mois-ci</button>
+            <button class="bouton mid marge30l" id="showPrevMois" title="mois précédent">
                 <span class="ui-icon ui-icon-carat-1-w"></span>
             </button>
-            <span class="bouton">
+            <span class="bouton mid">
                 <select id="selectMois">
                     <option value="1">Janvier</option>
                     <option value="2">Février</option>
@@ -94,11 +94,11 @@ if (!$_SESSION["user"]->isLevelMod()) {
                     <option value="12">Décembre</option>
                 </select>
             </span>
-            <button class="bouton" id="showNextMois" title="mois suivant">
+            <button class="bouton mid" id="showNextMois" title="mois suivant">
                 <span class="ui-icon ui-icon-carat-1-e"></span>
             </button>
             <a style="font-size: 1.2em; border: 1px solid red; <?= $hideForPoppy; ?>"
-               class="bouton marge30l" href="?go=ajout_plan"
+               class="bouton mid marge30l" href="?go=ajout_plan"
                title="CRTL+clic sur le calendrier puis bouger la souris pour choisir les dates vite fait.">
                Ajouter un évènement
             </a>
@@ -109,9 +109,7 @@ if (!$_SESSION["user"]->isLevelMod()) {
         <div id='frise_echelle'></div>
         <div id='frise_data'></div>
     </div>
-
 </div>
-
 
 <div id="friseLegende" class="leftText mini">
     <div class="center">
@@ -123,8 +121,7 @@ if (!$_SESSION["user"]->isLevelMod()) {
         </span>
         <span class="ui-widget ui-state-default ui-corner-all marge10l padH5 padV10" style="font-weight: bold;">
             <font style="color:#b06341">DE</font>
-            <font style="color:#c28d41">L'OR</font>
-            <font style="color:#c2be41">ANGE</font>
+            <font style="color:#c28d41">L'OR</font><font style="color:#c2be41">ANGE</font>
             <font style="color:#93c241">JUS</font>
             <font style="color:#41c277">QU'</font>
             <font style="color:#41c2bc">AU</font>
@@ -138,15 +135,16 @@ if (!$_SESSION["user"]->isLevelMod()) {
             <font style="color:#416cc2">lointains)</font>
         </span>
 
-        <button class="bouton marge10l" id='exportICS' popup="Attention, Google met environ 48h pour mettre à jour le calendrier..." style="<?= $hideForPoppy; ?>">
+        <button class="bouton marge10l" id='exportICS'
+                popup="Attention, Google met environ 48h pour mettre à jour le calendrier..."
+                style="<?= $hideForPoppy; ?>">
             Actualiser pour google Calendar
         </button>
         <br />
     </div>
 </div>
 
-
-<div id="blocNote" class="ui-widget-content ui-corner-all pad20">
+<div id="blocNote" class="pad10">
     <div class="ui-widget-header ui-corner-all gros center">Rendez-vous, trucs importants, les post-it quoi</div>
     <br />
     <div style="float: right;" class="big">
@@ -161,7 +159,6 @@ if (!$_SESSION["user"]->isLevelMod()) {
         <?php include('notes_calendrier.php'); ?>
     </div>
 </div>
-
 
 <div id="addNoteModal" title="Ajout de post-it" class="center hide">
     <br />
@@ -178,8 +175,8 @@ if (!$_SESSION["user"]->isLevelMod()) {
     </div>
 </div>
 
-
-<div id='newPlanDrag' class="ui-widget ui-state-default plan ui-corner-all" style='position:absolute; heigth:20px; background-color: red; z-index:1000; margin : 0 ; padding:0; ' ></div>
+<div id='newPlanDrag' class="ui-widget ui-state-default plan ui-corner-all"
+     style='position:absolute; heigth:20px; background-color:red; z-index:1000; margin:0; padding:0;'></div>
 <div id="dialog" title="Détails de plan" class="hide"></div>
 
 <div id="dialogContrat" title="Édition du contrat" class="hide">

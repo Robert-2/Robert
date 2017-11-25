@@ -26,13 +26,13 @@ if ($_SESSION["user"]->isAdmin() !== true) {
     $(function() {
         $('.bouton').button();
         initToolTip('.tableListe', -120);
-        
+
         // highlight des mini sous-menus
         $('.usersMiniSsMenu').addClass('ui-state-highlight');
         $('.miniSmenuBtn').removeClass('ui-state-highlight');
         $('#personnel_list_utilisateurs').addClass('ui-state-highlight');
         $('.usersMiniSsMenu').next().children().show(300);
-        
+
         // init du system de recherche
         $('.chercheBtn').attr('id', 'personnel_list_utilisateurs'); // ajoute le nom du fichier actuel (en id du bouton) pour la recherche
         $('#filtreCherche').html(                                   // Ajout des options de filtrage pour la recherche
@@ -52,22 +52,24 @@ if ($_SESSION["user"]->isAdmin() !== true) {
     <br />
     <table class="tableListe">
         <tr class="titresListe">
-            <th>email</th>
-            <th>Nom Prénom</th>
-            <th>Niveau</th>
-            <th>Technicien associé</th>
+            <th class="ui-state-disabled">email</th>
+            <th class="ui-state-disabled">Nom Prénom</th>
+            <th class="ui-state-disabled">Niveau</th>
+            <th class="ui-state-disabled">Technicien associé</th>
             <th></th>
         </tr>
-        
+
         <?php
         if (is_array($liste_Users)) {
             foreach ($liste_Users as $info) {
-                $tekos = ' --- ';
-                $tekosInfo = array();
+                $tekos     = ' --- ';
+                $tekosInfo = [];
                 if (is_array($liste_tekos)) {
                     foreach ($liste_tekos as $tekosInfo) {
                         if ($tekosInfo['idUser'] == $info['id']) {
-                            $tekos = $tekosInfo['surnom'].' <img src="gfx/icones/categ-'.$tekosInfo['categorie'].'.png" style="width:20px; float:right;" />' ;
+                            $tekos = $tekosInfo['surnom']
+                                    . ' <img src="gfx/icones/categ-'
+                                    . $tekosInfo['categorie'].'.png" style="width:20px; float:right;" />';
                         }
                     }
                 }
@@ -125,8 +127,12 @@ if ($_SESSION["user"]->isAdmin() !== true) {
 </div>
 
 <div class="ui-widget-content ui-corner-all center gros hide" id="modifieurPage">
-    <div class="closeModifieur ui-state-active ui-corner-all" id="btnClose"><span class="ui-icon ui-icon-circle-close"></span></div>
-    <div class="ui-widget-header ui-corner-all pad3">Modifier l'utilisateur "<span id="nomUserModif"></span>"</div>
+    <div class="closeModifieur ui-state-active ui-corner-all" id="btnClose">
+        <span class="ui-icon ui-icon-circle-close"></span>
+    </div>
+    <div class="ui-widget-header ui-corner-all pad3">
+        Modifier l'utilisateur "<span id="nomUserModif"></span>"
+    </div>
     <br />
     <input type="hidden" id="modUserId" />
     <div class="inline top" style="width: 200px;">

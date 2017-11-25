@@ -51,14 +51,14 @@ else $liste_interloc = $l->getListe(TABLE_INTERLOC);
 			<th>Structure</th>
 			<th></th>
 		</tr>
-		
+
 		<?php
 		if (is_array($liste_interloc)) {
 			foreach ($liste_interloc as $info) {
 				$infoStructName = '---';
 				// récup le nom de la structure selon son id
 				foreach ($liste_struct as $v ) {
-					if ($info['idStructure'] == $v['id']) 
+					if ($info['idStructure'] == $v['id'])
 						$infoStructName = $v['label'];
 				}
 				if ( $_SESSION['user']->isLevelMod() ) {
@@ -83,7 +83,7 @@ else $liste_interloc = $l->getListe(TABLE_INTERLOC);
 		}
 		else {
 			echo '<tr class="ui-state-error big pad20">
-				<td colspan="6">Aucun interlocuteur enregistré ';
+				<td colspan="7">Aucun interlocuteur enregistré ';
 			if (isset($_POST['searchingfor']))
 				echo 'pour la recherche <b>"'.$_POST['searchingfor'].'"</b> ';
 			echo '!!</td></tr>';

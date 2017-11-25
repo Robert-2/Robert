@@ -26,8 +26,8 @@
 ?>
 <body>
 <div id="bigDiv">
-    <div id="Page" class="fondPage bordPage">
-        <div class="colonne L bordSection ui-widget ui-corner-all fondSect1 center">
+    <div id="Page" class="fondPage">
+        <div class="colonne L ui-widget fondSect1 center">
             <?php
             if (isset($_SESSION["user"])) {
                 echo '<div id="logo">
@@ -75,7 +75,7 @@
                 <a href="http://www.robert.polosson.com/buglist.php" target="_new"><b>BugHunter</b></a>
             </span>
         </div>
-        <div class="colonne C bordSection ui-widget ui-corner-all fondSect2 petit">
+        <div class="colonne C ui-widget fondSect2 petit">
             <?php
             if (!isset($_SESSION['user'])) {
                 include('modals/connexion.php');
@@ -94,7 +94,7 @@
             }
             ?>
         </div>
-        <div class="colonne R bordSection ui-widget ui-corner-all fondSect1 petit center">
+        <div class="colonne R ui-widget fondSect1 petit center">
             <?php
             if ($logged == true) {
                 include('menuRight.php');

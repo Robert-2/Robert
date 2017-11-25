@@ -9,14 +9,11 @@ require_once('global_config.php');     // OBLIGATOIRE pour les sessions, à plac
 require_once('checkConnect.php');
 
 $l = new Liste();
-
 if (isset($_POST['searchingfor'])) {
      $liste_tekos = $l->getListe(TABLE_TEKOS, '*', 'surnom', 'ASC', $_POST['searchingwhat'], 'LIKE', '%'.$_POST['searchingfor'].'%');
 } else {
     $liste_tekos = $l->getListe(TABLE_TEKOS, '*', 'surnom');
 }
-
-
 ?>
 <link href="css/fileuploader.css" rel="stylesheet" type="text/css">
 <script src="./js/fileuploader.js"></script>
@@ -25,15 +22,15 @@ if (isset($_POST['searchingfor'])) {
     $(function() {
         $('.bouton').button();
         initToolTip('.tableListe', -120);
-        
+
         createUploader();
-        
+
         // highlight des mini sous-menus
         $('.tekosMiniSsMenu').addClass('ui-state-highlight');
         $('.miniSmenuBtn').removeClass('ui-state-highlight');
         $('#personnel_list_techniciens').addClass('ui-state-highlight');
         $('.tekosMiniSsMenu').next().children().show(300);
-        
+
         // init du system de recherche
         $('.chercheBtn').attr('id', 'personnel_list_techniciens');  // ajoute le nom du fichier actuel (en id du bouton) pour la recherche
         $('#filtreCherche').html(                                   // Ajout des options de filtrage pour la recherche
@@ -45,27 +42,31 @@ if (isset($_POST['searchingfor'])) {
         );
         $('#chercheInput').val('');                         // vide l'input de recherche
         $('#chercheDiv').show(300);                         // affiche le module de recherche
-        
-        $(".inputCal2").datepicker({dateFormat: 'yy-mm-dd', firstDay: 1, changeMonth: true, changeYear: true, yearRange: '-35'});
 
+        $(".inputCal2").datepicker({
+            dateFormat  : 'yy-mm-dd',
+            firstDay    : 1,
+            changeMonth : true,
+            changeYear  : true,
+            yearRange   : '-35'
+        });
     });
 </script>
-
 
 <div class="ui-widget-content ui-corner-all" id="listingPage">
     <div class="ui-widget-header ui-corner-all gros center pad3">Liste des techniciens</div>
     <br />
     <table class="tableListe">
         <tr class="titresListe">
-            <th>Surnom</th>
-            <th>Nom Prénom</th>
-            <th>Catégorie</th>
-            <th>No de Tel.</th>
-            <th class="leftText">email</th>
-            <th>Intermittent</th>
+            <th class="ui-state-disabled">Surnom</th>
+            <th class="ui-state-disabled">Nom Prénom</th>
+            <th class="ui-state-disabled">Catégorie</th>
+            <th class="ui-state-disabled">No de Tel.</th>
+            <th class="ui-state-disabled" class="leftText">email</th>
+            <th class="ui-state-disabled">Intermittent</th>
             <th></th>
         </tr>
-        
+
         <?php
         if (is_array($liste_tekos)) {
             foreach ($liste_tekos as $info) {
@@ -74,22 +75,23 @@ if (isset($_POST['searchingfor'])) {
                 } else {
                     $intermittent = '<span popup="No SIRET : <b>'.$info['SIRET'].'</b>">NON</span>';
                 }
-                
+
                 if ($_SESSION['user']->isAdmin() && $info['idUser'] < 1) {
-                    $boutonAddUser = '<button class="bouton createUser"  id="'.$info['id'].'" surnom="'.$info['surnom'].'" title="créer un utilisateur associé">
-                                        <span class="ui-icon ui-icon-shuffle"></span>
-                                    </button>';
+                    $boutonAddUser =
+                    '<button class="bouton createUser" id="'.$info['id'].'" surnom="'.$info['surnom'].'" title="créer un utilisateur associé">
+                        <span class="ui-icon ui-icon-shuffle"></span>
+                    </button>';
                 } else {
                     $boutonAddUser = '';
                 }
-                
+
                 if ($_SESSION['user']->isLevelMod()) {
                     $boutonsAdmin = '<button class="bouton selectTekos" id="'.$info['id'].'" nom="'.$info['surnom'].'" title="modifier"><span class="ui-icon ui-icon-pencil"></span></button>
                                      <button class="bouton deleteTekos" id="'.$info['id'].'" title="supprimer"><span class="ui-icon ui-icon-trash"></span></button>';
                 } else {
                     $boutonsAdmin = '';
                 }
-                
+
                 echo '<tr class="ui-state-default">
                         <td class="tekSurnom">'.$info['surnom'].'</td>
                         <td popup="No SECU : <b>'.$info['SECU'].'</b>" class="tekNom">'.$info['prenom'].' '.$info['nom'].'</td>
@@ -118,8 +120,12 @@ if (isset($_POST['searchingfor'])) {
 </div>
 
 <div class="ui-widget-content ui-corner-all center gros hide" id="modifieurPage">
-    <div class="closeModifieur ui-state-active ui-corner-all" id="btnClose"><span class="ui-icon ui-icon-circle-close"></span></div>
-    <div class="ui-widget-header ui-corner-all pad3">Modifier le technicien "<span id="nomTekosModif"></span>"</div>
+    <div class="closeModifieur ui-state-active ui-corner-all" id="btnClose">
+        <span class="ui-icon ui-icon-circle-close"></span>
+    </div>
+    <div class="ui-widget-header ui-corner-all pad3">
+        Modifier le technicien "<span id="nomTekosModif"></span>"
+    </div>
     <br />
     <input type="hidden" id="modTekosId" />
     <div class="inline top" style="width: 200px;">
@@ -172,12 +178,12 @@ if (isset($_POST['searchingfor'])) {
     <div class="inline top" style="width: 160px;">
         <div class="ui-widget-header ui-corner-all">Numero Assédic : </div>
         <input type="text" id="modTekosAssedic" maxlength="8" size="10" /><br />
-        
+
         <div class="ui-widget-header ui-corner-all">No SIRET :</div>
         <input type="text" class='NumericInput' maxlength='14' id="modTekosSIRET" size="15" />
         <br />
     </div>
-    
+
     <div class="inline" style="width: 95%;">
         <div class="inline top" style="width: 200px;">
             <div class="ui-widget-header ui-corner-all">Adresse actuelle : </div>
@@ -188,26 +194,20 @@ if (isset($_POST['searchingfor'])) {
             <input type="text" class='NumericInput' maxlength='5' id="modTekosCP" size="4" />
             <input type="text" id="modTekosVille" size="11" />
         </div>
-        
         <div class="inline bot" style="width: 360px;">
             <button class="bouton closeModifieur">ANNULER</button>
             <button class="bouton modif">SAUVEGARDER</button>
         </div>
     </div>
-    
 </div>
 
-    
 <div id='modalTekosFiles' class='hide'>
     <div class='hide' id='modalTekName'></div>
     <div class='upload'>
-        
         <div id="file-uploader" style='overflow:auto;'>
-            <noscript><p>Merci d'activer Javascript pour utiliser l'envoi de fichier.</p></noscript>         
+            <noscript><p>Merci d'activer Javascript pour utiliser l'envoi de fichier.</p></noscript>
         </div>
-        
         <div id='file-list'></div>
-        
     </div>
 </div>
 
