@@ -26,53 +26,84 @@ a { border:none; text-decoration:underline; font-size:inherit; outline: none; }
 	display : none;
 }
 	#logo {
-		text-align: center;
+        text-align : center;
+        margin     : 15px 0;
 	}
     .version {
         font-size : 1.4em;
         color     : #726a64;
     }
 	#titrePage {
-		position: absolute;
-		top: 20px; left: 350px; right: 400px;
-		padding: 5px;
-		font-size: 1.5em;
-		font-weight: bold;
+        position    : absolute;
+        top         : 20px;
+        right       : 400px;
+        left        : 350px;
+        padding     : 5px;
+        font-size   : 1.5em;
+        font-weight : bold;
 	}
 	#connexion {
-		position: absolute;
-		top: 20px; right: 0px;
-		width: 300px;
-		padding: 5px;
-		font-size: 0.9em;
+        position  : absolute;
+        top       : 20px;
+        right     : 0px;
+        width     : 300px;
+        padding   : 5px;
+        font-size : 0.9em;
 	}
 	#connexionRobert {
-		text-align: auto;
-		width: 99%;
-		margin-top: 15px;
-        margin-bottom: 15px;
-		text-align: center;
-		font-size: 1.5em;
+        display     : flex;
+        flex-flow   : row wrap;
+        align-items : baseline;
+        margin      : 25px 10%;
+        font-size   : 1.4em;
+        text-align  : left;
 	}
+    .connexion-label {
+        flex      : 0 0 100%;
+        margin    : 10px 0;
+        font-size : 0.95em;
+        color     : #858585;
+    }
     .connexion-input {
-        width            : 250px;
+        flex             : 2;
         background-color : #f1ede9;
         color            : #564c43;
         border           : 1px solid #b6a291;
         border-radius    : 3px;
         padding          : 7px 10px;
-        margin-bottom    : 8px;
+        margin           : 0 5px 0 0;
         box-shadow       : inset 0 0 3px rgba(0, 0, 0, .2);
     }
     .connexion-submit {
-        width: 270px;
+        flex   : 1;
+        margin : 0 !important;
     }
+
+    .connexion-message {
+        margin     : 30px 10%;
+        padding    : 10px 15px;
+        font-size  : 1.5em;
+        text-align : center;
+    }
+
     .connexion-welcome {
-        margin-top : 20px;
+        margin     : 30px 10%;
         text-align : center;
     }
     .connexion-welcome a {
         text-decoration: underline !important;
+    }
+
+    @media(min-width: 1055px) {
+    	#connexionRobert {
+            margin: 25px 20%;
+        }
+        .connexion-message {
+            margin: 30px 20%;
+        }
+        .connexion-welcome {
+            margin: 50px 20%;
+        }
     }
 
 #footPage {

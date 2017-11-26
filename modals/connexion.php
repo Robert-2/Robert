@@ -12,27 +12,25 @@ $(function() {
     <img src="gfx/Robert2.png" alt="LOGO"/>
     <span class="version"><?= R_VERSION ?></span>
 </div>
-<div id="connexionRobert">
-	<form action="index.php?go=calendrier" method="post">
-		<input type="hidden" name="conx" value="MPM" />
-		<input type="text" name="email" placeholder="adresse email" class="connexion-input" /><br />
-		<input type="password" name="password" placeholder="mot de passe" class="connexion-input" /><br />
-		<input type="submit" class="bouton boutonMenu connexion-submit" value="Connexion" />
-	</form>
-</div>
+<form action="index.php?go=calendrier" method="post" id="connexionRobert">
+	<input type="hidden" name="conx" value="MPM" />
+    <div class="connexion-label">Connectez-vous avec votre adresse email et votre mot de passe :</div>
+	<input type="text" name="email" placeholder="Adresse email" class="connexion-input" />
+	<input type="password" name="password" placeholder="Mot de passe" class="connexion-input" />
+	<input type="submit" class="bouton boutonMenu connexion-submit" value="Connexion" />
+</form>
 <?php if ($errAuth === true) : ?>
-    <div class="ui-state-error ui-corner-all pad10 big center">
+    <div class="connexion-message ui-state-error ui-corner-all">
         L'adresse email et le mot de passe ne correspondent pas.
     </div>
 <?php endif;
 if (isset($_GET['action']) && $_GET['action'] == 'deconx') : ?>
-    <div class="ui-state-highlight ui-corner-all pad10 big center" id="byebye">
+    <div class="connexion-message ui-state-highlight ui-corner-all" id="byebye">
         Vous êtes bien déconnecté(e).
     </div>
 <?php endif; ?>
 <div class="connexion-welcome">
-	<div class="inline ui-state-default ui-corner-all shadowOut padV10 gros leftText"
-         style="width:85%;">
+	<div class="inline ui-state-default ui-corner-all shadowOut padV10 gros leftText">
 		<h3 class="center">BIENVENUE !</h3>
 		<p>
 			Si vous ne savez pas à quoi correspond un bouton, vous pourrez voir plus
