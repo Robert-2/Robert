@@ -1,4 +1,4 @@
-### 0.6.0 (unreleased)
+### 0.6.0 (2017-11-30)
 - Nettoie et remanie un peu le code
 - Renomme le fichier `common.inc.php` en `user_config.php`
 - Ajoute le fichier `.editorconfig`
