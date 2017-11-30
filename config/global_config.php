@@ -17,15 +17,30 @@
  *
  */
 
-$host = $_SERVER['HTTP_HOST'];
+define("R_VERSION", '0.6.0');
+
+$host       = $_SERVER['HTTP_HOST'];
 $serverName = php_uname('n');
-//echo $serverName ;
+
+$userConfigExample = INSTALL_PATH . 'config/exemple.user_config.php';
+$userConfig        = INSTALL_PATH . 'config/user_config.php';
+
+require('global_errors.php');
+
+if (!is_file($userConfig)) {
+    echo $err_head . $err_noConfig;
+    if (!copy($userConfigExample, $userConfig)) {
+        echo $err_noConfigCopy;
+    }
+    chmod($userConfig, 0777);
+    die();
+}
+
+require('user_config.php');
 
 define("DEVS_MAILS", "polo@polosson.com, mathieu@d2mphotos.fr"); // Adresses email des développeurs
 
 define("DSN", 'mysql:dbname='.BASE.';host='.HOST); // données de connexion à la BDD via PDO
-
-define("R_VERSION", '0.5.2');
 
 define("TABLE_USERS", "robert_users"); // table des utilisateurs dans la BDD
 define("TABLE_CAL", "robert_calendar"); // table du calendrier
@@ -61,22 +76,24 @@ define("COOKIE_PEREMPTION", time() + (3600 * 24 * 2)); // péremption des cookie
 
 date_default_timezone_set('Europe/Paris'); // La timezone par défaut, si introuvable dans le php.ini
 
-// fonction de suppression de dossier, vite fait, dispo pour tout le monde !
-function rrmdir($dir)
-{
-    if (is_dir($dir)) {
-        $objects = scandir($dir);
-        foreach ($objects as $object) {
-            if ($object != "." && $object != "..") {
-                if (filetype($dir."/".$object) == "dir") {
-                    rrmdir($dir."/".$object);
-                } else {
-                    unlink($dir."/".$object);
+// fonction de suppression de dossier récursive
+if (!function_exists('rrmdir')) {
+    function rrmdir($dir)
+    {
+        if (is_dir($dir)) {
+            $objects = scandir($dir);
+            foreach ($objects as $object) {
+                if ($object != "." && $object != "..") {
+                    if (filetype($dir."/".$object) == "dir") {
+                        rrmdir($dir."/".$object);
+                    } else {
+                        unlink($dir."/".$object);
+                    }
                 }
             }
+            reset($objects);
+            rmdir($dir);
         }
-        reset($objects);
-        rmdir($dir);
     }
 }
 

@@ -225,7 +225,6 @@ class Plan implements Iterator {
 
 	// Supprime un plan, tout ses sous plans, son dossier de data et tout ses devis en BDD
 	public function delete( $idPlan = 'this' ) {
-		global $install_path;
 		if ( $idPlan == 'this') $idPlan = $this->infos->getInfo( Plan::PLAN_cID );
 		if ( $this->getNBSousPlans() ) {
 			foreach ( $this->sousPlans as $v )
@@ -234,7 +233,7 @@ class Plan implements Iterator {
 		$r = $this->infos->delete() ;
 		if ($r > 0) {
 			Devis::deleteAllDevisBDD($idPlan);
-			rrmdir($install_path.FOLDER_PLANS_DATAS.$idPlan.'/');
+			rrmdir(INSTALL_PATH.FOLDER_PLANS_DATAS.$idPlan.'/');
 		}
 		return $r ;
 	}

@@ -18,17 +18,16 @@
  */
     session_start();
     require_once('initInclude.php');    // OBLIGATOIRE pour les sessions,
-    require_once('common.inc.php');     // à placer TOUJOURS EN HAUT du code.
+    require_once('global_config.php');  // à placer TOUJOURS EN HAUT du code.
     require_once('checkConnect.php');
 
     $titrePageBar = "ROBERT";
     include('inc/head_html.php');
 ?>
-
 <body>
 <div id="bigDiv">
-    <div id="Page" class="fondPage bordPage">
-        <div class="colonne L bordSection ui-widget ui-corner-all fondSect1 center">
+    <div id="Page" class="fondPage">
+        <div class="colonne L ui-widget fondSect1 center">
             <?php
             if (isset($_SESSION["user"])) {
                 echo '<div id="logo">
@@ -65,15 +64,18 @@
                 }
             }
             ?>
-
+            <br />
             <span class="boutonMenu petit noMarge"
-                  title="Indiquez ici les bugs que vous trouvez, et ce que vous aimeriez voir sur la prochaine version...">
-                <a href="http://www.robert.polosson.com/index.php?go=7bugHunter" target="_new"><b>BugHunter</b></a>
+                  title="Site officiel de Robert">
+                <a href="http://www.robert.polosson.com" target="_new"><b>Site officiel</b></a>
             </span>
-
+            <br /><br />
+            <span class="boutonMenu petit noMarge"
+                  title="Indiquez ici les bugs que vous trouvez">
+                <a href="http://www.robert.polosson.com/buglist.php" target="_new"><b>BugHunter</b></a>
+            </span>
         </div>
-
-        <div class="colonne C bordSection ui-widget ui-corner-all fondSect2 petit">
+        <div class="colonne C ui-widget fondSect2 petit">
             <?php
             if (!isset($_SESSION['user'])) {
                 include('modals/connexion.php');
@@ -92,8 +94,7 @@
             }
             ?>
         </div>
-
-        <div class="colonne R bordSection ui-widget ui-corner-all fondSect1 petit center">
+        <div class="colonne R ui-widget fondSect1 petit center">
             <?php
             if ($logged == true) {
                 include('menuRight.php');
