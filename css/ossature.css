@@ -1,4 +1,4 @@
-/* 
+/*
     Document   : ossature
     Description:
         CSS de structure des pages.
@@ -26,33 +26,85 @@ a { border:none; text-decoration:underline; font-size:inherit; outline: none; }
 	display : none;
 }
 	#logo {
-/*		position: absolute;
-		top: 5px; left: 10px;
-		width: 200px;
-		padding: 5px;*/
-		text-align: center;
+        text-align : center;
+        margin     : 15px 0;
 	}
+    .version {
+        font-size : 1.4em;
+        color     : #726a64;
+    }
 	#titrePage {
-		position: absolute;
-		top: 20px; left: 350px; right: 400px;
-		padding: 5px;
-		font-size: 1.5em;
-		font-weight: bold;
+        position    : absolute;
+        top         : 20px;
+        right       : 400px;
+        left        : 350px;
+        padding     : 5px;
+        font-size   : 1.5em;
+        font-weight : bold;
 	}
 	#connexion {
-		position: absolute;
-		top: 20px; right: 0px;
-		width: 300px;
-		padding: 5px;
-		font-size: 0.9em;
+        position  : absolute;
+        top       : 20px;
+        right     : 0px;
+        width     : 300px;
+        padding   : 5px;
+        font-size : 0.9em;
 	}
-
 	#connexionRobert {
-		text-align: auto; 
-		width: 99%;
-		padding-top:30px;
-		text-align:center;
+        display     : flex;
+        flex-flow   : row wrap;
+        align-items : baseline;
+        margin      : 25px 10%;
+        font-size   : 1.4em;
+        text-align  : left;
 	}
+    .connexion-label {
+        flex      : 0 0 100%;
+        margin    : 10px 0;
+        font-size : 0.95em;
+        color     : #858585;
+    }
+    .connexion-input {
+        flex             : 2;
+        background-color : #f1ede9;
+        color            : #564c43;
+        border           : 1px solid #b6a291;
+        border-radius    : 3px;
+        padding          : 7px 10px;
+        margin           : 0 5px 0 0;
+        box-shadow       : inset 0 0 3px rgba(0, 0, 0, .2);
+    }
+    .connexion-submit {
+        flex   : 1;
+        margin : 0 !important;
+    }
+
+    .connexion-message {
+        margin     : 30px 10%;
+        padding    : 10px 15px;
+        font-size  : 1.5em;
+        text-align : center;
+    }
+
+    .connexion-welcome {
+        margin     : 30px 10%;
+        text-align : center;
+    }
+    .connexion-welcome a {
+        text-decoration: underline !important;
+    }
+
+    @media(min-width: 1055px) {
+    	#connexionRobert {
+            margin: 25px 20%;
+        }
+        .connexion-message {
+            margin: 30px 20%;
+        }
+        .connexion-welcome {
+            margin: 50px 20%;
+        }
+    }
 
 #footPage {
 	position: absolute;
@@ -79,36 +131,60 @@ a { border:none; text-decoration:underline; font-size:inherit; outline: none; }
 	}
 
 #Page {
-	position: absolute;
-	top: 2px; left: 5px; right: 5px; bottom: 2px;
-	-moz-border-radius: 15px;
-	-webkit-border-radius: 15px;
-	border-radius: 15px;
-	z-index: 500;
-	overflow-y: auto;
-	overflow-x: hidden;
-	padding: 0px;
+	position   : absolute;
+	top        : 0;
+	right      : 0;
+	bottom     : 0;
+	left       : 0;
+	z-index    : 500;
+	overflow-y : auto;
+	overflow-x : hidden;
+	padding    : 0px;
 }
 
 .colonne {
-	padding: 5px;
-	border: 1px solid;
-	overflow-y: auto;
-	overflow-x: hidden; 
+    top        : 0;
+    bottom     : 0;
+    overflow-y : auto;
+    overflow-x : hidden;
 }
-.L { position:absolute; top:5px; left:5px;  right:90.2%; bottom:5px; box-shadow: inset 0 0 5px #888888; }
-.C { position:absolute; top:5px; left:10%;   right:10%;  bottom:5px; box-shadow: 0 1px 3px #888888; z-index: 500; }
-.R { position:absolute; top:5px; left:90.2%; right:5px;  bottom:5px; box-shadow: inset 0 0 6px #BBBBBB; }
+.L {
+    position   : absolute;
+    left       : 0;
+    right      : 90.2%;
+    padding    : 8px;
+}
+.C {
+    position   : absolute;
+    left       : 10%;
+    right      : 10%;
+    box-shadow : 0 1px 3px #888888;
+    z-index    : 500;
+}
+.R {
+    position   : absolute;
+    left       : 90.2%;
+    right      : 0;
+    padding    : 8px;
+ }
 
 
-#versionRobert { position: absolute; bottom:5px; left: 0px; right: 0px; text-align: center;}
+#versionRobert {
+    position   : absolute;
+    bottom     : 5px;
+    left       : 0px;
+    right      : 0px;
+    text-align : center;
+}
 
 
 .pageContent {
-	position: absolute;
-	top: 55px; bottom: 5px;
-	left: 8px; right: 8px;
-	font-size: 1em;
+    position  : absolute;
+    top       : 60px;
+    bottom    : 5px;
+    left      : 8px;
+    right     : 8px;
+    font-size : 1em;
 }
 
 #listingPage {
@@ -118,7 +194,7 @@ a { border:none; text-decoration:underline; font-size:inherit; outline: none; }
 	overflow: auto;
 	box-shadow: inset 0 0 6px #888888;
 	overflow-y: auto;
-	overflow-x: hidden; 
+	overflow-x: hidden;
 }
 
 #modifieurPage {
@@ -138,15 +214,32 @@ a { border:none; text-decoration:underline; font-size:inherit; outline: none; }
 
 /************************************* MENUS  ******************************************/
 /* Menu principal */
-.menu_icon			{ position: relative; width:99%; text-align:center; margin-bottom: 15px; box-shadow: 1px 2px 2px #BBBBBB; }
-.menu_icon:hover	{ left: -1px; top: -1px; box-shadow: 3px 7px 4px #BBBBBB; }
-.menu_icon:active	{ box-shadow: none; }
+.menu_icon {
+    position      : relative;
+    width         : 99%;
+    text-align    : center;
+    margin-bottom : 10px;
+    box-shadow    : 1px 2px 2px #BBBBBB;
+    font-size     : .85vw;
+}
+.menu_icon:hover {
+    left       : -1px;
+    top        : -1px;
+    box-shadow : 3px 7px 4px #BBBBBB;
+}
+.menu_icon:active { box-shadow: none; }
+.img_menu {
+    max-width: 90%;
+}
 
 /* SousMenus des pages */
 .sousMenuPage { position: relative; top:35%; width: 99%; text-align: center; font-size: 1.2em; }
 .sousMenuIcon { box-shadow: 3px 3px 10px #777777; }
 .sousMenuIcon:active { box-shadow: none; }
 
+.miniSousMenu {
+    padding-top: 5px;
+}
 
 .Vseparator	  { height: 40px; width: 0px; border: 3px double; margin: 0px 15px;
 			    -moz-border-radius: 15px; -webkit-border-radius: 15px; border-radius: 15px; }

@@ -1,7 +1,7 @@
 <?php
 
-$install_path = dirname(__FILE__) . '/../';
-global $install_path;
+define("INSTALL_PATH", dirname(__FILE__) . '/../');
+// global INSTALL_PATH;
 
 $pathInc  = "../inc";
 $pathConf = "../config";

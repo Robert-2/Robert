@@ -1,12 +1,12 @@
 <?php
 session_start();
 require_once ('initInclude.php');
-require_once ('common.inc.php');		// OBLIGATOIRE pour les sessions, à placer TOUJOURS EN HAUT du code !!
+require_once ('global_config.php');		// OBLIGATOIRE pour les sessions, à placer TOUJOURS EN HAUT du code !!
 require_once ('checkConnect.php' );
 
 if ( $_SESSION["user"]->isAdmin() !== true ) { die("Vous n'avez pas accès à cette partie du Robert."); }
 
-$dumpPath = $install_path . FOLDER_CONFIG . 'dumpSQL/';
+$dumpPath = INSTALL_PATH . FOLDER_CONFIG . 'dumpSQL/';
 if (!is_dir($dumpPath))
 	mkdir($dumpPath);
 $codeAuthentik = md5('systemFlaskSQLbackup');
@@ -132,13 +132,13 @@ Impossible d'envoyer la requête du fichier en une fois comme pour la restaurati
 
 */
 function upgrade_SQL($version){
-	global $bdd; global $codeAuthentik; global $install_path;
-	$sqlFile = $install_path . FOLDER_CONFIG . '/BDD_default_to_5.7.sql';
-	
+	global $bdd; global $codeAuthentik;
+	$sqlFile = INSTALL_PATH . FOLDER_CONFIG . '/BDD_default_to_5.7.sql';
+
 	if (! file_exists($sqlFile)) {
 		echo 'FICHIER INTROUVABLE ! ';
 		$retour = false ;
-	}	
+	}
 								// Si le fichier existe
 	$SQLcontent = file_get_contents($sqlFile);
 	if (!preg_match("/-- $codeAuthentik/", $SQLcontent)) {			// Si le fichier contiens bien le hash MD5 créé lors d'une sauvegarde via le "Dump"
@@ -159,11 +159,11 @@ il y a une erreur de syntaxe détectée alors que la commande marche dans phpMyA
 
 /*	$q = $bdd->prepare($SQLcontent);
 	try {
-		$q->execute(); 
-		$retour = $SQLcontent; 
+		$q->execute();
+		$retour = $SQLcontent;
 	}
-	catch (Exception $e) { 
-		$retour = "erreur SQL : $e"; 
+	catch (Exception $e) {
+		$retour = "erreur SQL : $e";
 	}
 */
 
@@ -171,27 +171,27 @@ il y a une erreur de syntaxe détectée alors que la commande marche dans phpMyA
 	$requetes = explode(";", $SQLcontent);
 	$retour = "";
 
-	for ($i=0; $i < count($requetes)-1; $i++) { 
-		$bdd->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); 
+	for ($i=0; $i < count($requetes)-1; $i++) {
+		$bdd->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 		try {
-			$q = $bdd->prepare( trim($requetes[$i]) .";" );	
+			$q = $bdd->prepare( trim($requetes[$i]) .";" );
 		} catch (Exception $e) {
 			$retour .= "<p>Bloc $i : Erreur de préparation de la requête<br/>" . $e->getMessage();
-			continue; 
+			continue;
 		}
 
 		try {
-			$q->execute(); 
+			$q->execute();
 		}
-		catch (Exception $e) { 
+		catch (Exception $e) {
 			$retour .= "<p>Bloc $i : Erreur d'execution de la requête<br/>" . $e->getMessage();
-			continue; 
+			continue;
 		}
 		$retour .= "<p>Bloc $i ok <br/>";
 
 	}
 
-	echo $retour;	
+	echo $retour;
 }
 
 //////////////////////////////////////////////////////////////////////////////// TRAITEMENT DES ACTIONS VIA _POST
@@ -218,7 +218,7 @@ else {
 		elseif (isset($_POST['upgradeSQL'])) {			// ACTION upgradeSQL : compatible mode strict de MySQL 5.7 et redéfinit des configuration de colonnes de la base
 			upgrade_SQL($_POST['upgradeSQL']);
 		}
-		else 
+		else
 			echo 'aucune action sélectionnée...' ;
 	}
 	else echo 'accès interdit...' ;

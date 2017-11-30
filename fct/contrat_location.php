@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  *
     Le Robert est un logiciel libre; vous pouvez le redistribuer et/ou
@@ -19,13 +19,11 @@
 
 session_start();
 require_once ('initInclude.php');
-require_once ('common.inc.php');		// OBLIGATOIRE pour les sessions, à placer TOUJOURS EN HAUT du code !!
+require_once ('global_config.php');		// OBLIGATOIRE pour les sessions, à placer TOUJOURS EN HAUT du code !!
 require_once ('checkConnect.php' );
 
-global $install_path;
-
-$src = $install_path . FOLDER_CONFIG . 'default_contrat.txt';
-$dst = $install_path . FOLDER_CONFIG . 'contrat_location.txt'; 
+$src = INSTALL_PATH . FOLDER_CONFIG . 'default_contrat.txt';
+$dst = INSTALL_PATH . FOLDER_CONFIG . 'contrat_location.txt';
 
 if (!file_exists($dst)){
 	copy($src, $dst);
