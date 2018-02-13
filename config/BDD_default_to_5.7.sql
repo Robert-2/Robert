@@ -33,21 +33,21 @@ MODIFY dateAchat date NULL,
 MODIFY ownerExt varchar(256) NULL,
 MODIFY remarque text NULL;
 
-ALTER TABLE robert_matos_packs 
+ALTER TABLE robert_matos_packs
 MODIFY tarifLoc float NULL,
 MODIFY valRemp float NULL,
 MODIFY remarque text NULL,
 DROP KEY ref,
 ADD CONSTRAINT UNIQUE KEY ref (ref) ;
 
-ALTER TABLE robert_matos_sous_cat 
+ALTER TABLE robert_matos_sous_cat
 DROP KEY label,
 ADD CONSTRAINT UNIQUE KEY label (label);
 
 ALTER TABLE `robert_tekos` MODIFY birthDay VARCHAR(10) NULL;
 UPDATE `robert_tekos` SET birthDay = NULL WHERE `birthDay` = '0000-00-00';
 ALTER TABLE `robert_tekos` MODIFY birthDay DATE NULL;
-ALTER TABLE robert_tekos 
+ALTER TABLE robert_tekos
 MODIFY idUser smallint(3) NULL DEFAULT 0,
 MODIFY email varchar(128) NULL,
 MODIFY tel varchar(20) NULL,
@@ -56,7 +56,7 @@ MODIFY CS varchar(128) NULL,
 MODIFY birthDay date NULL,
 MODIFY birthPlace varchar(256) NULL,
 MODIFY habilitations varchar(256) NULL,
-MODIFY categorie varchar(128) NULL, 
+MODIFY categorie varchar(128) NULL,
 MODIFY SECU varchar(128) NULL,
 MODIFY SIRET varchar(128) NULL,
 MODIFY assedic varchar(64) NULL,
@@ -65,7 +65,7 @@ MODIFY adresse varchar(64) NULL,
 MODIFY cp varchar(64) NULL,
 MODIFY ville varchar(64) NULL;
 
-ALTER TABLE robert_users 
+ALTER TABLE robert_users
 MODIFY date_last_action int(10) NULL,
 MODIFY date_last_connexion int(10) NULL,
 MODIFY theme varchar(32) NULL,
