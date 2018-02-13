@@ -110,7 +110,7 @@ CREATE TABLE `robert_matos_packs` (
   `externe` tinyint(1) NOT NULL,
   `tarifLoc` float NULL,
   `valRemp` float NULL,
-  `detail` varchar(256) NOT NULL,
+  `detail` text NULL,
   `remarque` text NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ref` (`ref`)
@@ -268,5 +268,3 @@ CREATE TABLE `robert_users` (
 
 INSERT INTO `robert_users` VALUES
 ('1','root@robertmanager.org','8351aaf8480d8135bc77af590c93c1e2','DEBUGGER','Root','9','1325615980','1356632988','1356620371','human','0');
-
-
