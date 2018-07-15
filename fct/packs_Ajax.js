@@ -1,7 +1,7 @@
 
 
 $(document).ready(function() {
-	
+
 	// Filtrage de la liste du matos par catégories et Switch vue du matos interne / externe
 	if (filtreRunning == false) {			// Pour ne le lancer qu'une seule fois !
 		$('.filtre').click(function() {
@@ -48,16 +48,16 @@ $(document).ready(function() {
 			$(this).addClass('ui-state-error');
 		}
 	});
-	
-	
+
+
 	// montre les détails d'un pack en dessous
 	$('.showPDtr').click(function() {
 		$('.pDetail').hide();
 		var idPack = $(this).attr('id');
 		$('#packDetailTR-'+idPack).toggle();
 	});
-	
-	
+
+
 	// Sélection d'un pack
 	$('.selectPack').click(function() {
 		var idSel  = $(this).attr('id');
@@ -71,8 +71,8 @@ $(document).ready(function() {
 		$(this).parents('tr').addClass('ui-state-highlight');
 		AjaxJson(AjaxStr, 'packs_actions', displaySelPack);
 	});
-	
-	
+
+
 	// Suppression d'un pack
 	$('.deletePack').click(function () {
 		var id = $(this).attr('id');
@@ -81,8 +81,8 @@ $(document).ready(function() {
 		if (confirm('Supprimer le pack "'+nom+'" ? Sûr ??'))
 			AjaxFct(AjaxStr, 'packs_actions', false, 'retourAjax', 'matos_list_packs');
 	});
-	
-	
+
+
 	// modification d'un matos
 	$('#modifieurPage').on('click', '.modif', function () {
 		var idPack		= $('#modPackId').val();
@@ -95,7 +95,7 @@ $(document).ready(function() {
 		var listMatos	= JSON.stringify(listDetailPack);
 		var externe		= 0;
 		if ($('#modPackExterne').attr('checked')) externe	= 1 ;
-		
+
 		if (label == '' || ref == '' || categ == '') {
 			alert('Il manque le nom, la référence ou la catégorie !');
 			return;
@@ -106,8 +106,8 @@ $(document).ready(function() {
 						+"&externe="+externe+"&remarque="+remarque+'&detail='+listMatos ;
 		AjaxFct(AjaxStr, 'packs_actions', false, 'retourAjax', 'matos_list_packs');
 	});
-	
-	
+
+
 	// Ajout d'un pack (bouton save)
 	$("#addPack").click(function () {
 		var label		= encodeURIComponent($('#newPackLabel').val()) ;
@@ -118,7 +118,7 @@ $(document).ready(function() {
 		var listMatos	= JSON.stringify(listDetailPack);
 		var externe		= 0;
 		if ($('#newPackExterne').attr('checked')) externe	= 1 ;
-		
+
 		if (label == '' || ref == '' || categ == '') {
 			alert('Vous devez remplir tous les champs marqués d\'une étoile !');
 			return;
@@ -128,8 +128,8 @@ $(document).ready(function() {
 					 +'&externe='+externe+'&remarque='+remarque+'&detail='+listMatos ;
 		AjaxFct(AjaxStr, 'packs_actions', false, 'retourAjax', 'matos_list_packs');
 	});
-	
-	
+
+
 	// Ouverture de la fenêtre d'ajout de matos au pack
 	$('#addDetail').click(function () {
 		if ( $('#newPackExterne:checked').length > 0 ) $('#int-ext[class*="filtreD"]').click();
@@ -140,8 +140,8 @@ $(document).ready(function() {
 			title: 'Ajout de détail dans le pack'
 		});
 	});
-	
-	
+
+
 	// Ajout de matos dans le pack
 	$('.addMatosToPack').click(function() {
 		var idMatos  = $(this).attr('id');
@@ -151,7 +151,7 @@ $(document).ready(function() {
 		else qte++;
 		addMatosToPack (idMatos, refMatos, qte);
 	});
-	
+
 	$('.decMatosToPack').click(function() {
 		var idMatos  = $(this).attr('id');
 		var refMatos = $(this).attr('ref');
@@ -162,15 +162,15 @@ $(document).ready(function() {
 			else addMatosToPack (idMatos, refMatos, qte);
 		}
 	});
-	
-	
-	
+
+
+
 	// enlever un matos de la sélection lors d'ajout dans un pack
 	$('.packContent').on('click', '.deleteMatosFromPack', function() {
 		var idMatos = $(this).parent().attr('idMatos');
 		deleteMatosFromPack(idMatos);
 	});
-	
+
 	// corriger la quantité de matos à ajouter au pack
 	$('.packContent').on('change', '.qteMatosCorrection', function() {
 		var idMatos = $(this).parent().attr('idMatos');
@@ -180,8 +180,8 @@ $(document).ready(function() {
 		listDetailPack[idMatos] = qte;
 		if (qte == 0) deleteMatosFromPack (idMatos);
 	});
-	
-	
+
+
 	// Affichage du contenu du pack pour la modif
 	$('#showPackContent').click(function(){
 		$('.matosLine').show();
@@ -194,7 +194,7 @@ $(document).ready(function() {
 			title: 'Modification du contenu du pack "'+ref+'"'
 		});
 	});
-	
+
 });
 
 
@@ -234,14 +234,14 @@ function displaySelPack (data) {
 	$('#modPackLabel').val(data.label);
 //	$('#modPackQteTot').html(qtePack);
 	$('#modPackQteTot').html(data.Qtotale);
-	$('#modPackTarif').html(data.tarifLoc+' €');
+	$('#modPackTarif').html('CHF ' + data.tarifLoc);
 //	$('#modPackValRemp').val(data.valRemp);
 	$('#modPackCateg').val(data.categorie);
 	$('#modPackRem').val(data.remarque);
 	if (data.externe == '1')
 		 $('#modPackExterne').attr('checked', 'checked');
 	else $('#modPackExterne').removeAttr('checked');
-	
+
 	var detailPack = $.parseJSON(data.detail);
 	$('.inputQteAdd').val('');
 	$.each(detailPack, function(idMatos, qte) {

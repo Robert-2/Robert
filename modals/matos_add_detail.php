@@ -64,11 +64,11 @@ $liste_ssCat = $lm->getListe(TABLE_MATOS_CATEG);
 	</div>
 	<div class="inline top center pad3" style="width: 120px;">
 		<div class="ui-widget-header ui-corner-all">Tarif loc. : <b class="red">*</b></div>
-		<input class="NumericInput" type="text" id="newMatosTarifLoc" size="6" /> €
+		CHF <input class="NumericInput" type="text" id="newMatosTarifLoc" size="6" />
 	</div>
 	<div class="inline top center pad3" style="width: 130px;">
 		<div class="ui-widget-header ui-corner-all">Val. Remp. : <b class="red">*</b></div>
-		<input class="NumericInput" type="text" id="newMatosValRemp" size="8" /> €
+		CHF <input class="NumericInput" type="text" id="newMatosValRemp" size="8" />
 	</div>
 	<div class="inline top center pad3" style="width: 120px;">
 		<div class="ui-widget-header ui-corner-all">Qté Parc : <b class="red">*</b></div>

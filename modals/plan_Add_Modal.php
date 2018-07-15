@@ -88,7 +88,7 @@ $varsBenefs = substr($varsBenefs,0,strlen($varsBenefs)-1 ) ;
 	<table class="petit" style="width:99%;">
 			<TH class="ui-corner-all"> Choix des techniciens - filtre : <select id="selectTekosCateg"><option>Tout</option>
 						<?php foreach ( $catTekos as $k) echo "<option>$k</option>"; ?></select></TH>
-						
+
 			<TH class="ui-corner-all">
 				Choix du matos - filtre :
 				<select id="selectMatosCateg"><option>Tout</option><?php foreach ( $catMatos as $k) echo "<option>$k</option>"; ?></select>
@@ -102,7 +102,7 @@ $varsBenefs = substr($varsBenefs,0,strlen($varsBenefs)-1 ) ;
 								$id =  $v['id'];
 								$sur = $v['surnom'];
 								$categTek = $v['categorie'];
-								
+
 								echo "<li id='tek-$id' class='ui-state-default tekosPik doigt'>
 											<div class='inline mid tek_categ'><img src='gfx/icones/categ-$categTek.png' alt='$categTek' /></div>
 											<div class='inline mid tiers tek_name' id='$id'>$sur</div>
@@ -123,7 +123,7 @@ $varsBenefs = substr($varsBenefs,0,strlen($varsBenefs)-1 ) ;
 								$panne      = $v['panne'];
 								$pu         = $v['tarifLoc'];
 
-								 $qte  -= $panne ; 
+								 $qte  -= $panne ;
 								( $panne > 0 )? $affichPanne = "<span class='mini red'>(+ $panne en panne)</span>" : $affichPanne = '';
 
 								echo "<div id='matos-$id' class='ui-state-default matosPik'>
@@ -138,18 +138,18 @@ $varsBenefs = substr($varsBenefs,0,strlen($varsBenefs)-1 ) ;
 												</div>
 												<div class='inline mid qtePik bordFin bordSection' id='$id'><input type='text' class='qtePikInput hide' size='2' value='1' /></div>
 												<div class='inline mid toggleMatos'><a class='bouton plus' href='#'>+</a></div>
-												
+
 											</div>
-											
+
 											<div class='inline mid quart'>
 												<div class='inline mid'><span> X </span>     <span class='matos_PU'   >$pu</span></div>
-												<div class='inline mid'><span> = </span><span class='matos_PRICE'> </span> €</div>
+												<div class='inline mid'><span> = </span>CHF <span class='matos_PRICE'> </span></div>
 											</div>
 										</div>";
 							}
 						?>
 					</div>
-					
+
 					<div class="mini" id="PacksHolder">
 						<?php
 							foreach ( $listePacks as $k => $v ){
@@ -158,9 +158,9 @@ $varsBenefs = substr($varsBenefs,0,strlen($varsBenefs)-1 ) ;
 								$categPack  = $v['categorie'] ;
 								$qte        = $v['Qtotale'];
 								$detail		= json_decode($v['detail'], true);
-								
+
 								echo "<div id='pack-$id' class='ui-state-default packPik'>
-											<div class='inline mid pack_categ'><img src='gfx/icones/categ-$categPack.png' alt='$categPack' /></div>								
+											<div class='inline mid pack_categ'><img src='gfx/icones/categ-$categPack.png' alt='$categPack' /></div>
 											<div class='inline mid quart pack_name'>$label</div>
 											<div class='inline mid quart packDispo mini'>
 												<div class='inline mid qteDispo'>
@@ -168,7 +168,7 @@ $varsBenefs = substr($varsBenefs,0,strlen($varsBenefs)-1 ) ;
 													<span class='qteDispo_QTE'></span>
 													<span class='qteDispo_MAX hide'></span>
 												</div>
-												
+
 												<div class='inline mid qtePik bordFin bordSection' id='$id'></div>
 												<div class='inline togglePack'>
 													<button class='bouton pack_plus' id='plus' href='#'>+</button>
@@ -200,4 +200,3 @@ $varsBenefs = substr($varsBenefs,0,strlen($varsBenefs)-1 ) ;
 
 
 <div id="debugAjax" class="addSection ui-state-error pad10 hide"></div>
-

@@ -1,3 +1,6 @@
+### CHF
+- Utilise la devise "__CHF__" plutôt que les Euros dans le code source.
+
 ### 0.6.0 (2017-11-30)
 - Nettoie et remanie un peu le code
 - Renomme le fichier `common.inc.php` en `user_config.php`

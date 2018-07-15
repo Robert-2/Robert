@@ -581,7 +581,7 @@ class PDF_Devisfacture extends FPDF {
 						$this->Cell( 16.5,4, $params["remise_percent"]."%", '', '', 'C' );	// Affiche le % de la remise
 						$this->SetXY( 78, $y+4 );
 						$this->SetFont('Arial','',6);
-						$this->Cell( 16.5,4, '(soit -'.$l_remise.' EUR)', '', '', 'C' );	// Affiche le montant de la remise
+						$this->Cell( 16.5,4, '(soit CHF -'.$l_remise.')', '', '', 'C' );	// Affiche le montant de la remise
 					}
 					else
 						$this->Cell( 16.5,4, "Sans remise", '', '', 'R' );

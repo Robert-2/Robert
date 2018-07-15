@@ -339,7 +339,7 @@ catch( Exception $e) {
 													  Jours travaillés : <input size="2" class="decla nbJourTaf"   type="text" value="'.$listeTeks[$tek]['nbJoursTaf'].'"/>
 													   hrs/jour : <input size="2" class="decla nbHeureTaf"  type="text" value="8" /></div>
 													  Cout Journalier : <input size="2" class="decla nbBrouzJour" type="text" value="160" />
-													  TOTAL : <div class="nbBrouzGlobal gras inline rightText" style="width:35px;">'.($listeTeks[$tek]['nbJoursTaf'] * 160).'</div> € '.$entrepriseNote.'
+													  TOTAL : CHF <div class="nbBrouzGlobal gras inline rightText" style="width:35px;">'.($listeTeks[$tek]['nbJoursTaf'] * 160).'</div> '.$entrepriseNote.'
 											</div>';
 							$defaultTotalDecla += $listeTeks[$tek]['nbJoursTaf'] * 160;
 							$listeTeks[$tek]['print_decla'] = true ;
@@ -352,7 +352,7 @@ catch( Exception $e) {
 			<div class='micro marge30l'><i><span class="enorme red">*</span> Auto-entrepreneur, fournira une facture séparée.</i></div>
 			<div class="tekName padH5 marge30r rightText enorme">
 				<i class="nano">Somme déduite de la facture globale TTC initialement prévue : </i>
-				TOTAL : <span class='totalDecla'><?php echo number_format($defaultTotalDecla, 2, '.', ''); ?></span> €
+				TOTAL : CHF <span class='totalDecla'><?php echo number_format($defaultTotalDecla, 2, '.', ''); ?></span>
 			</div>
 		</div>
 

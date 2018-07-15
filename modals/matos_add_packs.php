@@ -12,17 +12,17 @@ require_once ('checkConnect.php' );
 <script>
 	$(function() {
 		$('.bouton').button();
-		
+
 		// highlight des mini sous-menus
 		$('.packsMiniSsMenu').addClass('ui-state-highlight');
 		$('.miniSmenuBtn').removeClass('ui-state-highlight');
 		$('#matos_add_packs').addClass('ui-state-highlight');
 		$('.packsMiniSsMenu').next().children().show(300);
-		
+
 		// on cache le bouton de recherche et les filtres (pas besoin ici)
 		$('#chercheDiv').hide(300);
 		$('#filtresDiv').hide(300);
-		
+
 	});
 </script>
 
@@ -67,13 +67,6 @@ require_once ('checkConnect.php' );
 		<div class="ui-widget-header ui-corner-all margeTop5">Externe ?</div>
 		<input type="checkbox" id="newPackExterne" />
 	</div>
-<!--	<div class="inline top center pad3" style="width: 180px;">
-		<div class="ui-widget-header ui-corner-all">Tarif loc. : <b class="red">*</b></div>
-		<input class="NumericInput" type="text" id="newPackTarifLoc" size="6" /> €
-		<br />
-		<div class="ui-widget-header ui-corner-all margeTop5">Val. Remp. : <b class="red">*</b></div>
-		<input class="NumericInput" type="text" id="newPackValRemp" size="8" /> €
-	</div>-->
 	<div class="inline top center pad3" style="width: 600px;">
 		<div class="ui-widget-header ui-corner-all">Remarque :</div>
 		<textarea id="newPackRemark" cols="60" rows="4"></textarea>
@@ -90,4 +83,3 @@ require_once ('checkConnect.php' );
 <div class="petit hide" id="Dialog">
 	<?php include('pack_add_detail.php'); ?>
 </div>
-

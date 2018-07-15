@@ -26,13 +26,13 @@ else $liste_packs = $l->getListe(TABLE_PACKS, '*', 'ref');
 	$(function() {
 		$('.bouton').button();
 		initToolTip('.tableListe', -120);
-		
+
 		// highlight des mini sous-menus
 		$('.packsMiniSsMenu').addClass('ui-state-highlight');
 		$('.miniSmenuBtn').removeClass('ui-state-highlight');
 		$('#matos_list_packs').addClass('ui-state-highlight');
 		$('.packsMiniSsMenu').next().children().show(300);
-		
+
 		// init du system de recherche
 		$('.chercheBtn').attr('id', 'matos_list_packs');	// ajoute le nom du fichier actuel (en id du bouton) pour la recherche
 		$('#filtreCherche').html(							// Ajout des options de filtrage pour la recherche
@@ -44,7 +44,7 @@ else $liste_packs = $l->getListe(TABLE_PACKS, '*', 'ref');
 		$('#filtresDiv').show(300);							// affiche le module des filtres
 		$('#polyvalent').show();							// montre le filtre 'polyvalent' (si on viens du matos détail qui le cache)
 		$('.filtre').removeClass('ui-state-error');
-		
+
 		$(".inputCal2").datepicker({dateFormat: 'yy-mm-dd', firstDay: 1, changeMonth: true, changeYear: true});
 	});
 </script>
@@ -61,7 +61,7 @@ else $liste_packs = $l->getListe(TABLE_PACKS, '*', 'ref');
 			<th>Tarif loc.</th>
 			<th>Qté possible en Parc</th>
 		</tr>
-		
+
 		<?php
 		if (is_array($liste_packs)) {
 			foreach ($liste_packs as $info) {
@@ -69,7 +69,7 @@ else $liste_packs = $l->getListe(TABLE_PACKS, '*', 'ref');
 					$boutonsModo = '<button class="bouton selectPack" id="'.$info['id'].'" nom="'.$info['ref'].'" title="modifier"><span class="ui-icon ui-icon-pencil"></span></button>
 									<button class="bouton deletePack" id="'.$info['id'].'" nom="'.$info['ref'].'" title="supprimer"><span class="ui-icon ui-icon-trash"></span></button>';
 				} else $boutonsModo = '';
-				
+
 				$popupExterne = '';
 				$hideExterne = 'matosInterne';
 				if ($info['externe'] == '1') {
@@ -78,18 +78,18 @@ else $liste_packs = $l->getListe(TABLE_PACKS, '*', 'ref');
 					if (@$modeRecherche != true) $hideExterne .= 'hide';
 					else $hideExterne .= 'ui-state-active';
 				}
-				
+
 				$pack = new Pack ('id', $info['id']);
 				$qteTotale = $pack->getPackInfos('Qtotale');
 				($qteTotale < 1) ? $classQteOK = 'ui-state-error' : $classQteOK = '';
 				($qteTotale > 1) ? $pluriel = 's' : $pluriel = '';
 				$tarifLoc = number_format($pack->getTarifPack(), 2);
-				
+
 				echo '<tr class="ui-state-default matosLine '.$classQteOK.' '.$hideExterne.' cat-'.$info['categorie'].'">
 						<td>'.$info['ref'].'</td>
 						<td popup="'.addslashes($info['remarque']).'">'.$info['label'].'</td>
 						<td><img src="./gfx/icones/categ-'.$info['categorie'].'.png" alt="'.$info['categorie'].'" /></td>
-						<td>'.$tarifLoc.' &euro;</td>
+						<td>CHF '.$tarifLoc.'</td>
 						<td id="qtePack-'.$info['id'].'" '.$popupExterne.'>'.$qteTotale.' pack'.$pluriel.'</td>
 						<td class="rightText">
 							<button class="bouton showPDtr" id="'.$info['id'].'" title="Afficher le détail du pack"><span class="ui-icon ui-icon-search"></span></button>
@@ -112,7 +112,7 @@ else $liste_packs = $l->getListe(TABLE_PACKS, '*', 'ref');
 						}
 						($qteNeed > $qteParc) ? $ok = 'insufisant !' : $ok = 'OK.';
 						($qteNeed > $qteParc) ? $classOk = 'ui-state-error' : $classOk = '';
-						echo "<div class='inline padV10 $classOk' style='width:20%;'>$qteNeed x $refM <i class='mini'>($ssTarifLoc €)</i></div><div class='inline padV10 $classOk'>$qteParc $ou, $ok</div><br />";
+						echo "<div class='inline padV10 $classOk' style='width:20%;'>$qteNeed x $refM <i class='mini'>(CHF $ssTarifLoc)</i></div><div class='inline padV10 $classOk'>$qteParc $ou, $ok</div><br />";
 					}
 					echo '<br /></td>
 					</tr>';

@@ -150,7 +150,7 @@ class SortiePDF {
 
 		$this->contratTXT .= "\n\nPour tout renseignement complémentaire, n'hésitez pas à nous contacter.\n\n
 																		Signature, précédée de la mention \"bon pour accord\" :";
-															
+
 		$pdf = new PDF_Devisfacture( 'P', 'mm', 'A4' );
 		$pdf->AddPage();
 		$pdf->SetMargins(5, 5, 5);
@@ -230,7 +230,7 @@ class SortiePDF {
 	/// AFFICHAGE DU CONTRAT
 		$pdf->SetXY( 10, 174 );
 		$pdf->SetFont('Arial', '', 10);
-		$this->contratTXT = strtr($this->contratTXT, '€', 'EUR');
+		$this->contratTXT = strtr($this->contratTXT, 'CHF', 'CHF');
 		$pdf->MultiCell(0, 4, $this->contratTXT);
 
 
