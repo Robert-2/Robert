@@ -219,7 +219,6 @@ class SortiePDF {
     /// AFFICHAGE DU CONTRAT
         $pdf->SetXY( 10, 174 );
         $pdf->SetFont('Arial', '', 10);
-        $this->contratTXT = strtr($this->contratTXT, '€', 'EUR');
         $pdf->MultiCell(0, 4, $this->contratTXT);
 
     /// Tableau du détail du matériel

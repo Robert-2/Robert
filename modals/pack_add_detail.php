@@ -27,9 +27,9 @@ else $liste_matos = $l->getListe(TABLE_MATOS, '*', 'label');
 		<button class="bouton filtreD" id="lumiere" title="voir le matos LUMIERE"><img src="./gfx/icones/categ-lumiere.png" alt="LUMIERE" width="30" /></button>
 		<button class="bouton filtreD" id="structure" title="voir le matos STRUCTURE"><img src="./gfx/icones/categ-structure.png" alt="STRUCTURE" width="30" /></button>
 		<button class="bouton filtreD" id="transport" title="voir le matos TRANSPORT"><img src="./gfx/icones/categ-transport.png" alt="TRANSPORT" width="30" /></button>
-		
+
 		<div class="inline top Vseparator bordSection"></div>
-		
+
 		<button class="bouton filtreD" id="int-ext" title="ne voir que le matos EXTERNE au Parc"><img src="./gfx/icones/matosExterne.png" alt="INT/EXT" width="30"></button>
 	</div>
 	<br />
@@ -43,22 +43,22 @@ else $liste_matos = $l->getListe(TABLE_MATOS, '*', 'label');
 			<th>J'en veux</th>
 			<th>Ajouter</th>
 		</tr>
-		
+
 		<?php
 		if (is_array($liste_matos)) {
 			foreach ($liste_matos as $info) {
-				
+
 				$externeClass = ''; $externeTxt = '';
 				if ($info['externe'] == '1') {
 					$externeClass = 'ui-state-active';
 					$externeTxt = ' (ext)';
 				}
-				
+
 				echo '<tr class="ui-state-default matosLine matosInterne '.$externeClass.' cat-'.$info['categorie'].'">
 						<td>'.$info['ref'].'</td>
 						<td>'.$info['label'].'</td>
 						<td><img src="./gfx/icones/categ-'.$info['categorie'].'.png" alt="'.$info['categorie'].'" /></td>
-						<td>'.$info['tarifLoc'].' &euro;</td>
+						<td>CHF '.$info['tarifLoc'].'</td>
 						<td>'.$info['Qtotale'].$externeTxt.'</td>
 						<td><input type="text" class="inputQteAdd" id="qteAdd-'.$info['id'].'" size="3" /></td>
 						<td class="rightText" style="width:100px;">

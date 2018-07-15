@@ -342,7 +342,7 @@ $titrePageBar = NOM_BOITE . " - Fiche : " . $retour['titre'];
                                                   Jours travaillés : <input size="2" class="decla nbJourTaf"   type="text" value="'.$listeTeks[$tek]['nbJoursTaf'].'"/>
                                                    hrs/jour : <input size="2" class="decla nbHeureTaf"  type="text" value="8" /></div>
                                                   Cout Journalier : <input size="2" class="decla nbBrouzJour" type="text" value="160" />
-                                                  TOTAL : <div class="nbBrouzGlobal gras inline rightText" style="width:35px;">'.($listeTeks[$tek]['nbJoursTaf'] * 160).'</div> € '.$entrepriseNote.'
+                                                  TOTAL : <div class="nbBrouzGlobal gras inline rightText" style="width:35px;">CHF '.($listeTeks[$tek]['nbJoursTaf'] * 160).'</div> '.$entrepriseNote.'
                                         </div>';
                         $defaultTotalDecla += $listeTeks[$tek]['nbJoursTaf'] * 160;
                         $listeTeks[$tek]['print_decla'] = true ;
@@ -356,7 +356,7 @@ $titrePageBar = NOM_BOITE . " - Fiche : " . $retour['titre'];
             </div>
             <div class="tekName padH5 marge30r rightText enorme">
                 <i class="nano">Somme déduite de la facture globale TTC initialement prévue :</i>
-                TOTAL : <span class='totalDecla'><?= number_format($defaultTotalDecla, 2, '.', ''); ?></span> €
+                TOTAL : <span class='totalDecla'>CHF <?= number_format($defaultTotalDecla, 2, '.', ''); ?></span>
             </div>
         </div>
         <p></p>

@@ -101,8 +101,8 @@ $liste_ssCat = $lm->getListe(TABLE_MATOS_CATEG, '*', 'ordre', 'ASC');
 							<td>'.$info['ref'].'</td>
 							<td popup="'.$remark.'">'.$info['label'].'</td>
 							<td><img src="./gfx/icones/categ-'.$info['categorie'].'.png" alt="'.$info['categorie'].'" /></td>
-							<td>'.$info['tarifLoc'].' &euro;</td>
-							<td>'.$info['valRemp'].' &euro;</td>
+							<td>CHF '.$info['tarifLoc'].'</td>
+							<td>CHF '.$info['valRemp'].'</td>
 							<td'.$popupExterne.'>'.$info['Qtotale'].'</td>
 							<td class="'.$popupPanne.'">'.$qteDispo.'</td>
 							<td class="rightText printHide">
@@ -154,11 +154,11 @@ $liste_ssCat = $lm->getListe(TABLE_MATOS_CATEG, '*', 'ordre', 'ASC');
 		</div>
 		<div class="inline top center pad3" style="width: 105px;">
 			<div class="ui-widget-header ui-corner-all">Tarif loc.</div>
-			<input class="NumericInput" type="text" id="modMatosTarif" size="5" /> €
+			CHF <input class="NumericInput" type="text" id="modMatosTarif" size="5" />
 		</div>
 		<div class="inline top center pad3" style="width: 105px;">
 			<div class="ui-widget-header ui-corner-all">Val. Remp.</div>
-			<input class="NumericInput" type="text" id="modMatosValRemp" size="6" /> €
+			CHF <input class="NumericInput" type="text" id="modMatosValRemp" size="6" />
 		</div>
 		<div class="inline top center pad3" style="width: 90px;">
 			<div class="ui-widget-header ui-corner-all">Qté Parc</div>

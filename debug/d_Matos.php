@@ -72,10 +72,10 @@ $liste_packs = $l->getListe(TABLE_PACKS);
 	</div>
 	<div class="inline top" style="width: 220px;">
 		<div class="ui-widget-header ui-corner-all">Tarif location : <b class="red">*</b></div>
-		<input type="text" id="newMatosTarifLoc" size="10" /> €
+		CHF <input type="text" id="newMatosTarifLoc" size="10" />
 		<br />
 		<div class="ui-widget-header ui-corner-all">Valeur remplacement : <b class="red">*</b></div>
-		<input type="text" id="newMatosValRemp" size="10" /> €
+		CHF <input type="text" id="newMatosValRemp" size="10" />
 		<br />
 		<div class="ui-widget-header ui-corner-all">Externe au parc :</div>
 		<input type="checkbox" id="newMatosExterne" />

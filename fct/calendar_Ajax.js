@@ -503,7 +503,7 @@ function montreDetailsPlan (datas) {
 							+	'<u>'+titreSsCat+'</u>';
 			$.each(matosSsCat, function(id, info) {
 				detailMatosStr += '<div class="marge30l">'
-									+'<span style="float:right">'+info.prix.toFixed(2)+' €</span>'
+									+'<span style="float:right">CHF '+info.prix.toFixed(2)+'</span>'
 									+ info.qte+' x <b>'+info.ref+'</b>';
 				if (info.ext == 1) detailMatosStr += '<br /><i class="mini">(chez '+info.extOwn+')</i>';
 				detailMatosStr += '</div>';
@@ -531,29 +531,29 @@ function montreDetailsPlan (datas) {
 
 		dialogContent += '<b>TOTAL : </b>'
 						+'<span class="mini ui-state-disabled">'+datas.nbSousPlans+' jour(s), coef <b>'+coef(datas.nbSousPlans)+'</b></span><br />'
-						+'<div class="rightText gros">H.T. : <span class="gras" id="totalHTplan">'+totalHT.toFixed(2)+'</span><b> €</b></div>'
-						+'<div class="hide">RemisableHT : <span id="totalRemisablePlan">'+totalRemisableHT.toFixed(2)+'</span> €</div>'
-						+'<div class="rightText gros">T.T.C. : <span class="gras" id="totalTTCplan">'+totalTTC.toFixed(2) +'</span><b> €</b></div>'
-						+'<div class="rightText petit">Remisable : <span id="totalRemisablePlanTTC">'+totalRemisableTTC.toFixed(2)+'</span> €</div>'
+						+'<div class="rightText gros">H.T. : <span class="gras" id="totalHTplan">CHF '+totalHT.toFixed(2)+'</span></div>'
+						+'<div class="hide">RemisableHT : <span id="totalRemisablePlan">CHF '+totalRemisableHT.toFixed(2)+'</span></div>'
+						+'<div class="rightText gros">T.T.C. : <span class="gras" id="totalTTCplan">CHF '+totalTTC.toFixed(2) +'</span><b></b></div>'
+						+'<div class="rightText petit">Remisable : <span id="totalRemisablePlanTTC">CHF '+totalRemisableTTC.toFixed(2)+'</span></div>'
 						+'<div class="hide"><span id="totalNonRemisablePlan">'+totalNonRemisable+'</span></div>'
 						+'<div class="leftText micro">'
 							+'<b>Remise</b> sur total sans transport ni matos ext,<br />pour le devis ou la facture PDF :'
 						+'</div><div class="rightText mini">'
 							+'<input type="text" id="remisePercent" size="4" value="0" /> <b class="gros">%</b>, '
-							+'donc <input type="text" id="remiseMontant" size="5" value="'+totalTTC.toFixed(2)+'" /> <b class="gros">€</b>'
+							+'donc <b class="gros">CHF</b> <input type="text" id="remiseMontant" size="5" value="'+totalTTC.toFixed(2)+'" />'
 						+'</div>'
 						+'<div class="rightText enorme">'
-							+'<span class="mini"><b>TOTAL T.T.C.</b> : </span><span class="gros gras" id="totalAPremise">'+totalTTC.toFixed(2)+'</span><b> €</b>'
+							+'<span class="mini"><b>TOTAL T.T.C.</b> : </span><b>CHF </b><span class="gros gras" id="totalAPremise">'+totalTTC.toFixed(2)+'</span>'
 						+'</div>'
 						+'<div class="rightText petit marge15bot">'
-							+'<span class="red" id="salairesTxt">Montant des salaires : </span><input type="text" class="NumericInput" size="5" onKeyUp="checkSalaires()" id="totalSalaires" /> €'
+							+'<span class="red" id="salairesTxt">Montant des salaires : </span> CHF<input type="text" class="NumericInput" size="5" onKeyUp="checkSalaires()" id="totalSalaires" />'
 						+'</div>';
 
 		dialogContent += '<b>SOUS TOTAUX :</b>';
-		if (ssTotalSon != 0) dialogContent += '<div class="rightText">SON : '+ssTotalSon.toFixed(2)+' €</div>';
-		if (ssTotalLight != 0) dialogContent += '<div class="rightText">LUMIÈRE : '+ssTotalLight.toFixed(2)+' €</div>';
-		if (ssTotalStruct != 0) dialogContent += '<div class="rightText">STRUCTURE : '+ssTotalStruct.toFixed(2)+' €</div>';
-		if (ssTotalTransp != 0) dialogContent += '<div class="rightText">TRANSPORT : '+ssTotalTransp.toFixed(2)+' €</div>'
+		if (ssTotalSon != 0) dialogContent += '<div class="rightText">SON : CHF '+ssTotalSon.toFixed(2)+'</div>';
+		if (ssTotalLight != 0) dialogContent += '<div class="rightText">LUMIÈRE : CHF '+ssTotalLight.toFixed(2)+'</div>';
+		if (ssTotalStruct != 0) dialogContent += '<div class="rightText">STRUCTURE : CHF '+ssTotalStruct.toFixed(2)+'</div>';
+		if (ssTotalTransp != 0) dialogContent += '<div class="rightText">TRANSPORT : CHF '+ssTotalTransp.toFixed(2)+'</div>'
 
 		dialogContent += detailMatosStr;
 	}
@@ -822,7 +822,7 @@ function listPlanFiles (retour, idPlan, type) {
 									+'</div>'
 									+'<div class="inline top ui-state-highlight ui-corner-all pad3 mini" style="margin-top:2px;">'
 										+'<a href="fct/downloader.php?dir=PlanDevis&planID='+idPlan+'&file='+encodeURIComponent(fileName)+'" title="CLIC pour télécharger">'
-											+'<b>'+fileName+'</b>'+' <i class="petit">('+totalD+' €)</i>'
+											+'<b>'+fileName+'</b>'+' <i class="petit">(CHF '+totalD+')</i>'
 										+'</a>'
 									+'</div>'
 									+'<div style="clear: both; margin-bottom: 2px;"></div>');

@@ -50,7 +50,7 @@ $p->setDateEnd( $je, $me, $ae);
 
 $i = 0;
 while ( $sp = $p->whileTestSousPlan() ) {
-	$tmpDate = $p->getSousPlanDate(); 
+	$tmpDate = $p->getSousPlanDate();
 	$sousPlans[$i]['jour'] = datefr( date("l j F Y", $p->getSousPlanDate()) ) ;
 	$sousPlans[$i]['time'] = $p->getSousPlanDate() ;
 	$sousPlans[$i]['rem']  = $p->getSousPlanComment() ;
@@ -109,7 +109,7 @@ require_once ('infos_boite.php');
 					<span class="ui-icon ui-icon-plus">+</span>
 				</div>
 				<div class="tekosSPlist">'.$spInfo['teks'].'</div><br />
-				
+
 				<textarea class="modifSPrem" id="'.$spInfo['time'].'" rows="5" cols="25" title="remarque pour le '.$spInfo['jour'].'">'.$spInfo['rem'].'</textarea>
 			</div>';
 	}
@@ -133,10 +133,10 @@ require_once ('infos_boite.php');
 		if (!isset($SsTotalCateg[$categ])) $SsTotalCateg[$categ] = 0;
 		$SsTotalCateg[$categ] += $SsTotalMatos[$matId];
 		$totalJour += $SsTotalMatos[$matId];
-		
-		$matosListByCateg[$categ][] = $matQte . ' x ' . $matosById[$matId]['ref'] . ' <span class="mini">('.$SsTotalMatos[$matId].' €)</span><br />';
+
+		$matosListByCateg[$categ][] = $matQte . ' x ' . $matosById[$matId]['ref'] . ' <span class="mini">(CHF '.$SsTotalMatos[$matId].')</span><br />';
 	}
-	
+
 	$totalFinal = $totalJour * $nbJours / coef($nbJours);
 	foreach ($matosListByCateg as $categ => $listM) {
 		echo '<div class="inline top ui-corner-all shadowIn marge10l pad10 leftText" style="width:21%;">
@@ -155,16 +155,16 @@ require_once ('infos_boite.php');
 	<div class="inline top tiers">
 		<?php
 		foreach ($SsTotalCateg as $cat => $ssTc) {
-			echo 'total '.strtoupper($cat).' = <b>'.$ssTc.' €</b><br />';
+			echo 'total '.strtoupper($cat).' = <b>CHF '.$ssTc.'</b><br />';
 		}
 		?>
 	</div>
 	<div class="inline top tiers gros leftText">
-		Pour <?php echo $nbJours; ?> jours : <?php echo number_format($totalJour * $nbJours, 2); ?> €, <b>coef <?php echo coef($nbJours); ?></b><br />
-		<i class="micro">Tarif 1 jour : <?php echo number_format($totalJour, 2); ?> €</i>
+		Pour <?php echo $nbJours; ?> jours : CHF <?php echo number_format($totalJour * $nbJours, 2); ?>, <b>coef <?php echo coef($nbJours); ?></b><br />
+		<i class="micro">Tarif 1 jour : CHF <?php echo number_format($totalJour, 2); ?></i>
 	</div>
 	<div class="inline top tiers rightText">
-		<?php echo '<div class="enorme">TOTAL H.T. : '.number_format($totalFinal, 2).' €</div><div class="enorme">TOTAL T.T.C. : '.number_format($totalFinal + ($totalFinal * TVA_VAL), 2).' €</div>'; ?>
+		<?php echo '<div class="enorme">TOTAL H.T. : CHF '.number_format($totalFinal, 2).'</div><div class="enorme">TOTAL T.T.C. : CHF '.number_format($totalFinal + ($totalFinal * TVA_VAL), 2).'</div>'; ?>
 	</div>
 </div>
 

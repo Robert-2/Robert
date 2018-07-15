@@ -24,7 +24,7 @@
 - Gestion de la disponibilité des techniciens
 - Gestion des quantités de matériel disponible à la (aux) date(s) donnée(s)
 - Création de devis et factures au format PDF
-- Système de calcul de remises, en % ou en €
+- Système de calcul de remises, en % ou en CHF
 - Création de listes récapitulatives du matériel à préparer/louer, des infos sur l'événement et du fichier de déclaration des techniciens.
 - Météo du lieu de l’événement (si pas trop éloigné dans le temps)
 - Petit système de post-it pour communiquer avec toute l'équipe

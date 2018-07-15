@@ -1,40 +1,9 @@
 <?php
 require('FPDF.class.php');
-define('EURO', 'Euros' );
-define('EURO_VAL', 6.55957 );
+define('CURRENCY', 'CHF' );
 
 // Xavier Nicolay 2004
 // Version 1.02
-//
-// Reste à faire :
-// + Multipage (gestion automatique sur plusieurs pages)
-//
-
-//////////////////////////////////////
-// fonctions à utiliser (publiques) //
-//////////////////////////////////////
-//  function sizeOfText( $texte, $larg )
-//  function addSociete( $nom, $adresse )
-//  function fact_dev( $libelle, $num )
-//  function addDevis( $numdev )
-//  function addFacture( $numfact )
-//  function addDate( $date )
-//  function addClient( $ref )
-//  function addPageNumber( $page )
-//  function addClientAdresse( $adresse )
-//  function addReglement( $mode )
-//  function addEcheance( $date )
-//  function addNumTVA($tva)
-//  function addReference($ref)
-//  function addCols( $tab )
-//  function addLineFormat( $tab )
-//  function lineVert( $tab )
-//  function addLine( $ligne, $tab )
-//  function addRemarque($remarque)
-//  function addCadreTVAs()
-//  function addCadreEurosFrancs()
-//  function addTVAs( $params, $tab_tva, $invoice )
-//  function temporaire( $texte )
 
 class PDF_Devisfacture extends FPDF {
 	// variables privées
@@ -184,7 +153,7 @@ class PDF_Devisfacture extends FPDF {
 	// (FACTURE, DEVIS, Bon de commande, etc...)
 	// et son numero
 	// La taille de la fonte est auto-adaptee au cadre
-	function fact_dev( $libelle, $num, $indEuros = true )
+	function fact_dev( $libelle, $num, $indCurrency = true )
 	{
 		$r1  = $this->w - 100;
 		$r2  = $r1 + 98;
@@ -192,8 +161,8 @@ class PDF_Devisfacture extends FPDF {
 		$y2  = $y1 + 2;
 		$mid = ($r1 + $r2 ) / 2;
 
-		if ($indEuros == true)
-			$texte  = $libelle . "en " . EURO . ", N° " . $num;
+		if ($indCurrency == true)
+			$texte  = $libelle . "en " . CURRENCY . ", N° " . $num;
 		else $texte = $libelle . " N° " . $num;
 		$szfont = 12;
 		$loop   = 0;
@@ -522,11 +491,11 @@ class PDF_Devisfacture extends FPDF {
 		$y1  = $this->h - $topFromBot;
 		$y2  = $y1+20;
 		$this->RoundedRect($r1, $y1, ($r2 - $r1), ($y2-$y1), 2.5, 'D');
-		$this->Line( $r1+20,  $y1, $r1+20, $y2); // ligne avant "EUROS"
-		$this->Line( $r1+20, $y1+4, $r2, $y1+4); // ligne dessous "EUROS"
+		$this->Line( $r1+20,  $y1, $r1+20, $y2); // ligne avant la monnaie
+		$this->Line( $r1+20, $y1+4, $r2, $y1+4); // ligne dessous la monnaie
 		$this->SetFont( "Arial", "B", 8);
 		$this->SetXY( $r1+22, $y1 );
-		$this->Cell(15,4, "EUROS", 0, 0, "C");
+		$this->Cell(15,4, CURRENCY, 0, 0, "C");
 		$this->SetFont( "Arial", "", 8);
 		$this->SetFont( "Arial", "B", 6);
 		$this->SetXY( $r1, $y1+5 );
@@ -581,7 +550,7 @@ class PDF_Devisfacture extends FPDF {
 						$this->Cell( 16.5,4, $params["remise_percent"]."%", '', '', 'C' );	// Affiche le % de la remise
 						$this->SetXY( 78, $y+4 );
 						$this->SetFont('Arial','',6);
-						$this->Cell( 16.5,4, '(soit -'.$l_remise.' EUR)', '', '', 'C' );	// Affiche le montant de la remise
+						$this->Cell( 16.5,4, '(soit CHF -'.$l_remise.')', '', '', 'C' );	// Affiche le montant de la remise
 					}
 					else
 						$this->Cell( 16.5,4, "Sans remise", '', '', 'R' );
@@ -616,7 +585,7 @@ class PDF_Devisfacture extends FPDF {
 			{
 				$accompteTTC=sprintf ("%.2F", $params["accompte"]);
 				if ( strlen ($params["Remarque"]) == 0 )
-					$this->addRemarque( "Accompte de $accompteTTC Euros exigé à la commande.");
+					$this->addRemarque( "Accompte de CHF $accompteTTC exigé à la commande.");
 				else
 					$this->addRemarque( $params["Remarque"] );
 			}
@@ -628,7 +597,7 @@ class PDF_Devisfacture extends FPDF {
 				$accompteTTC=sprintf("%.2F", $totalTTC * $percent);
 				$percent100 = $percent * 100;
 				if ( strlen ($params["Remarque"]) == 0 )
-					$this->addRemarque( "Accompte de $percent100 % (soit $accompteTTC Euros) exigé à la commande." );
+					$this->addRemarque( "Accompte de $percent100 % (soit CHF $accompteTTC) exigé à la commande." );
 				else
 					$this->addRemarque( $params["Remarque"], $topFromBot );
 			}
@@ -656,9 +625,9 @@ class PDF_Devisfacture extends FPDF {
 		if ($salaires != false) {
 			$this->SetFont( "Arial", "B", 10);
 			$this->SetXY( $re, $y1+21 );
-			$this->Cell(20,6, "A cette somme, vous devrez ajouter ".number_format($salaires, 2)." Euros pour l'emploi des techniciens.", 0, 0, "R");
+			$this->Cell(20,6, "A cette somme, vous devrez ajouter CHF ".number_format($salaires, 2)." pour l'emploi des techniciens.", 0, 0, "R");
 			$this->SetXY( $re, $y1+27 );
-			$this->Cell(20,6, "Le coût total de la prestation sera donc de ".number_format($totalTTC+$salaires, 2, '.', '')." Euros", 0, 0, "R");
+			$this->Cell(20,6, "Le coût total de la prestation sera donc de CHF ".number_format($totalTTC+$salaires, 2, '.', ''), 0, 0, "R");
 		}
 		return number_format($totalTTC, 2);
 	}

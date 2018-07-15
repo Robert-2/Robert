@@ -14,15 +14,15 @@
 		<button class="inline top bouton" id='add_Matos_Rapide' title="Ajouter un matériel vite fait">
 			<span class="ui-icon ui-icon-plusthick doigt">ajouter</span>
 		</button>
-		
+
 		<div class="inline top Vseparator bordSection"></div>
-		
+
 		<button class="bouton filtreMatos" id="son" title="voir le matos SON"><img src="./gfx/icones/categ-son.png" alt="SON" width="30" /></button>
 		<button class="bouton filtreMatos" id="lumiere" title="voir le matos LUMIERE"><img src="./gfx/icones/categ-lumiere.png" alt="LUMIERE" width="30" /></button>
 		<button class="bouton filtreMatos" id="structure" title="voir le matos STRUCTURE"><img src="./gfx/icones/categ-structure.png" alt="STRUCTURE" width="30" /></button>
 		<button class="bouton filtreMatos" id="transport" title="voir le matos TRANSPORT"><img src="./gfx/icones/categ-transport.png" alt="TRANSPORT" width="30" /></button>
 		<button class="bouton filtreMatos" id="polyvalent" title="voir le matos POLYVALENT"><img src="./gfx/icones/categ-polyvalent.png" alt="POLYVALENT" width="30" /></button>
-		
+
 		<div class="inline top Vseparator bordSection"></div>
 		<div class='inline top'>
 			<button class="bouton filtreMatos" id="int-ext" title="matos INTERNE / EXTERNE au Parc"><img src="./gfx/icones/matosExterne.png" alt="INT/EXT" width="30"></button>
@@ -30,7 +30,7 @@
 	</div>
 	<br />
 	<br />
-	
+
 
 	<div id="packsHolder" class="center shadowOut">
 		<?php
@@ -53,8 +53,8 @@
 							$externeIcon
 						</div>
 						<div class='inline mid matos_categ rightText accordionOpen' style='width:100px;'>
-							<div class='inline mid pack_categ'><img src='gfx/icones/categ-$categPack.png' alt='$categPack' /></div>	
-						</div>							
+							<div class='inline mid pack_categ'><img src='gfx/icones/categ-$categPack.png' alt='$categPack' /></div>
+						</div>
 						<div class='inline mid quart leftText pad30L pack_name accordionOpen'>$label</div>
 						<div class='inline mid quart packDispo rightText mini'>
 							<div class='inline mid qteDispo' style='$externeHideDispo'>
@@ -85,15 +85,15 @@
 			}
 		?>
 	</div>
-	
+
 	<div id="matosHolder" class="center shadowOut gros hide"> <?php
 		include('matos_tri_sousCat.php');
-		
+
 		$matos_by_categ = creerSousCatArray($listeMatos);
 		$categById		= simplifySousCatArray();
-		
+
 //		echo '<pre>'; print_r($matos_by_categ); echo '</pre>';
-		
+
 		if (is_array($matos_by_categ)) {
 			foreach ($categById as $catInfo) {
 				$index = $catInfo['id'];
@@ -111,7 +111,7 @@
 					$ext		= $v['externe'];
 					$extChezQui = $v['ownerExt'];
 
-					$qte -= $panne ; 
+					$qte -= $panne ;
 					( $panne > 0 )? $affichPanne = "<span class='mini red'>(+ $panne en panne)</span>" : $affichPanne = '';
 					( $ext == '1')? $externeIcon = "<img src='gfx/icones/matosExterne.png' alt='externe' popup='matériel externe au parc !<br />A louer chez <b>$extChezQui</b>' />" : $externeIcon = '';
 					( $ext == '1')? $externeClass = "matosExterne" : $externeClass = '';
@@ -141,15 +141,15 @@
 								</div>
 
 								<div class='inline mid quart'>
-									<div class='inline mid demi petit rightText'><span class='matos_PU'>$pu €</span></div>
-									<div class='inline mid demi gros'> = <span class='matos_PRICE'>0</span> €</div>
+									<div class='inline mid demi petit rightText'><span class='matos_PU'>CHF $pu</span></div>
+									<div class='inline mid demi gros'> = CHF <span class='matos_PRICE'>0</span></div>
 								</div>
 							</div>";
 				}
 			}
 		}
 	?></div>
-	
+
 	<br />
 	<br />
 </div>
@@ -191,11 +191,11 @@ $liste_ssCat = $lm->getListe(TABLE_MATOS_CATEG);
 	</div>
 	<div class="inline top center pad3" style="width: 120px;">
 		<div class="ui-widget-header ui-corner-all">Tarif loc. : <b class="red">*</b></div>
-		<input class="NumericInput" type="text" id="newMatosTarifLoc" class="addMatosInput" size="6" /> €
+		CHF <input class="NumericInput" type="text" id="newMatosTarifLoc" class="addMatosInput" size="6" />
 	</div>
 	<div class="inline top center pad3" style="width: 130px;">
 		<div class="ui-widget-header ui-corner-all">Val. Remp. : <b class="red">*</b></div>
-		<input class="NumericInput" type="text" id="newMatosValRemp" class="addMatosInput" size="8" /> €
+		CHF <input class="NumericInput" type="text" id="newMatosValRemp" class="addMatosInput" size="8" />
 	</div>
 	<div class="inline top center pad3" style="width: 120px;">
 		<div class="ui-widget-header ui-corner-all">Qté Parc : <b class="red">*</b></div>
@@ -222,5 +222,3 @@ $liste_ssCat = $lm->getListe(TABLE_MATOS_CATEG);
 	</div>
 
 </div>
-
-

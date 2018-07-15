@@ -1,3 +1,6 @@
+### CHF
+- Utilise la devise "__CHF__" plutôt que les Euros dans le code source.
+
 ### 0.6.3 (2019-01-09)
 - Supprime la météo dans les modales des plans, car l'API meteorologic.com n'existe plus
 - Corrige les liens vers le site web officiel suite au changement de nom de domaine (https://robertmanager.org)
