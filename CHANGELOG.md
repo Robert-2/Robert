@@ -1,3 +1,10 @@
+### 0.6.2 (2018-07-27)
+- Remplace toutes les occurrences restantes de _"Acousmie"_ par la constante `NOM_BOITE`
+- Nettoie encore un peu le code
+
+### 0.6.1 (2018-07-15)
+- Corrige le champ "detail" de la table "matos_packs" (varchar > text)
+
 ### 0.6.0 (2017-11-30)
 - Nettoie et remanie un peu le code
 - Renomme le fichier `common.inc.php` en `user_config.php`
