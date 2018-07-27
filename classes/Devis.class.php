@@ -1,7 +1,7 @@
 <?php
 /*
  *
-    Le Robert est un logiciel libre; vous pouvez le redistribuer et/ou
+    Robert est un logiciel libre; vous pouvez le redistribuer et/ou
     le modifier sous les termes de la Licence Publique Générale GNU Affero
     comme publiée par la Free Software Foundation;
     version 3.0.
