@@ -1,3 +1,7 @@
+### 0.6.3 (2019-01-09)
+- Supprime la météo dans les modales des plans, car l'API meteorologic.com n'existe plus
+- Corrige les liens vers le site web officiel suite au changement de nom de domaine (https://robertmanager.org)
+
 ### 0.6.2 (2018-07-27)
 - Remplace toutes les occurrences restantes de _"Acousmie"_ par la constante `NOM_BOITE`
 - Nettoie encore un peu le code

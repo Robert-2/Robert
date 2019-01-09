@@ -1,4 +1,4 @@
-![Robert-logo](http://www.robert.polosson.com/gfx/Logo_ROBERT.png)
+![Robert-logo](https://robertmanager.org/gfx/Logo_ROBERT.png)
 
 ### Robert, c'est :
 - Une WEB-APP (logiciel en ligne) open source, écrite en `php`, `js`, `html` et `xml`, utilisant _jQuery_, _ajax_ et _mysql_.

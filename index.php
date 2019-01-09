@@ -67,12 +67,12 @@
             <br />
             <span class="boutonMenu petit noMarge"
                   title="Site officiel de Robert">
-                <a href="http://www.robert.polosson.com" target="_new"><b>Site officiel</b></a>
+                <a href="https://robertmanager.org" target="_new"><b>Site officiel</b></a>
             </span>
             <br /><br />
             <span class="boutonMenu petit noMarge"
                   title="Indiquez ici les bugs que vous trouvez">
-                <a href="http://www.robert.polosson.com/buglist.php" target="_new"><b>BugHunter</b></a>
+                <a href="https://robertmanager.org/buglist.php" target="_new"><b>BugHunter</b></a>
             </span>
         </div>
         <div class="colonne C ui-widget fondSect2 petit">
