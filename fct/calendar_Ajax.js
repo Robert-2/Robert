@@ -568,29 +568,6 @@ function montreDetailsPlan (datas) {
 	// check des salaires pour autoriser 0
 	checkSalaires();
 
-	// MÉTÉO
-	var ville = (datas.lieu).split(',');
-	var meteoLoading = 'ville='+encodeURI(ville[0])+'&date='+datas.timeDebut ;
-	$.ajaxq('ajaxQueue', {
-		url: "./fct/meteo_parser.php",
-		type: "POST",
-		data: meteoLoading,
-		success: function (meteoJson) {
-			try {var meteoArr = jQuery.parseJSON(meteoJson);}
-			catch (err) {erreur = "ERREUR ! retour PHP :\n\n"+ meteoJson;}
-			if (meteoArr != null && meteoArr != undefined) {
-				if (meteoArr.icon == "inconnu")
-					iconeMeteo = '<img src="./gfx/icones/unknown_weather.png" title="'+meteoArr.condition+'" />';
-				else {
-					iconeMeteo = '<img src="http://www.meteorologic.net/pictos/'+meteoArr.icon+'.gif" title="'+meteoArr.condition+'" />('+meteoArr.temp+')';
-				}
-			}
-			else iconeMeteo = '<img src="./gfx/icones/unknown_weather.png" title="Le lieu n\'a pas été trouvé !" />';
-			$('#meteoDay').html(iconeMeteo);
-		}
-	});
-
-
 	if (datas.levelAuth == true) {
 		if (datas.resa == 'devis') {
 			$( "#dialog" ).dialog({

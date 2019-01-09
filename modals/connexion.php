@@ -45,11 +45,11 @@ if (isset($_GET['action']) && $_GET['action'] == 'deconx') : ?>
 		</p>
 		<p>
 			Vous trouverez de l'aide sur le fonctionnement de Robert ici :
-            <b><a href="http://www.robert.polosson.com/wiki.php" target="_new">WIKI de Robert</a></b>
+            <b><a href="https://robertmanager.org/wiki.php" target="_new">WIKI de Robert</a></b>
 		</p>
 		<p>
 			Si vous trouvez un truc qui cloche, ou qui manque, allez faire un tour dans le
-            <b><a href="http://www.robert.polosson.com/buglist.php" target="_new">BugHunter</a></b>
+            <b><a href="https://robertmanager.org/buglist.php" target="_new">BugHunter</a></b>
             pour nous en faire part !
 		</p>
 		<hr />

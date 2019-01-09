@@ -17,7 +17,7 @@
  *
  */
 
-define("R_VERSION", '0.6.2');
+define("R_VERSION", '0.6.3');
 
 $host       = $_SERVER['HTTP_HOST'];
 $serverName = php_uname('n');
