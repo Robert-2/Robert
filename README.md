@@ -1,3 +1,13 @@
+> ### Attention ! Ce projet n'est plus maintenu par l'équipe initiale.  
+
+> La deuxième version du projet (Robert2) est hébergée sur GitLab à cette adresse : https://gitlab.com/robertmanager. Plus d'informations sur le site web officiel du projet : https://robertmanager.org.
+
+> Tout ce qui concerne la présente version de Robert se trouve à l'adresse : https://legacy.robertmanager.org
+
+Cheers !
+
+---
+
 ![Robert-logo](https://robertmanager.org/gfx/Logo_ROBERT.png)
 
 ### Robert, c'est :
