@@ -1,14 +1,19 @@
-> ### Attention ! Ce projet n'est plus maintenu par l'équipe initiale.  
+### Attention ! Vous êtes sur une ancienne version de Robert, [la nouvelle version se trouve ici](https://github.com/Robert-2/Robert2).
 
-> La deuxième version du projet (Robert2) est hébergée sur GitLab à cette adresse : https://gitlab.com/robertmanager. Plus d'informations sur le site web officiel du projet : https://robertmanager.org.
+*Ce repository contient la première version de Robert, celle-ci n'est actuellement plus maintenu.*
 
-> Tout ce qui concerne la présente version de Robert se trouve à l'adresse : https://legacy.robertmanager.org
+*La deuxième version du projet (Robert2) est hébergée à l'adresse : https://github.com/Robert-2/Robert2.*  
+*Plus d'informations sur le site web officiel du projet : https://robertmanager.org.*
 
-Cheers !
+*Tout ce qui concerne la présente version de Robert se trouve à l'adresse : https://legacy.robertmanager.org*
+
+*Cheers !*
 
 ---
 
-![Robert-logo](https://robertmanager.org/gfx/Logo_ROBERT.png)
+<div align="center">
+    <img src="gfx/Robert.png" width="307" height="80" alt="Robert 1.0" />
+</div>
 
 ### Robert, c'est :
 - Une WEB-APP (logiciel en ligne) open source, écrite en `php`, `js`, `html` et `xml`, utilisant _jQuery_, _ajax_ et _mysql_.
@@ -63,28 +68,28 @@ Cheers !
 
 ## Documentation
 ### Installation
-Sommaire ([voir wiki](https://github.com/RobertManager/robert/wiki/3.-Documentation-du-Robert-:-INSTALLATION)) :
+Sommaire ([voir wiki](https://github.com/Robert-2/Robert/wiki/3.-Documentation-du-Robert-:-INSTALLATION)) :
 
-1. [Avant de commencer](https://github.com/RobertManager/robert/wiki/3.-Documentation-du-Robert-:-INSTALLATION#1-avant-de-commencer)
-2. [Installation des fichiers source](https://github.com/RobertManager/robert/wiki/3.-Documentation-du-Robert-:-INSTALLATION#2-installation-des-fichiers-source)
-3. [Configuration](https://github.com/RobertManager/robert/wiki/3.-Documentation-du-Robert-:-INSTALLATION#3-configuration)
-4. [Mise à jour de Robert](https://github.com/RobertManager/robert/wiki/3.-Documentation-du-Robert-:-INSTALLATION#4-mise-à-jour-de-robert)
-5. [Cas d'installation portable sous Windows avec µWamp](https://github.com/RobertManager/robert/wiki/3.-Documentation-du-Robert-:-INSTALLATION#5-cas-dinstallation-portable-sous-windows-avec-µwamp)
+1. [Avant de commencer](https://github.com/Robert-2/Robert/wiki/3.-Documentation-du-Robert-:-INSTALLATION#1-avant-de-commencer)
+2. [Installation des fichiers source](https://github.com/Robert-2/Robert/wiki/3.-Documentation-du-Robert-:-INSTALLATION#2-installation-des-fichiers-source)
+3. [Configuration](https://github.com/Robert-2/Robert/wiki/3.-Documentation-du-Robert-:-INSTALLATION#3-configuration)
+4. [Mise à jour de Robert](https://github.com/Robert-2/Robert/wiki/3.-Documentation-du-Robert-:-INSTALLATION#4-mise-à-jour-de-robert)
+5. [Cas d'installation portable sous Windows avec µWamp](https://github.com/Robert-2/Robert/wiki/3.-Documentation-du-Robert-:-INSTALLATION#5-cas-dinstallation-portable-sous-windows-avec-µwamp)
 
 ### Utilisation
-Sommaire ([voir wiki](https://github.com/RobertManager/robert/wiki/4.-Documentation-du-Robert-:-UTILISATION)) :
+Sommaire ([voir wiki](https://github.com/Robert-2/Robert/wiki/4.-Documentation-du-Robert-:-UTILISATION)) :
 
-1. [Pour commencer](https://github.com/RobertManager/robert/wiki/4.-Documentation-du-Robert-:-UTILISATION#1-pour-commencer)
-2. [Création des informations](https://github.com/RobertManager/robert/wiki/4.-Documentation-du-Robert-:-UTILISATION#2-création-des-informations)
-3. [Création d'un évènement](https://github.com/RobertManager/robert/wiki/4.-Documentation-du-Robert-:-UTILISATION#3-workflow-création-dun-évènement)
+1. [Pour commencer](https://github.com/Robert-2/Robert/wiki/4.-Documentation-du-Robert-:-UTILISATION#1-pour-commencer)
+2. [Création des informations](https://github.com/Robert-2/Robert/wiki/4.-Documentation-du-Robert-:-UTILISATION#2-création-des-informations)
+3. [Création d'un évènement](https://github.com/Robert-2/Robert/wiki/4.-Documentation-du-Robert-:-UTILISATION#3-workflow-création-dun-évènement)
 
 ### Développement
-Sommaire ([voir wiki](https://github.com/RobertManager/robert/wiki/5.-Documentation-du-Robert-:-D%C3%89VELOPPEMENT)) :
+Sommaire ([voir wiki](https://github.com/Robert-2/Robert/wiki/5.-Documentation-du-Robert-:-D%C3%89VELOPPEMENT)) :
 
-1. [Versionning, dépôt GIT et GitHub](https://github.com/RobertManager/robert/wiki/5.-Documentation-du-Robert-:-D%C3%89VELOPPEMENT#1-versionning-dépôt-git-et-github)
-2. [Règles de base de présentation du code](https://github.com/RobertManager/robert/wiki/5.-Documentation-du-Robert-:-D%C3%89VELOPPEMENT#2-règles-de-base-de-présentation-du-code)
-3. [La structure du Robert expliquée](https://github.com/RobertManager/robert/wiki/5.-Documentation-du-Robert-:-D%C3%89VELOPPEMENT#3-la-structure-du-robert-expliquée)
-4. [Liste des classes](https://github.com/RobertManager/robert/wiki/5.-Documentation-du-Robert-:-D%C3%89VELOPPEMENT#4-liste-des-classes)
+1. [Versionning, dépôt GIT et GitHub](https://github.com/Robert-2/Robert/wiki/5.-Documentation-du-Robert-:-D%C3%89VELOPPEMENT#1-versionning-dépôt-git-et-github)
+2. [Règles de base de présentation du code](https://github.com/Robert-2/Robert/wiki/5.-Documentation-du-Robert-:-D%C3%89VELOPPEMENT#2-règles-de-base-de-présentation-du-code)
+3. [La structure du Robert expliquée](https://github.com/Robert-2/Robert/wiki/5.-Documentation-du-Robert-:-D%C3%89VELOPPEMENT#3-la-structure-du-robert-expliquée)
+4. [Liste des classes](https://github.com/Robert-2/Robert/wiki/5.-Documentation-du-Robert-:-D%C3%89VELOPPEMENT#4-liste-des-classes)
 
 ## Licence
 Robert est un logiciel libre; vous pouvez le redistribuer et/ou
